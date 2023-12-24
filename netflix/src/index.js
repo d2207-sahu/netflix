@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import { RoutingComponent } from './router/RoutingPage';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { RoutingComponent } from "./router/RoutingPage";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RoutingComponent />

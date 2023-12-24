@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { background_logo_large } from '../../assets';
 
 const LogoImageComponent = styled.img`
-  width: 12rem;
+  width: 20rem;
   margin-left: 3%;
 `;
 

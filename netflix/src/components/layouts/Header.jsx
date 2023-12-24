@@ -4,7 +4,7 @@ import Container from '../globals/Container';
 
 const Header = () => {
   return (
-    <Container position='absolute'>
+    <Container position='absolute' z_index="10">
       <Logo />
     </Container>
   )
