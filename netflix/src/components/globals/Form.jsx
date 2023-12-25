@@ -14,6 +14,7 @@ const Form = styled.form`
     bottom: 0;
     left: 0;
     gap: 20px;
+    border-radius: 8px;
     background-color: rgb(0, 0, 0, 0.8);
     min-height: fit-content;
 `;

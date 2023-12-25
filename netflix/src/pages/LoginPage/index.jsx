@@ -27,7 +27,7 @@ const LoginPage = () => {
             <Input ref={emailRef} placeholder={config.email} autoComplete="email" type="email" title={config.email} />
             <Input ref={passwordRef} placeholder={config.password} type='password' title={config.password} />
             <Button autoCorrect='false' onClick={handleSignUp}>Sign In</Button>
-            <NormalText className='text-red-600'>{signInErrorMessage}</NormalText>
+            <NormalText className='text-[#e87c03]'>{signInErrorMessage}</NormalText>
             <div className='flex flex-row'>
                 <NormalText className='text-[#737373]'>New to Netflix? </NormalText>
                 <Link to={'/signup'} className='text-white hover:underline'>
