@@ -3,7 +3,8 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  updateProfile
+  signOut,
+  updateProfile,
 } from 'firebase/auth';
 import {initializeApp} from 'firebase/app';
 import {firebaseConfig} from '../config/firebase-config';
@@ -21,7 +22,8 @@ const useFirebase = () => {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
-    updateProfile
+    updateProfile,
+    signOut,
   };
 };
 

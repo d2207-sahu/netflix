@@ -6,7 +6,6 @@ import { checkEmailAndPassword } from "../../utils/validation"
 import { Button, ErrorText, Form, Heading, Input, NormalText } from "../../components/globals"
 import { LinkText } from "../../components/LinkText"
 import { useFirebase } from "../../hooks"
-import { useNavigate } from "react-router-dom"
 import { updateProfile } from "firebase/auth"
 import { useDispatch } from "react-redux"
 import { addUser } from "../../redux/slices/userSlice"
@@ -16,7 +15,6 @@ const SignUpPage = () => {
     const [signInErrorMessage, setSignInErrorMessage] = useState('');
     const [signInSubmitError, setSignInSubmitError] = useState('');
     const { auth, createUserWithEmailAndPassword } = useFirebase();
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const emailRef = useRef();
     const nameRef = useRef();
@@ -32,33 +30,23 @@ const SignUpPage = () => {
         if (message !== '') return;
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCred) => {
-                navigate('/');
                 emailRef.current.value = '';
                 passwordRef.current.value = '';
                 nameRef.current.value = '';
-                updateProfile(auth, { displayName: name }).then(() => {
-                    console.log(auth.currentUser)
-                    auth.currentUser &&
-                        dispatch(
-                            addUser({
-                                name: auth.currentUser?.displayName,
-                                photoURL: auth.currentUser?.photoURL
-                            }));
-                }).catch((e) => {
-                    console.log(e);
-                    if (typeof (err) === 'object')
-                        setSignInSubmitError(FirebaseErrorMap[e.code.split('/')[1]])
-                    else setSignInSubmitError(e)
-                }).finally(() => { navigate('/'); });
+                return updateProfile(auth, { displayName: name });
+            }).then(() => {
+                auth.currentUser &&
+                    dispatch(
+                        addUser({
+                            name: auth.currentUser?.displayName,
+                            photoURL: auth.currentUser?.photoURL
+                        }));
             })
             .catch((err => {
                 if (typeof (err) === 'object')
                     setSignInSubmitError(FirebaseErrorMap[err.code.split('/')[1]])
                 else setSignInSubmitError(err)
-            })).finally(() => {
-
-            });
-
+            }));
     }
 
     return (<div>

@@ -5,7 +5,7 @@ const Form = styled.form`
     display: ${(props) => props.$display ?? "flex"};
     flex-direction: column;
     align-items: stretch;
-    padding: 3% 3%;
+    padding: 5% 5%;
     justify-content: center;
     margin: 5% auto;
     width: 30%;

@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import Header from '../../components/layouts/Header';
 import { BackgroundImage } from '../../components/layouts/BackgroundImage';
 import { translationConfig } from '../../config/translation-config';
@@ -13,7 +12,6 @@ const LoginPage = () => {
     const [signInErrorMessage, setSignInErrorMessage] = useState('');
     const [signInSubmitError, setSignInSubmitError] = useState('');
     const { auth, signInWithEmailAndPassword } = useFirebase();
-    const navigate = useNavigate();
     const emailRef = useRef();
     const passwordRef = useRef();
 
@@ -27,7 +25,6 @@ const LoginPage = () => {
         console.log(checkEmailAndPassword(email, password), signInErrorMessage);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCred) => {
-                navigate('/');
                 emailRef.current.value = '';
                 passwordRef.current.value = '';
             })
@@ -56,8 +53,8 @@ const LoginPage = () => {
     </div>)
 }
 
-// ToDo
-// add name + phoitoURL,
+// TODO
+// Faciong Error when saving name + phoitoURL,
 // add a browse page UI, and also add the cuntionality tyheir
 // we will use TMDB API to get the URLs
 // 2. Have the image lazy Laod
