@@ -1,35 +1,80 @@
-import { Link } from "react-router-dom"
 import { BackgroundImage } from "../../components/layouts/BackgroundImage"
 import Header from "../../components/layouts/Header"
-import { config } from "../../config/translation"
+import { translationConfig } from "../../config/translation-config"
 import { useRef, useState } from "react"
-import { validateEmail, validatePassword } from "../../utils/validation"
-import { Button, Form, Heading, Input, NormalText } from "../../components/globals"
+import { checkEmailAndPassword } from "../../utils/validation"
+import { Button, ErrorText, Form, Heading, Input, NormalText } from "../../components/globals"
+import { LinkText } from "../../components/LinkText"
+import { useFirebase } from "../../hooks"
+import { useNavigate } from "react-router-dom"
+import { updateProfile } from "firebase/auth"
+import { useDispatch } from "react-redux"
+import { addUser } from "../../redux/slices/userSlice"
+import { FirebaseErrorMap } from "../../config/firebase-Error-Map-config"
 
 const SignUpPage = () => {
     const [signInErrorMessage, setSignInErrorMessage] = useState('');
+    const [signInSubmitError, setSignInSubmitError] = useState('');
+    const { auth, createUserWithEmailAndPassword } = useFirebase();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const emailRef = useRef();
+    const nameRef = useRef();
     const passwordRef = useRef();
 
     function handleSignUp() {
         const email = emailRef.current.value;
+        const name = nameRef.current.value;
         const password = passwordRef.current.value;
-        console.log(email, password);
-        if (!validateEmail(email)) { setSignInErrorMessage("Email is not valid.") }
-        else if (!validatePassword(password)) { setSignInErrorMessage("Password is not valid.") }
+        const message = checkEmailAndPassword(email, password, name)
+        setSignInErrorMessage(message);
+        setSignInSubmitError('');
+        if (message !== '') return;
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCred) => {
+                navigate('/');
+                emailRef.current.value = '';
+                passwordRef.current.value = '';
+                nameRef.current.value = '';
+                updateProfile(auth, { displayName: name }).then(() => {
+                    console.log(auth.currentUser)
+                    auth.currentUser &&
+                        dispatch(
+                            addUser({
+                                name: auth.currentUser?.displayName,
+                                photoURL: auth.currentUser?.photoURL
+                            }));
+                }).catch((e) => {
+                    console.log(e);
+                    if (typeof (err) === 'object')
+                        setSignInSubmitError(FirebaseErrorMap[e.code.split('/')[1]])
+                    else setSignInSubmitError(e)
+                }).finally(() => { navigate('/'); });
+            })
+            .catch((err => {
+                if (typeof (err) === 'object')
+                    setSignInSubmitError(FirebaseErrorMap[err.code.split('/')[1]])
+                else setSignInSubmitError(err)
+            })).finally(() => {
+
+            });
+
     }
+
     return (<div>
         <Header />
         <BackgroundImage />
         <Form onSubmit={(event) => { event.preventDefault(); }}>
-            <Heading>Sign Up</Heading>
-            <Input ref={emailRef} placeholder={config.email} autoComplete="email" type="email" title={config.email} />
-            <Input ref={passwordRef} placeholder={config.password} type='password' title={config.password} />
-            <Button autoCorrect='false' onClick={handleSignUp} >Sign Up</Button>
-            <NormalText className='text-red-600'>{signInErrorMessage}</NormalText>
+            <Heading>{translationConfig.signUp}</Heading>
+            <Input ref={nameRef} placeholder={translationConfig.name} autoComplete="email" type="text" title={translationConfig.name} />
+            <Input ref={emailRef} placeholder={translationConfig.email} autoComplete="email" type="email" title={translationConfig.email} />
+            <Input ref={passwordRef} placeholder={translationConfig.password} type='password' title={translationConfig.password} />
+            <ErrorText>{signInErrorMessage}</ErrorText>
+            <Button autoCorrect='false' onClick={handleSignUp} >{translationConfig.signUp}</Button>
+            <ErrorText>{signInSubmitError}</ErrorText>
             <div className='flex flex-row'>
-                <NormalText className='text-[#737373]'>Already Signed Up? </NormalText>
-                <Link to={'/login'} className='text-white hover:underline'> <NormalText>Sign In Now</NormalText></Link>
+                <NormalText className='text-[#737373]'>{translationConfig.alreadySignedUp} </NormalText>
+                <LinkText to={'/login'} text={translationConfig.signInNow} />
             </div>
         </Form>
     </div>)

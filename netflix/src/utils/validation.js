@@ -1,6 +1,23 @@
-import { emailRegex, passwordRegex } from "./constant";
+import {translationConfig} from '../config/translation-config';
+import {emailRegex, passwordRegex, nameRegex} from './constant';
 
-export const validateEmail = (email) => emailRegex.test(email);
+const validateEmail = (email) => emailRegex.test(email);
 
-// TODO password validation is not working
-export const validatePassword = (password) => passwordRegex.test(password);
+const validatePassword = (password) => passwordRegex.test(password);
+
+const validateName = (name) => nameRegex.test(name);
+/**
+ * @function checkEmailAndPassword
+ * @param {string} email
+ * @param {string} password
+ * @returns {string} Error Message if Invalid, and EMpty string if Valid
+ */
+export const checkEmailAndPassword = (email, password, name) => {
+  if (!validateEmail(email)) {
+    return translationConfig.emailInvlaid;
+  } else if (!validatePassword(password)) {
+    return translationConfig.passwordInvlaid;
+  } else if (name && !validateName(name)) {
+    return translationConfig.nameInvalid;
+  } else return '';
+};
