@@ -1,28 +1,33 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from 'react';
+import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
 import './../styles/style.css';
-import LoginPage from "../pages/LoginPage";
-import { HomePage } from "../pages/HomePage";
-import GlobalStyle from "../styles/GlobalComponent";
-import SignUpPage from "../pages/SignUpPage";
+import GlobalStyle from '../styles/GlobalComponent';
+import SignUpPage from '../pages/SignUpPage';
+import LoginPage from '../pages/LoginPage';
+import {HomePage} from '../pages/HomePage';
+import {routingConfig} from './routing-config';
 
 export const RoutingComponent = () => {
   const appRouter = createBrowserRouter([
     {
-      path: "/",
+      path: routingConfig.index,
+      element: <Navigate to="/browse" />,
+    },
+    {
+      index: true,
+      path: routingConfig.home,
       element: <HomePage />,
     },
     {
-      index: true,
-      path: "/login",
+      path: routingConfig.login,
       element: <LoginPage />,
     },
     {
-      index: true,
-      path: "signup",
+      path: routingConfig.signup,
       element: <SignUpPage />,
     },
   ]);
+
   return (
     <>
       <GlobalStyle />

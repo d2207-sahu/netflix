@@ -5,7 +5,7 @@ const Form = styled.form`
     display: ${(props) => props.$display ?? "flex"};
     flex-direction: column;
     align-items: stretch;
-    padding: 3% 3%;
+    padding: 5% 5%;
     justify-content: center;
     margin: 5% auto;
     width: 30%;
@@ -14,6 +14,7 @@ const Form = styled.form`
     bottom: 0;
     left: 0;
     gap: 20px;
+    border-radius: 8px;
     background-color: rgb(0, 0, 0, 0.8);
     min-height: fit-content;
 `;
