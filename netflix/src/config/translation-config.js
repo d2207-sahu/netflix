@@ -1,3 +1,6 @@
+// Save this language JSON file in the Fireabse Storage JSON object, 
+// Based on the URL, fetch from the Fireabse and update the Lanugages Text their
+
 export const translationConfig = {
   email: 'Email',
   name: 'Name',
@@ -11,4 +14,8 @@ export const translationConfig = {
   nameInvalid: 'Name is Invalid',
   newToNetflix: 'New to Netflix?',
   alreadySignedUp: 'Already Signed Up?',
+  nowPlaying:'Now Playing',
+  topRated:'Top Rated',
+  upcoming:'Upcoming',
+  Popular:'Popular',
 };

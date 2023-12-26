@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     *{
@@ -13,7 +13,12 @@ const GlobalStyle = createGlobalStyle`
 
     body{
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        /* scrollbar-width: none; 
+        -ms-overflow-style: none;  IE and Edge */
     }
+    /* body::-webkit-scrollbar {
+        display: none;
+    } */
 `;
 
 export default GlobalStyle;

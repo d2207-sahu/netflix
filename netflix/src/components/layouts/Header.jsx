@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../../redux/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { routingConfig } from '../../router/routing-config';
-import { Image } from '../globals';
+import { ButtonW, Image, NormalText } from '../globals';
 import { userRed } from './../../assets';
+import { toggleGPTSliceContainer } from '../../redux/slices/gptSlice';
 /**
  * This Component is rendered in every page
  * @returns 
@@ -15,6 +16,7 @@ import { userRed } from './../../assets';
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector(((store) => store.user))
+  const app = useSelector(((store) => store.app))
   const { auth, onAuthStateChanged, signOut } = useFirebase();
   const dispatch = useDispatch();
 
@@ -51,7 +53,15 @@ const Header = () => {
       <Logo />
       {/* Should also contain the navigation dropdown items to show the sections of the application */}
       {/* This should have signin button if not logged in. */}
-      {user && <Image onClick={() => { signOut(auth) }} className="mx-[3%] cursor-pointer" src={userRed} alt='user' />}
+      <div className='flex h-[inherit] justify-between items-center'>
+        <ButtonW onClick={() => dispatch(toggleGPTSliceContainer())}>GPT Search</ButtonW>
+        {/* Had to keep a constants file in the CONSTANTS, and update the thing accordingly */}
+        <select >
+          <option title='en' value={app.languages}><NormalText>{app.languages}</NormalText></option>
+          <option title='hn' value={app.language}><NormalText>{app.languages}</NormalText></option>
+        </select>
+        {user && <Image onClick={() => { signOut(auth) }} className="mr-[3vw] mx-3 cursor-pointer" src={userRed} alt='user' />}
+      </div>
     </Container>
   )
 }

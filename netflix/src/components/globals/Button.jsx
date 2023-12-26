@@ -15,7 +15,6 @@ const ButtonW = styled.button`
     border: 0;
     border-radius: 4px;
     padding: 16px;
-    margin-top:20px;
     color: black;
     font-size: 2rem;
 `;
@@ -25,7 +24,6 @@ const ButtonG = styled.button`
     border: 0;
     border-radius: 4px;
     padding: 16px;
-    margin-top:20px;
     color: white;
     font-size: 2rem;
 `;

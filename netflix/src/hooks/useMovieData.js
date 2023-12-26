@@ -28,4 +28,4 @@ const useMovieData = ({movieID, getVideo}) => {
   }, []);
 };
 
-export default useMovieData;
+export {useMovieData};
