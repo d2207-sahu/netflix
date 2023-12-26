@@ -11,6 +11,7 @@ const Heading = styled.h1`
 const NormalText = styled.p`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-style: 600;
+    color: white;
     font-size: 1.6rem;
 `;
 

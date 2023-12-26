@@ -10,4 +10,26 @@ const Button = styled.button`
     font-size: 2rem;
 `;
 
-export {Button}
+const ButtonW = styled.button`
+    background-color: white;
+    border: 0;
+    border-radius: 4px;
+    padding: 16px;
+    margin-top:20px;
+    color: black;
+    font-size: 2rem;
+`;
+
+const ButtonG = styled.button`
+    background-color: #4e4e4e;
+    border: 0;
+    border-radius: 4px;
+    padding: 16px;
+    margin-top:20px;
+    color: white;
+    font-size: 2rem;
+`;
+
+
+// TODO add hover later on
+export { Button, ButtonW, ButtonG }

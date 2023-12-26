@@ -30,7 +30,7 @@ const LoginPage = () => {
             })
             .catch((err => {
                 if (typeof (err) === 'object')
-                    setSignInSubmitError(FirebaseErrorMap[err.code.split('/')[1]])
+                    setSignInSubmitError(FirebaseErrorMap[err?.code?.split('/')[1]])
                 else setSignInSubmitError(err)
             }));
     }

@@ -49,6 +49,8 @@ const Header = () => {
   return (
     <Container $top={0} $position='absolute' $z_index="10" $justifyContent="space-between" >
       <Logo />
+      {/* Should also contain the navigation dropdown items to show the sections of the application */}
+      {/* This should have signin button if not logged in. */}
       {user && <Image onClick={() => { signOut(auth) }} className="mx-[3%] cursor-pointer" src={userRed} alt='user' />}
     </Container>
   )

@@ -6,6 +6,7 @@ const Container = styled.div`
     z-index: ${(props) => props.$z_index};
     justify-content: ${(props) => props.$justifyContent};
     align-items: center;
+    align-content: center;
     width: -webkit-fill-available;
     top: ${(props) => props.$top};
     background: linear - gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
