@@ -1,5 +1,4 @@
-export const TMDB_API_KEY =
-  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDljNmM5MDNhOGNhYmZiZDg2ODgxNDljYmQ5NmY3NCIsInN1YiI6IjY1OGE3ZTQ0NzY0NmZkNGVlMTA1NmE3YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yv_O8mCvOp9kLixRhnDSBDvMLrdbY_3osbbYzwRBVeE';
+export const TMDB_API_KEY = process.env['REACT_APP_TMDB_API_KEY']
 export const TMDB_API_IMAGE_CDN_URL = 'https://image.tmdb.org/t/p/';
 // include the width thing at the next param1
 export const BASE_API_URL = 'https://api.themoviedb.org/3/';

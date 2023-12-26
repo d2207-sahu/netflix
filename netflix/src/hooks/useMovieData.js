@@ -1,4 +1,4 @@
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {baseFetchAPI} from '../service/api.service';
 import {MOVIE_DATA_VIDEO, TEASER} from '../config/constants';
 import {useEffect} from 'react';
@@ -6,6 +6,11 @@ import {addHomeTeaserVideoID} from '../redux/slices/movieSlice';
 
 const useMovieData = ({movieID, getVideo}) => {
   const dispatch = useDispatch();
+
+  const homeTeaserVideoData = useSelector(
+    (store) => store.movies?.homeTeaserVideoData,
+  );
+
   const getMovieVideos = async () => {
     baseFetchAPI(
       'GET',
@@ -22,7 +27,7 @@ const useMovieData = ({movieID, getVideo}) => {
   };
 
   useEffect(() => {
-    if (getVideo) {
+    if (getVideo && !homeTeaserVideoData) {
       getMovieVideos();
     }
   }, []);

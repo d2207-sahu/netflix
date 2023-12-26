@@ -1,5 +1,5 @@
 import {baseFetchAPI} from '../service/api.service';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   addNowPlayingMovies,
   addPopularMovies,
@@ -16,6 +16,10 @@ import {useEffect} from 'react';
 
 const useCarouselMoviesList = () => {
   const dispatch = useDispatch();
+
+  const {nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies} =
+    useSelector((store) => store.movies);
+
   const getNowPlayingMovies = async () => {
     baseFetchAPI(
       'GET',
@@ -62,10 +66,10 @@ const useCarouselMoviesList = () => {
   };
 
   useEffect(() => {
-    getNowPlayingMovies();
-    getPopularMovies();
-    getTopRatedMovies();
-    getUpcomingMovies();
+    !nowPlayingMovies && getNowPlayingMovies();
+    !popularMovies &&getPopularMovies();
+    !topRatedMovies &&getTopRatedMovies();
+    !upcomingMovies &&getUpcomingMovies();
   }, []);
 };
 

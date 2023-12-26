@@ -54,6 +54,7 @@ const Header = () => {
       {/* Should also contain the navigation dropdown items to show the sections of the application */}
       {/* This should have signin button if not logged in. */}
       <div className='flex h-[inherit] justify-between items-center'>
+        {/* Make a serach feature here, means use the TMDB API and use that to show the movies list cards.*/}
         <ButtonW onClick={() => dispatch(toggleGPTSliceContainer())}>GPT Search</ButtonW>
         {/* Had to keep a constants file in the CONSTANTS, and update the thing accordingly */}
         <select >
