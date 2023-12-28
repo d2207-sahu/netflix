@@ -24,7 +24,7 @@ const LoginPage = () => {
         if (message !== '') return;
         console.log(checkEmailAndPassword(email, password), signInErrorMessage);
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCred) => {
+            .then(() => {
                 emailRef.current.value = '';
                 passwordRef.current.value = '';
             })

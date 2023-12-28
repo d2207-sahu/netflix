@@ -18,4 +18,5 @@ export const translationConfig = {
   topRated:'Top Rated',
   upcoming:'Upcoming',
   Popular:'Popular',
+  searchPlaceHolder: 'Title, peoples, genres'
 };

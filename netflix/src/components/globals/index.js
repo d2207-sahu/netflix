@@ -5,6 +5,7 @@ import Image from './Image';
 import {Input} from './Input';
 import Logo from './Logo';
 import {Video} from './Video';
+import IconComponent from './IconComponent'
 import {InvisibleScrollContainer} from './InvisibleScrollContainer';
 export {
   NormalText,
@@ -19,5 +20,6 @@ export {
   Input,
   Logo,
   Video,
+  IconComponent,
   InvisibleScrollContainer
 };

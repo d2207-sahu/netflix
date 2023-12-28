@@ -1,3 +1,4 @@
+import React from "react"
 import { BackgroundImage } from "../../components/layouts/BackgroundImage"
 import Header from "../../components/layouts/Header"
 import { translationConfig } from "../../config/translation-config"
@@ -11,6 +12,7 @@ import { useDispatch } from "react-redux"
 import { addUser } from "../../redux/slices/userSlice"
 import { FirebaseErrorMap } from "../../config/firebase-Error-Map-config"
 
+// TODO create a confirm password fiel;d here.
 const SignUpPage = () => {
     const [signInErrorMessage, setSignInErrorMessage] = useState('');
     const [signInSubmitError, setSignInSubmitError] = useState('');
@@ -29,7 +31,7 @@ const SignUpPage = () => {
         setSignInSubmitError('');
         if (message !== '') return;
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCred) => {
+            .then(() => {
                 emailRef.current.value = '';
                 passwordRef.current.value = '';
                 nameRef.current.value = '';

@@ -19,6 +19,7 @@ const userSlice = createSlice({
       state.name = action.payload.name ?? state.name;
       state.photoURL = action.payload.photoURL ?? state.photoURL;
     },
+    // eslint-disable-next-line no-unused-vars
     removeUser: (state, action) => {
       return null;
     },

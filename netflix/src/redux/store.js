@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
 import movieSlice from './slices/movieSlice';
-import gptSlice from './slices/gptSlice';
+import searchSlice from './slices/searchSlice';
 import appSlice from './slices/appSlice';
 
 const store = configureStore({
@@ -9,7 +9,7 @@ const store = configureStore({
     app: appSlice,
     user: userReducer,
     movies: movieSlice,
-    gpt: gptSlice,
+    search: searchSlice,
   },
 });
 

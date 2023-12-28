@@ -5,6 +5,7 @@ import GlobalStyle from '../styles/GlobalComponent';
 import SignUpPage from '../pages/SignUpPage';
 import LoginPage from '../pages/LoginPage';
 import {HomePage} from '../pages/HomePage';
+import SearchPage from '../pages/SearchPage';
 import {routingConfig} from './routing-config';
 
 export const RoutingComponent = () => {
@@ -25,6 +26,10 @@ export const RoutingComponent = () => {
     {
       path: routingConfig.signup,
       element: <SignUpPage />,
+    },
+    {
+      path: routingConfig.search,
+      element: <SearchPage />,
     },
   ]);
 

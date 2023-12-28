@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../../redux/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { routingConfig } from '../../router/routing-config';
-import { ButtonW, Image, NormalText } from '../globals';
+import { Image, NormalText } from '../globals';
 import { userRed } from './../../assets';
-import { toggleGPTSliceContainer } from '../../redux/slices/gptSlice';
+import SearchComponent from '../SearchComponent';
+
 /**
  * This Component is rendered in every page
  * @returns 
@@ -36,12 +37,14 @@ const Header = () => {
             uid,
           }),
         );
-        navigate(routingConfig.home, { replace: true });
+        if ((window.location.href.includes(routingConfig.signup) || window.location.href.includes(routingConfig.login)))
+          navigate(routingConfig.home, { replace: true });
       } else {
         // No User Credentials Found, means have to logout user
         dispatch(removeUser());
-        if (!(window.location.href.includes(routingConfig.signup) || window.location.href.includes(routingConfig.login)))
+        if (!(window.location.href.includes(routingConfig.signup) || window.location.href.includes(routingConfig.login))) {
           navigate(routingConfig.login, { replace: true });
+        }
       }
     });
     return () => unsubscribe();
@@ -55,7 +58,8 @@ const Header = () => {
       {/* This should have signin button if not logged in. */}
       <div className='flex h-[inherit] justify-between items-center'>
         {/* Make a serach feature here, means use the TMDB API and use that to show the movies list cards.*/}
-        <ButtonW onClick={() => dispatch(toggleGPTSliceContainer())}>GPT Search</ButtonW>
+        <SearchComponent />
+
         {/* Had to keep a constants file in the CONSTANTS, and update the thing accordingly */}
         <select >
           <option title='en' value={app.languages}><NormalText>{app.languages}</NormalText></option>

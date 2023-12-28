@@ -3,4 +3,5 @@ export const routingConfig = {
   home: '/browse',
   login: '/login',
   signup: '/signup',
+  search: '/search',
 };
