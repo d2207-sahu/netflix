@@ -21,7 +21,7 @@
     "tailwindcss": "^3.4.0"
   },
   "scripts": {
-    "start": "react-scripts start && chrome.exe --user-data-dir=”C:/Chrome dev session” --disable-web-security",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
