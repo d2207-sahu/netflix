@@ -81,7 +81,7 @@ const MovieCardComponent = ({ movieDetail }) => {
         setOnMouseOver(true);
     }
     return (
-        <MovieCard key={movieDetail.id} className="bg-white"
+        <MovieCard key={movieDetail.id} className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
             onMouseOver={onMouseOverFunction}
             onMouseLeave={onMouseLeave}>
             <img

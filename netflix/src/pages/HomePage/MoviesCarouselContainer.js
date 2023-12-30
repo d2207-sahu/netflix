@@ -1,16 +1,22 @@
-import React from 'react';
-import {NormalText} from '../../components/globals';
+import React, {useState} from 'react';
+import {SubHeading} from '../../components/globals';
 import {useSelector} from 'react-redux';
 import {translationConfig} from '../../config/translation-config';
 import MovieCardComponent from '../../components/MovieCard';
-import {Slider, SliderContainer} from '../../components/NetflixCaraousel';
+import {
+  LeftHandle,
+  RightHandle,
+  Slider,
+  SliderContainer,
+} from '../../components/NetflixCaraousel';
+import {FiArrowLeft, FiArrowRight} from 'react-icons/fi';
 const MoviesCarouselContainer = () => {
   const {nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies} =
     useSelector((store) => store.movies);
 
   return (
-    <div className="bg-black w-screen h-max">
-      <div className="relative top-[-15vh]">
+    <div className="w-screen h-max">
+      <div className=" relative top-[-15vh]">
         <MoviesCarousel
           title={translationConfig.nowPlaying}
           movieCards={nowPlayingMovies}
@@ -33,11 +39,25 @@ const MoviesCarouselContainer = () => {
 };
 
 const MoviesCarousel = ({title, movieCards}) => {
+  const [sliderIndex, setSliderIndex] = useState(0);
+
   return (
     <div>
-      <NormalText className="pl-[5%] mb-5 font-bold">{title}</NormalText>
+      <SubHeading
+        className="pl-[3.1%] mt-8 mb-8 font-bold text-sm"
+        $fontSize={'2.0rem'}
+      >
+        {title}
+      </SubHeading>
       <SliderContainer>
-        <Slider>
+        <LeftHandle
+          onClick={() => {
+            setSliderIndex((prev) => prev + 1);
+          }}
+        >
+          <FiArrowLeft size={30} className="m-auto" />
+        </LeftHandle>
+        <Slider $sliderIndex={`${sliderIndex * 100}%`}>
           {movieCards?.map((movieDetail) => (
             <MovieCardComponent
               key={movieDetail.id}
@@ -45,6 +65,13 @@ const MoviesCarousel = ({title, movieCards}) => {
             />
           ))}
         </Slider>
+        <RightHandle
+          onClick={() => {
+            setSliderIndex((prev) => prev - 1);
+          }}
+        >
+          <FiArrowRight size={30} className="m-auto" />
+        </RightHandle>
       </SliderContainer>
     </div>
   );
