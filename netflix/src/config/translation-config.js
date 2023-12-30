@@ -18,5 +18,6 @@ export const translationConfig = {
   topRated:'Top Rated',
   upcoming:'Upcoming',
   Popular:'Popular',
-  searchPlaceHolder: 'Title, peoples, genres'
+  searchPlaceHolder: 'Title, peoples, genres',
+  emptySearchText: "Your search for {} did not find any matches"
 };

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const InvisibleScrollContainer = styled.div`
+overflow-y: auto;
     overflow-x: scroll;
 
     &::-webkit-scrollbar {

@@ -1,17 +1,18 @@
-import {NormalText, Heading, SubHeading, ErrorText} from './Text';
-import {Button, ButtonW, ButtonG} from './Button';
+import {NormalText, Heading, SubHeading, ErrorText, SmallText} from './Text';
+import {Button, ButtonW, ButtonG,IconButton} from './Button';
 import Form from './Form';
 import Image from './Image';
 import {Input} from './Input';
 import Logo from './Logo';
 import {Video} from './Video';
-import IconComponent from './IconComponent'
 import {InvisibleScrollContainer} from './InvisibleScrollContainer';
+
 export {
   NormalText,
   Heading,
   SubHeading,
   ErrorText,
+  SmallText,
   Image,
   Button,
   ButtonW,
@@ -20,6 +21,6 @@ export {
   Input,
   Logo,
   Video,
-  IconComponent,
+  IconButton,
   InvisibleScrollContainer
 };

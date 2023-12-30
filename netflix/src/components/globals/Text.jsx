@@ -14,6 +14,11 @@ const NormalText = styled.p`
     color: white;
     font-size: 1.6rem;
 `;
+const SmallText = styled.p`
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: 600;
+    font-size:1.2rem;
+`;
 
 
 const SubHeading = styled.h2`
@@ -30,4 +35,4 @@ const ErrorText = styled.h2`
     font-size: 1.4rem;
 `;
 
-export { Heading, SubHeading, NormalText, ErrorText }
+export { Heading, SubHeading, NormalText, ErrorText ,SmallText}

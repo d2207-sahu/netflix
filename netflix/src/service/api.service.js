@@ -1,5 +1,4 @@
-import { BASE_API_URL, TMDB_API_KEY } from "../config/constants";
-
+import {BASE_API_URL, TMDB_API_KEY} from '../config/constants';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -15,6 +14,7 @@ const headers = {
  * @param {object} body - The payload or data to include in the request body (used for POST requests).
  * @param {function} successCallback - A callback function to handle a successful response.
  * @param {function} errorCallback - A callback function to handle errors or unsuccessful API requests.
+ * @param {function} finalCallback - A callback function to handle errors or unsuccessful API requests.
  * @description
  *   This function makes generic API requests using the fetch API.
  *   It supports various HTTP request types and handles both successful responses and errors.
@@ -52,13 +52,13 @@ export async function baseFetchAPI(
 
     if (response.ok) {
       const responseData = await response.json();
-      successCallback(responseData);
+      return successCallback(responseData);
     } else {
       const errorData = await response.json();
-      errorHandler(url, errorData, errorCallback);
+      return errorHandler(url, errorData, errorCallback);
     }
   } catch (e) {
-    errorHandler(url, e, errorCallback);
+    return errorHandler(url, e, errorCallback);
   }
 }
 

@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {baseFetchAPI} from '../service/api.service';
-import {MOVIE_DATA_VIDEO, TEASER} from '../config/constants';
+import {MOVIE_DATA_VIDEO, TRAILER} from '../config/constants';
 import {useEffect} from 'react';
 import {addHomeTeaserVideoID} from '../redux/slices/movieSlice';
 
@@ -19,7 +19,7 @@ const useMovieData = ({movieID, getVideo}) => {
       async (data) => {
         const videos = data?.results;
         const initialLoadVideo =
-          videos.find((video) => video.type === TEASER) ?? videos[0];
+          videos.find((video) => video.type === TRAILER) ?? videos[0];
         dispatch(addHomeTeaserVideoID(initialLoadVideo));
       },
       (err) => console.error(err),

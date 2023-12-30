@@ -1,13 +1,9 @@
 import React from 'react';
-import {
-  Image,
-  InvisibleScrollContainer,
-  NormalText,
-} from '../../components/globals';
+import {NormalText} from '../../components/globals';
 import {useSelector} from 'react-redux';
 import {translationConfig} from '../../config/translation-config';
-import {TMDB_API_IMAGE_CDN_URL} from '../../config/constants';
-
+import MovieCardComponent from '../../components/MovieCard';
+import {Slider, SliderContainer} from '../../components/NetflixCaraousel';
 const MoviesCarouselContainer = () => {
   const {nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies} =
     useSelector((store) => store.movies);
@@ -39,25 +35,18 @@ const MoviesCarouselContainer = () => {
 const MoviesCarousel = ({title, movieCards}) => {
   return (
     <div>
-      <NormalText className="pl-[5%] mb-5 font-bold">{title}</NormalText>]
-      <InvisibleScrollContainer className="flex flex-row">
-        <div className="pl-[5%]"></div>
-        {movieCards?.map((movieDetail) => (
-          <MovieCard key={movieDetail.id} movieDetail={movieDetail} />
-        ))}
-      </InvisibleScrollContainer>
+      <NormalText className="pl-[5%] mb-5 font-bold">{title}</NormalText>
+      <SliderContainer>
+        <Slider>
+          {movieCards?.map((movieDetail) => (
+            <MovieCardComponent
+              key={movieDetail.id}
+              movieDetail={movieDetail}
+            />
+          ))}
+        </Slider>
+      </SliderContainer>
     </div>
-  );
-};
-
-const MovieCard = ({movieDetail}) => {
-  return (
-    <Image
-      alt={movieDetail.original_title}
-      src={TMDB_API_IMAGE_CDN_URL + 'w500' + movieDetail.backdrop_path}
-      className="w-[25vw] h-auto pr-[0.4vw]"
-      $borderRadius={'0.4vw'}
-    ></Image>
   );
 };
 

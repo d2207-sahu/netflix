@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const searchSliceInititalState = {
   showSearchSliceContainer: false,
   searchReduxText: '',
+  searchResultData: [],
 };
 
 const searchSlice = createSlice({
@@ -16,10 +17,16 @@ const searchSlice = createSlice({
     updateSearchText: (state, action) => {
       state.searchReduxText = action.payload;
     },
+    updateSearchResultData: (state, action) => {
+      state.searchResultData = action.payload;
+    },
   },
 });
 
-export const {toggleSearchSliceContainer, updateSearchText} =
-  searchSlice.actions;
+export const {
+  toggleSearchSliceContainer,
+  updateSearchText,
+  updateSearchResultData,
+} = searchSlice.actions;
 
 export default searchSlice.reducer;

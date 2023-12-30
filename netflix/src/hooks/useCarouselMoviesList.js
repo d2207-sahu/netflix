@@ -1,12 +1,14 @@
 import {baseFetchAPI} from '../service/api.service';
 import {useDispatch, useSelector} from 'react-redux';
 import {
+  addAllMovieGenres,
   addNowPlayingMovies,
   addPopularMovies,
   addTopRatedMovies,
   addUpcomingMovies,
 } from '../redux/slices/movieSlice';
 import {
+  ALL_GENRE,
   NOW_PLAYING_API_URL,
   POPULAR_API_URL,
   TOP_RATED_API_URL,
@@ -17,8 +19,13 @@ import {useEffect} from 'react';
 const useCarouselMoviesList = () => {
   const dispatch = useDispatch();
 
-  const {nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies} =
-    useSelector((store) => store.movies);
+  const {
+    nowPlayingMovies,
+    popularMovies,
+    topRatedMovies,
+    upcomingMovies,
+    addMovieGenres,
+  } = useSelector((store) => store.movies);
 
   const getNowPlayingMovies = async () => {
     baseFetchAPI(
@@ -65,11 +72,24 @@ const useCarouselMoviesList = () => {
     );
   };
 
+  const getAllGenres = async () => {
+    baseFetchAPI(
+      'GET',
+      ALL_GENRE,
+      null,
+      async (data) => {
+        dispatch(addAllMovieGenres(data.genres));
+      },
+      (err) => console.error(err),
+    );
+  };
+
   useEffect(() => {
+    !addMovieGenres && getAllGenres();
     !nowPlayingMovies && getNowPlayingMovies();
-    !popularMovies &&getPopularMovies();
-    !topRatedMovies &&getTopRatedMovies();
-    !upcomingMovies &&getUpcomingMovies();
+    !popularMovies && getPopularMovies();
+    !topRatedMovies && getTopRatedMovies();
+    !upcomingMovies && getUpcomingMovies();
   }, []);
 };
 

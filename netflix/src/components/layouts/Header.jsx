@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../../redux/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { routingConfig } from '../../router/routing-config';
-import { Image, NormalText } from '../globals';
+import { Image } from '../globals';
 import { userRed } from './../../assets';
 import SearchComponent from '../SearchComponent';
 
@@ -52,18 +52,16 @@ const Header = () => {
 
 
   return (
-    <Container $top={0} $position='absolute' $z_index="10" $justifyContent="space-between" >
+    <Container $top={0} $position='fixed' $z_index="10" $justifyContent="space-between" >
       <Logo />
       {/* Should also contain the navigation dropdown items to show the sections of the application */}
       {/* This should have signin button if not logged in. */}
       <div className='flex h-[inherit] justify-between items-center'>
-        {/* Make a serach feature here, means use the TMDB API and use that to show the movies list cards.*/}
         <SearchComponent />
-
         {/* Had to keep a constants file in the CONSTANTS, and update the thing accordingly */}
         <select >
-          <option title='en' value={app.languages}><NormalText>{app.languages}</NormalText></option>
-          <option title='hn' value={app.language}><NormalText>{app.languages}</NormalText></option>
+          <option title='en' value={app.languages}>{app.languages}</option>
+          <option title='hn' value={app.language}>{app.languages}</option>
         </select>
         {user && <Image onClick={() => { signOut(auth) }} className="mr-[3vw] mx-3 cursor-pointer" src={userRed} alt='user' />}
       </div>

@@ -28,6 +28,22 @@ const ButtonG = styled.button`
     font-size: 2rem;
 `;
 
+const IconButton = styled.button`
+    background-color: #272727;
+    border-color: white;
+    border-width: 1.5px;
+    outline: 1px;
+    outline-color: white;
+    border-radius: 4rem;
+    padding:0.75rem;
+    color: white;
+    font-size: 2rem;
+    &:hover{
+    background-color: #323232;
+
+    }
+`;
+
 
 // TODO add hover later on
-export { Button, ButtonW, ButtonG }
+export { Button, ButtonW, ButtonG, IconButton }
