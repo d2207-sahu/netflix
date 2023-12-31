@@ -25,6 +25,7 @@ const SmallText = styled.p`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 400;
     font-size:${props=>props.$fontSize ?? '1.2rem'};
+    color:${props=>props.$color ?? 'white'};
     ${props =>
         props.$showShadow && `
         text-shadow: 0 1px 1px rgba(0,0,0,.7);`}

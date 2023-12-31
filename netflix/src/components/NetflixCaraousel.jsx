@@ -69,6 +69,7 @@ export const MovieCardComponent = () => {
 }
 
 const Handle = styled.button`
+    display: flex;
     flex-grow: 0;
     border: none;
     border-radius:0.5rem;
@@ -85,12 +86,16 @@ const Handle = styled.button`
 export const LeftHandle = styled(Handle)`
     &:hover{
         background-color: rgba(22, 22, 22, 0.293);
+        scale: 1.3;
+
     }
 `
 
 export const RightHandle = styled(Handle)`
-       &:hover{
+    margin-right: ${props => props.$marginRight ?? '0'};
+   &:hover{
         background-color: rgba(22, 22, 22, 0.293);
+        scale: 1.3;
     }
 `;
 

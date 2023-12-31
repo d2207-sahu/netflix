@@ -11,5 +11,7 @@ export const MOVIE_DATA = 'movie/{movie_id}';
 export const TEASER = 'Teaser';
 export const TRAILER = 'Trailer';
 export const MOVIE_DATA_VIDEO = `${MOVIE_DATA}/videos`;
+export const MOVIE_DATA_CREDIT = `${MOVIE_DATA}/credits`;
+export const MOVIE_DATA_RECOMMENDATION = `${MOVIE_DATA}/similar`;
 export const SEARCH_API_URL = 'search/movie';
 export const ALL_GENRE = '/genre/movie/list'

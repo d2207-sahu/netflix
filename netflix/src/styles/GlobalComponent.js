@@ -18,6 +18,14 @@ const GlobalStyle = createGlobalStyle`
         background-color: black;
         overflow-x: clip;
     }
+
+    body.openModal{
+       overflow: hidden;
+    }
+    dialog::backdrop{
+      background-color: #000;
+      opacity: 0.4;
+    }
 `;
 
 export const size = {

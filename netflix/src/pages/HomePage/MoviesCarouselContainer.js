@@ -49,7 +49,7 @@ const MoviesCarousel = ({title, movieCards}) => {
       >
         {title}
       </SubHeading>
-      <SliderContainer>
+      <SliderContainer >
         <LeftHandle
           onClick={() => {
             setSliderIndex((prev) => prev + 1);
@@ -69,6 +69,7 @@ const MoviesCarousel = ({title, movieCards}) => {
           onClick={() => {
             setSliderIndex((prev) => prev - 1);
           }}
+          $marginRight='16px'
         >
           <FiArrowRight size={30} className="m-auto" />
         </RightHandle>
