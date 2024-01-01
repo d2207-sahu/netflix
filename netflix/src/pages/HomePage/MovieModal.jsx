@@ -44,6 +44,7 @@ const MovieModal = () => {
             });
             if (videoID) {
                 // dialogRef.current.showModal();
+                // Later on save teh scroll posiiotn and translacte to thjat poistion when closing
                 window.scrollTo(0, 0);
                 document.body.classList.add('openModal')
                 timeout = setTimeout(() => {

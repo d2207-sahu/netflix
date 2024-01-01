@@ -3,9 +3,11 @@ import {baseFetchAPI} from '../service/api.service';
 import {useEffect, useState} from 'react';
 import {SEARCH_API_URL} from '../config/constants';
 import {updateSearchResultData} from '../redux/slices/searchSlice';
+import useFirestoreDB from './useFirestoreDB';
 
 const useSearch = () => {
   const dispatch = useDispatch();
+  const {addSearchedTag} = useFirestoreDB();
   const {searchReduxText, searchResultData} = useSelector(
     (store) => store.search,
   );
@@ -38,6 +40,7 @@ const useSearch = () => {
     if (searchReduxText && searchReduxText.length >= 3) {
       setPending(true);
       searchAPI();
+      addSearchedTag(searchReduxText);
     }
   }, [searchReduxText]);
 

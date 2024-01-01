@@ -17,6 +17,7 @@ const MainVideoContainerBackground = (movies) => {
     <div>
       <div className="flex flex-col justify-center items-start h-screen overflow-hidden top-0 bottom-0 absolute pl-[5%] bg-gradient-to-r from-black">
         <MovieTitle title={title} className={'lg:w-[45vw] sm:w-[90vw]'} />
+        {/* Have this fade out later on  */}
         <MovieDescription
           desc={overview}
           className={'lg:w-[30vw] sm:w-[60vw]'}

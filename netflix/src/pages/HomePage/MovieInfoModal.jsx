@@ -11,11 +11,13 @@ import { updateModalMovieSelectedID, updateModalSelectedVideo } from '../../redu
 import { TMDB_API_IMAGE_CDN_URL, TRAILER } from '../../config/constants'
 import GenreTags from '../../components/MovieCardComponents/GenreTags';
 import RatingTag from '../../components/MovieCardComponents/RatingTag';
+import useFirestoreDB from '../../hooks/useFirestoreDB';
 
 
 // when this modal opens, means have to update the url, and also let it read the url also
 const MovieInfoModal = () => {
     const renderID = useSelector(store => store.app.modalMovieSelectedID);
+    const { addRecentlyPlayed } = useFirestoreDB();
     const dispatch = useDispatch();
     const dialogRef = useRef();
     const closeModal = () => {
@@ -56,11 +58,10 @@ const MovieInfoModal = () => {
     if (!renderID) return <></>;
     const video = findTrailerVideo ?? videos[0];
     console.log(findTrailerVideo, info, videos, credits, similars, pending, renderID)
-
     return (
         <dialog ref={dialogRef} id="MODAL" className='shadow-md flex flex-col justify-start items-start mx-auto mb-auto mt-auto outline-none bg-[#181818] rounded-2xl w-[80%]' >
             {pending ? "Loading..." : <>
-                <VideoModalSection videos={videos} videoID={video?.key} closeModal={closeModal} />
+                <VideoModalSection videos={videos} addRecentlyPlayed={addRecentlyPlayed} info={info} videoID={video?.key} closeModal={closeModal} />
                 <div className='flex flex-col px-16 py-4'>
                     {info && <InformationSection info={info} />}
                     {similars && <MoreLikeThisSection similars={similars} />}
@@ -106,7 +107,7 @@ const CreditsSection = ({ category, entities }) => {
     </span>
 }
 
-const VideoModalSection = ({ videos, videoID, closeModal }) => {
+const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlayed }) => {
     const dispatch = useDispatch();
 
     return (<div className='w-[100%]  relative'>
@@ -127,7 +128,8 @@ const VideoModalSection = ({ videos, videoID, closeModal }) => {
                     videoID = videoID ? videoID : videos.find((video) =>
                         video.type === "Featurette"
                     );
-                    dispatch(updateModalSelectedVideo(videoID ? videoID.key : videos[0].key))
+                    dispatch(updateModalSelectedVideo(videoID ? videoID.key : videos[0].key));
+                    addRecentlyPlayed(info);
                     closeModal();
                 }} />
                 <AddToMyListButton />

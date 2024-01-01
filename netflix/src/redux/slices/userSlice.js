@@ -1,30 +1,53 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialUserState = {
-  email: '',
-  name: '',
-  uid: '',
-  photoURL: '',
   state: false,
+  // Account Level
+  uid: '',
+  email: '',
+  // User Level
+  users: null,
+  // Specific to User
+  name: '',
+  played: [],
+  searched: [],
+  saved: [],
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState: initialUserState,
   reducers: {
-    addUser: (state, action) => {
-      return action.payload;
+    addAccount: (state, action) => {
+      state = {
+        ...state,
+        state: true,
+        uid: action.payload,
+      };
+      console.log(state)
+      return state;
     },
-    updateUser: (state, action) => {
-      state.name = action.payload.name ?? state.name;
-      state.photoURL = action.payload.photoURL ?? state.photoURL;
+    updateName: (state, action) => {
+      state.name = action.payload;
+      state.played = [];
+      state.saved = [];
+      state.searched = [];
+      return state;
+    },
+    updateUsers: (state, action) => {
+      state.users = action.payload;
+      state.played = [];
+      state.saved = [];
+      state.searched = [];
+      return state;
     },
     // eslint-disable-next-line no-unused-vars
-    removeUser: (state, action) => {
+    removeAccount: (state, action) => {
       return null;
     },
   },
 });
 
-export const {addUser, removeUser} = userSlice.actions;
+export const {addAccount, removeAccount, updateName, updateUsers} =
+  userSlice.actions;
 export default userSlice.reducer;

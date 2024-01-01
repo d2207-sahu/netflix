@@ -5,7 +5,7 @@ const validateEmail = (email) => emailRegex.test(email);
 
 const validatePassword = (password) => passwordRegex.test(password);
 
-const validateName = (name) => nameRegex.test(name);
+export const validateName = (name) => nameRegex.test(name);
 /**
  * @function checkEmailAndPassword
  * @param {string} email

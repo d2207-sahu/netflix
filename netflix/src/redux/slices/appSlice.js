@@ -18,7 +18,7 @@ const appSlice = createSlice({
     },
     updateModalSelectedVideo: (state, action) => {
       state.modalSelectedVideo = action.payload;
-    },
+    }
   },
 });
 

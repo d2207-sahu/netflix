@@ -5,6 +5,7 @@ export const translationConfig = {
   email: 'Email',
   name: 'Name',
   password: 'Password',
+  repassword: 'Confirm Password',
   signUp: 'Sign Up',
   signIn: 'Sign In',
   signUpNow: 'Sign Up Now',
@@ -24,4 +25,9 @@ export const translationConfig = {
   about: 'About ',
   trailerAndMore: 'Trailer & More',
   moreLikeThis: 'More Like This',
+  whoWatching: "Who's Watching?",
+  addProfile: 'Add Profile',
+  addProfileDesc:"Add a profile for another person watching Netflix.",
+  cancel: 'Cancel',
+  continue: "Continue"
 };

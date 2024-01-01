@@ -1,3 +1,3 @@
-import useFirebase from './useFirebase';
+import useFirebase from './useFirebaseAuth';
 
 export {useFirebase};

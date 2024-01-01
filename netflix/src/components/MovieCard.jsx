@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { updateModalMovieSelectedID } from '../redux/slices/appSlice';
 import GenreTags from './MovieCardComponents/GenreTags';
 import RatingTag from './MovieCardComponents/RatingTag';
+import useFirestoreDB from '../hooks/useFirestoreDB';
 
 const MovieCard = styled.div`
     cursor: pointer;
@@ -47,6 +48,7 @@ const MovieCard = styled.div`
 
 const MovieCardComponent = ({ movieDetail }) => {
     const dispatch = useDispatch()
+    const { addToSaved } = useFirestoreDB();
     const [onMouseOver, setOnMouseOver] = useState(false);
     const imageWidth = 'w300';
     const onMouseLeave = (event) => {
@@ -73,7 +75,7 @@ const MovieCardComponent = ({ movieDetail }) => {
                             <IconButton className='rounded'>
                                 <FiPlay fill='#ffff' className=' fill-white' />
                             </IconButton>
-                            <IconButton >
+                            <IconButton onClick={() => { addToSaved(movieDetail) }}>
                                 <FiPlus />
                             </IconButton>
                         </div>
