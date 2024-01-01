@@ -1,0 +1,10 @@
+/* Tailwind.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer utilities {
+  .clip-top-part {
+    clip-path: rect(10%, 100%, 100%, 100%);
+  }
+}
