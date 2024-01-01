@@ -91,6 +91,8 @@ const useCarouselMoviesList = () => {
     !topRatedMovies && getTopRatedMovies();
     !upcomingMovies && getUpcomingMovies();
   }, []);
+
+  return { nowPlayingMovies, topRatedMovies };
 };
 
 export default useCarouselMoviesList;

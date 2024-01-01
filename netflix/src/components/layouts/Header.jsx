@@ -3,12 +3,11 @@ import Logo from '../globals/Logo';
 import Container from '../globals/Container';
 import { useFirebase } from '../../hooks';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser, removeUser } from '../../redux/slices/userSlice';
+import { addAccount, removeAccount } from '../../redux/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { routingConfig } from '../../router/routing-config';
-import { Image } from '../globals';
-import { userRed } from './../../assets';
 import SearchComponent from '../SearchComponent';
+import UserProfileImage from '../UserProfileImage';
 
 /**
  * This Component is rendered in every page
@@ -26,22 +25,18 @@ const Header = () => {
     // Listener that dispatches user object to redux store
     const unsubscribe = onAuthStateChanged(auth, (userCred) => {
       if (userCred) {
-        // User Credentials Found, means have to logIn user
-        const { uid, email, displayName, photoURL } = userCred;
-        dispatch(
-          addUser({
-            state: true,
-            name: displayName,
-            photoURL,
-            email,
-            uid,
-          }),
-        );
-        if ((window.location.href.includes(routingConfig.signup) || window.location.href.includes(routingConfig.login)))
-          navigate(routingConfig.home, { replace: true });
+        const { uid } = userCred;
+        console.log("Authentication Changed",uid)
+        dispatch(addAccount(uid));
+        if ((window.location.href.includes(routingConfig.signup) || window.location.href.includes(routingConfig.login))) {
+          if (user.name)
+            navigate(routingConfig.home, { replace: true });
+          else
+            navigate(routingConfig.profile, { replace: true });
+        }
       } else {
         // No User Credentials Found, means have to logout user
-        dispatch(removeUser());
+        dispatch(removeAccount());
         if (!(window.location.href.includes(routingConfig.signup) || window.location.href.includes(routingConfig.login))) {
           navigate(routingConfig.login, { replace: true });
         }
@@ -50,7 +45,10 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
-
+  let userIndex = 0;
+  user && user.users && user.users.forEach((element, index) => {
+    if (element.name === user.name) userIndex = index;
+  })
   return (
     <Container $top={0} $position='fixed' $z_index="10" $justifyContent="space-between" >
       <Logo />
@@ -63,7 +61,11 @@ const Header = () => {
           <option title='en' value={app.languages}>{app.languages}</option>
           <option title='hn' value={app.language}>{app.languages}</option>
         </select>
-        {user && <Image onClick={() => { signOut(auth) }} className="mr-[3vw] mx-3 cursor-pointer" src={userRed} alt='user' />}
+        {user && <UserProfileImage
+          onClick={() => { signOut(auth) }}
+          className="mr-[3vw] mx-3 cursor-pointer  h-[4rem]"
+          index={userIndex}
+          alt='user' />}
       </div>
     </Container>
   )

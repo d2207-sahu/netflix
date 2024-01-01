@@ -2,13 +2,13 @@ import styled from "styled-components";
 import React, { useState } from 'react'
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import { NormalText } from "./globals";
+
 export const SliderContainer = styled.div`
     min-width: 100%;
-    
     justify-content: center;
     display: flex;
     overflow-x: clip; 
-     overflow-y: visible !important;
+    overflow-y: visible !important;
 `;
 
 export const Slider = styled.div`
@@ -69,6 +69,7 @@ export const MovieCardComponent = () => {
 }
 
 const Handle = styled.button`
+    display: flex;
     flex-grow: 0;
     border: none;
     border-radius:0.5rem;
@@ -82,15 +83,19 @@ const Handle = styled.button`
     color: white;
 `;
 
-const LeftHandle = styled(Handle)`
+export const LeftHandle = styled(Handle)`
     &:hover{
         background-color: rgba(22, 22, 22, 0.293);
+        scale: 1.3;
+
     }
 `
 
-const RightHandle = styled(Handle)`
-       &:hover{
+export const RightHandle = styled(Handle)`
+    margin-right: ${props => props.$marginRight ?? '0'};
+   &:hover{
         background-color: rgba(22, 22, 22, 0.293);
+        scale: 1.3;
     }
 `;
 

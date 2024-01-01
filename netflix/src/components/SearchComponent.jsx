@@ -39,7 +39,6 @@ const SearchComponent = () => {
     const searchDefferedValue = useDebounce(searchText);
     const { pathname } = useLocation();
     const navigate = useNavigate();
-    console.log('whole Search Componnet Rerender', searchText)
 
     useEffect(() => {
         console.log('ref')

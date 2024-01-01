@@ -15,14 +15,17 @@ const GlobalStyle = createGlobalStyle`
 
     body{
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        /* scrollbar-width: none; 
-        -ms-overflow-style: none;  IE and Edge */
+        background-color: black;
+        overflow-x: clip;
     }
-    /* body::-webkit-scrollbar {
-        display: none;
-    } */
 
-    
+    body.openModal{
+       overflow: hidden;
+    }
+    dialog::backdrop{
+      background-color: #000;
+      opacity: 0.4;
+    }
 `;
 
 export const size = {

@@ -3,15 +3,19 @@ import Header from '../../components/layouts/Header'
 import useCarouselMoviesList from '../../hooks/useCarouselMoviesList'
 import MainVideoContainerBackground from './MainVideoContainerBackground'
 import MoviesCarouselContainer from './MoviesCarouselContainer'
-import { useSelector } from 'react-redux'
+import MovieInfoModal from './MovieInfoModal'
+import MovieModal from './MovieModal'
+import useFirestoreDB from '../../hooks/useFirestoreDB'
 
 export const HomePage = () => {
-  useCarouselMoviesList();
-  const { nowPlayingMovies, topRatedMovies } = useSelector(store => store.movies)
-
+  useFirestoreDB();
+  const { nowPlayingMovies, topRatedMovies } = useCarouselMoviesList();
+  
   return (<>
+    <MovieModal  />
+    <MovieInfoModal  />
     <Header />
-    <MainVideoContainerBackground props={nowPlayingMovies ? nowPlayingMovies : topRatedMovies?.reverse()} />
+    <MainVideoContainerBackground props={nowPlayingMovies ? nowPlayingMovies : topRatedMovies} />
     <MoviesCarouselContainer />
   </>
   )

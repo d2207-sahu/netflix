@@ -9,8 +9,10 @@ const Container = styled.div`
     align-content: center;
     width: -webkit-fill-available;
     top: ${(props) => props.$top};
-    background-color: black;
-    /* background: linear - gradient(to bottom, rgba(0, 0, 0, 0.7), transparent); */
+    /* background-color: black; */
+    background: linear-gradient(to bottom,from top , black);
+    transition: background 0.5s ease;
+    /* background: linear - gradient(to bottom, rgba(0, 0, 0, 0.9), transparent); */
 `;
 
 export default Container;

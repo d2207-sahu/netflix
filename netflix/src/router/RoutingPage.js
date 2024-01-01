@@ -7,6 +7,7 @@ import LoginPage from '../pages/LoginPage';
 import {HomePage} from '../pages/HomePage';
 import SearchPage from '../pages/SearchPage';
 import {routingConfig} from './routing-config';
+import ProfilePage from '../pages/ProfilePage';
 
 export const RoutingComponent = () => {
   const appRouter = createBrowserRouter([
@@ -30,6 +31,10 @@ export const RoutingComponent = () => {
     {
       path: routingConfig.search,
       element: <SearchPage />,
+    },
+    {
+      path: routingConfig.profile,
+      element: <ProfilePage />,
     },
   ]);
 

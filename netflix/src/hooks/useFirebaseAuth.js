@@ -18,6 +18,7 @@ const useFirebase = () => {
   const auth = getAuth();
 
   return {
+    app,
     auth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,

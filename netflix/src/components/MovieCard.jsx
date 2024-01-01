@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import { IconButton, NormalText, SmallText } from './globals';
+import { IconButton, NormalText } from './globals';
 import { TMDB_API_IMAGE_CDN_URL } from '../config/constants';
 import styled from 'styled-components';
 import { FiInfo, FiPlay, FiPlus } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { updateModalMovieSelectedID } from '../redux/slices/appSlice';
+import GenreTags from './MovieCardComponents/GenreTags';
+import RatingTag from './MovieCardComponents/RatingTag';
+import useFirestoreDB from '../hooks/useFirestoreDB';
 
 const MovieCard = styled.div`
     cursor: pointer;
@@ -40,37 +44,12 @@ const MovieCard = styled.div`
     }
 `;
 
-const HDTag = styled.div`
-    border: 1px solid hsla(0,0%,100%,.4);
-    border-radius: 3px;
-    color: hsla(0,0%,100%,.9);
-    font-size: .7em;
-    padding: 0 0.5em;
-    white-space: nowrap;
-    width: fit-content;
-`
-const formatReviewCount = (count) => {
-    const formattedCount = count?.toLocaleString(undefined, {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-    });
 
-    if (count >= 1000000) {
-        return `${(count / 1000000).toLocaleString(undefined, { maximumFractionDigits: 2 })}M reviews`;
-    } else if (count >= 100000) {
-        return `${(count / 1000).toLocaleString(undefined, { maximumFractionDigits: 2 })}T reviews`;
-    } else if (count >= 10000) {
-        return `${(count / 100).toLocaleString(undefined, { maximumFractionDigits: 2 })}H reviews`;
-    }
-    else {
-        return `${formattedCount} reviews`;
-    }
-};
 
 const MovieCardComponent = ({ movieDetail }) => {
+    const dispatch = useDispatch()
+    const { addToSaved } = useFirestoreDB();
     const [onMouseOver, setOnMouseOver] = useState(false);
-    const { addMovieGenres } =
-        useSelector((store) => store.movies);
     const imageWidth = 'w300';
     const onMouseLeave = (event) => {
         event.preventDefault();
@@ -81,7 +60,7 @@ const MovieCardComponent = ({ movieDetail }) => {
         setOnMouseOver(true);
     }
     return (
-        <MovieCard key={movieDetail.id} className="bg-white"
+        <MovieCard key={movieDetail.id} className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
             onMouseOver={onMouseOverFunction}
             onMouseLeave={onMouseLeave}>
             <img
@@ -96,11 +75,14 @@ const MovieCardComponent = ({ movieDetail }) => {
                             <IconButton className='rounded'>
                                 <FiPlay fill='#ffff' className=' fill-white' />
                             </IconButton>
-                            <IconButton>
+                            <IconButton onClick={() => { addToSaved(movieDetail) }}>
                                 <FiPlus />
                             </IconButton>
                         </div>
-                        <IconButton>
+                        <IconButton onClick={(e) => {
+                            e.preventDefault();
+                            dispatch(updateModalMovieSelectedID(movieDetail.id));
+                        }}>
                             <FiInfo />
                         </IconButton>
                     </div>
@@ -109,26 +91,9 @@ const MovieCardComponent = ({ movieDetail }) => {
                             {movieDetail.original_title}
                         </NormalText>
                     </div>
-
-
                     <div className='flex flex-wrap justify-between items-center py-3'>
-                        <SmallText className='text-[#a2a2a2] '>
-                            {movieDetail.genre_ids?.map((genreId) => {
-                                const genre = addMovieGenres.find((genre) => genre.id === genreId);
-                                return genre ? genre.name : 'Unknown Genre';
-                            }).join(" • ")}
-                        </SmallText>
-                        {/* TODO Remove this section if number of revierws is 0 */}
-                        <div className='flex gap-2'>
-                            <HDTag >
-                                <SmallText className='text-green-600 font-bold '>
-                                    {`${movieDetail.vote_average?.toFixed(1)}`}
-                                </SmallText>
-                            </HDTag>
-                            <SmallText className='text-[#6a6a6a] '>
-                                {`${formatReviewCount(movieDetail.vote_count)}`}
-                            </SmallText>
-                        </div>
+                        <GenreTags genreIDs={movieDetail?.genre_ids} />
+                        <RatingTag vote_count={movieDetail?.vote_count} vote_average={movieDetail?.vote_average} />
                     </div>
                 </div>
             }
