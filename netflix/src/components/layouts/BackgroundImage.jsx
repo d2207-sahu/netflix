@@ -4,11 +4,19 @@ import { background_image } from '../../assets'
 
 export const BackgroundImage = () => {
     return (
-        <Image
-            // $height={"-webkit-fill-available"}
-            $position="absolute" 
-            // $width={"-webkit-fill-available"} 
-            src={background_image} 
-            alt='Login Page Background' />
+        <Image className='opacity-[.5]'
+            $position="fixed"
+            $minHeight="max-content"
+            $minWidth="100vw"
+            $mobileStyles={`
+                min-width: auto;
+                min-height: 100vh;
+            `}
+            $tabletStyles={`
+                min-width: auto;
+                min-height: 100vh;
+            `}
+            src={background_image}
+            alt='Background Image' />
     )
 }

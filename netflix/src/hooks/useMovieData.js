@@ -79,7 +79,6 @@ const useMovieData = ({movieID, isHome = false}) => {
   };
 
   const getFullMovieData = async () => {
-    console.log("Got ALL");
     await getMovieData();
     await getMovieVideos();
     await getMovieCredits();
@@ -89,14 +88,12 @@ const useMovieData = ({movieID, isHome = false}) => {
   };
 
   useEffect(() => {
-    console.log("Running the Hook");
     if (movieID) {
       setPending(true);
       if (isHome && !homeTeaserVideoData) {
         getMovieVideos();
         return;
       }
-      console.log("Calling the API's Hook for movie");
       getFullMovieData();
     }
   }, [movieID]);

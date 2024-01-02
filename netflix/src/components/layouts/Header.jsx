@@ -4,7 +4,7 @@ import Container from '../globals/Container';
 import { useFirebase } from '../../hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAccount, removeAccount } from '../../redux/slices/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { routingConfig } from '../../router/routing-config';
 import SearchComponent from '../SearchComponent';
 import UserProfileImage from '../UserProfileImage';
@@ -15,6 +15,7 @@ import UserProfileImage from '../UserProfileImage';
  */
 const Header = () => {
   const navigate = useNavigate();
+  const {pathname } = useLocation();
   const user = useSelector(((store) => store.user))
   const app = useSelector(((store) => store.app))
   const { auth, onAuthStateChanged, signOut } = useFirebase();
@@ -26,10 +27,9 @@ const Header = () => {
     const unsubscribe = onAuthStateChanged(auth, (userCred) => {
       if (userCred) {
         const { uid } = userCred;
-        console.log("Authentication Changed",uid)
         dispatch(addAccount(uid));
         if ((window.location.href.includes(routingConfig.signup) || window.location.href.includes(routingConfig.login))) {
-          if (user.name)
+          if (user && user.name)
             navigate(routingConfig.home, { replace: true });
           else
             navigate(routingConfig.profile, { replace: true });
@@ -49,21 +49,39 @@ const Header = () => {
   user && user.users && user.users.forEach((element, index) => {
     if (element.name === user.name) userIndex = index;
   })
+  let showAuthheaders;
+  switch (pathname) {
+    case  routingConfig.login:
+      showAuthheaders = false;
+      break;
+    case routingConfig.profile:
+      showAuthheaders = false;
+      break;
+    case routingConfig.signup:
+      showAuthheaders = false;
+      break;
+    default:
+      showAuthheaders = true;
+      break;
+  }
   return (
     <Container $top={0} $position='fixed' $z_index="10" $justifyContent="space-between" >
       <Logo />
       {/* Should also contain the navigation dropdown items to show the sections of the application */}
-      {/* This should have signin button if not logged in. */}
+      {/* This should have signin button if not logged in */}
       <div className='flex h-[inherit] justify-between items-center'>
-        <SearchComponent />
+        {showAuthheaders ? <SearchComponent /> : <></>}
         {/* Had to keep a constants file in the CONSTANTS, and update the thing accordingly */}
-        <select >
-          <option title='en' value={app.languages}>{app.languages}</option>
-          <option title='hn' value={app.language}>{app.languages}</option>
-        </select>
-        {user && <UserProfileImage
+        {/* // There is header component in the top of signup page */}
+        {showAuthheaders ?
+          <select >
+            <option title='en' value={app.languages}>{app.languages}</option>
+            <option title='hn' value={app.language}>{app.languages}</option>
+          </select>
+          : <></>}
+        {(user && showAuthheaders) && <UserProfileImage
           onClick={() => { signOut(auth) }}
-          className="mr-[3vw] mx-3 cursor-pointer  h-[4rem]"
+          className="mr-[3vw] mx-3 cursor-pointer h-[4rem]"
           index={userIndex}
           alt='user' />}
       </div>

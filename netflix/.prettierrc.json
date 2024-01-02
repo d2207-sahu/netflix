@@ -1,8 +1,34 @@
 {
-    "extends": ["plugin:prettier/recommended"],
-    "bracketSpacing": false,
-    "tabWidth": 2,
-    "useTabs": false,
-    "trailingComma": "all",
-    "singleQuote": true
+  "tabWidth": 2,
+  "useTabs": false,
+  "trailingComma": "none",
+  "singleQuote": true,
+  "printWidth": 100,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "endOfLine": "auto",
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.scss",
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "package.json",
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    }
+  ],
+  "arrowParens": "always"
 }

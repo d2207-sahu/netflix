@@ -1,3 +1,6 @@
+## production site
+https://netflix-divyanshu.vercel.app/browse
+
 ## Deployment
 - main branch is used to deploy to Firebase
 - Github Actions - github-action-735118034
@@ -18,3 +21,8 @@ https://github.com/d2207-sahu/netflix/settings/secrets
     - Header
         - Main Movie
         - ALl movie carousels
+
+
+## TODOs
+1. Suspense
+2. Image Loading
