@@ -1,6 +1,5 @@
 export const TMDB_API_KEY = process.env['REACT_APP_TMDB_API_KEY'];
-export const TMDB_API_IMAGE_CDN_URL =
-  process.env['REACT_APP_TMDB_API_IMAGE_CDN_URL'];
+export const TMDB_API_IMAGE_CDN_URL = process.env['REACT_APP_TMDB_API_IMAGE_CDN_URL'];
 export const BASE_API_URL = process.env['REACT_APP_BASE_API_URL'];
 export const MOVIE_API_URL = 'movie/';
 export const NOW_PLAYING_API_URL = MOVIE_API_URL + 'now_playing';
@@ -14,4 +13,6 @@ export const MOVIE_DATA_VIDEO = `${MOVIE_DATA}/videos`;
 export const MOVIE_DATA_CREDIT = `${MOVIE_DATA}/credits`;
 export const MOVIE_DATA_RECOMMENDATION = `${MOVIE_DATA}/similar`;
 export const SEARCH_API_URL = 'search/movie';
-export const ALL_GENRE = '/genre/movie/list'
+export const ALL_GENRE = '/genre/movie/list';
+export const recapcthaLinkText = '<![CDATA[<b>Learn more.</b>]]>';
+export const recapcthaLinkHref = 'https://policies.google.com/privacy';

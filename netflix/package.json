@@ -1,12 +1,15 @@
 {
   "name": "netflix",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Divyanshu Sahu",
   "private": true,
+  "proxy": "https://api.themoviedb.org/3/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.2",
     "autoprefixer": "^10.4.16",
     "firebase": "^10.7.1",
     "postcss-cli": "^11.0.0",

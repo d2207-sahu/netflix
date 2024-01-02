@@ -2,11 +2,14 @@
 // Based on the URL, fetch from the Fireabse and update the Lanugages Text their
 
 export const translationConfig = {
+  authRecapthcaSecurityText: 'Sign in is protected by Google reCAPTCHA to ensure you’re not a bot.',
   email: 'Email',
   name: 'Name',
   password: 'Password',
   repassword: 'Confirm Password',
-  signUp: 'Sign Up',
+  invalidName: 'Invalid Name',
+  passwordMisMatch: 'The entered passwords do not match.',
+  signUp: 'Create Account',
   signIn: 'Sign In',
   signUpNow: 'Sign Up Now',
   signInNow: 'Sign In Now',
@@ -27,7 +30,7 @@ export const translationConfig = {
   moreLikeThis: 'More Like This',
   whoWatching: "Who's Watching?",
   addProfile: 'Add Profile',
-  addProfileDesc:"Add a profile for another person watching Netflix.",
+  addProfileDesc: 'Add a profile for another person watching Netflix.',
   cancel: 'Cancel',
-  continue: "Continue"
+  continue: 'Continue'
 };

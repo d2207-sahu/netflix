@@ -24,7 +24,6 @@ const userSlice = createSlice({
         state: true,
         uid: action.payload,
       };
-      console.log(state)
       return state;
     },
     updateName: (state, action) => {
