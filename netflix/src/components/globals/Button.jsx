@@ -1,14 +1,19 @@
 import styled from "styled-components";
+import { Theme } from "../../styles/theme";
 
-const Button = styled.button`
-    background-color: #e50914;
+const ButtonRed = styled.button`
+    background-color: ${Theme.BG.Red};
+    color: ${Theme.text.BGRed.White};
     border: 0;
     border-radius: 4px;
     padding: 16px;
-    margin-top:20px;
-    color: white;
+    margin-top:${props => props.$marginTop};
     font-size: 1.6rem;
     font-weight: 500;
+
+    ${props =>
+        props.$loading && `
+        opacity: 0.5;`}
 `;
 
 const ButtonW = styled.button`
@@ -55,4 +60,4 @@ const IconButton = styled.button`
 
 
 // TODO add hover later on
-export { Button, ButtonW, ButtonG, IconButton }
+export { ButtonRed, ButtonW, ButtonG, IconButton }

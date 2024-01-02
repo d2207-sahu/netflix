@@ -1,3 +1,6 @@
+## production site
+https://netflix-divyanshu.vercel.app/browse
+
 ## Deployment
 - main branch is used to deploy to Firebase
 - Github Actions - github-action-735118034

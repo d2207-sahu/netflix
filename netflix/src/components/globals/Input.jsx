@@ -9,3 +9,7 @@ export const Input = styled.input`
     padding: 8px 16px;
     font-size: 1.6rem;
 `;
+
+export const AuthInput = styled(Input)`
+    margin-top: 1rem;
+`;
