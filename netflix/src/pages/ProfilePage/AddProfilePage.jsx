@@ -23,7 +23,6 @@ const AddProfilePage = ({ setShowAddProfile }) => {
         if (validateName(name)) {
             try {
                 addProfile(name)
-                setLoading(false);
             } catch (e) {
                 setErrorText(e)
                 setLoading(false);
@@ -45,14 +44,19 @@ const AddProfilePage = ({ setShowAddProfile }) => {
                 alt="Add users"
                 className=' rounded-[4px] max-h-[180px] max-w-[180px] min-h-[80px] min-w-[80px] w-[8vw] h-[8vw]'
                 index={users ? users.length : 0} />
-            <ProfileEntryInput ref={userNameref} />
+            <ProfileEntryInput
+                onChange={(e) => {
+                    e.preventDefault();
+                    setErrorText('');
+                }}
+                ref={userNameref} />
             <ErrorText>{errorText}</ErrorText>
         </AddNameContianer>
         <div className='flex gap-5'>
             <PrefferedRectangleButton $loading={loading} onClick={(e) => {
                 e.preventDefault();
                 addUserProfileName();
-            }}>{translationConfig.continue}</PrefferedRectangleButton>
+            }}>{loading ? "" : translationConfig.continue}</PrefferedRectangleButton>
             <RectangleButton
                 onClick={() =>
                     setShowAddProfile(prev => !prev)}>

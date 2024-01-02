@@ -11,7 +11,7 @@ import AddProfilePage from './AddProfilePage';
 import UserCard from '../../components/AddProfilePageComponents/UserCard';
 
 const ProfilePage = () => {
-    const users = useSelector(store => store.user.users);
+    const user = useSelector(store => store.user);
     const [showAddProfile, setShowAddProfile] = useState(false);
     const { selectNameAndNavigate } = useFirestoreDB();
 
@@ -24,7 +24,7 @@ const ProfilePage = () => {
                     (<>
                         <Heading>{translationConfig.whoWatching}</Heading>
                         <div className='flex gap-8'>
-                            {users && users.map((element, index) =>
+                            {user && user?.users && user?.users.map((element, index) =>
                             (<UserCard
                                 key={element.name}
                                 onClick={() => { selectNameAndNavigate(element.name) }}
