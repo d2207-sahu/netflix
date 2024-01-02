@@ -6,7 +6,7 @@ import { AuthInput, ButtonRed, ErrorText, Form, Heading } from "../../components
 import { checkEmailAndPassword } from '../../utils/validation';
 import { useFirebase } from '../../hooks';
 import { FirebaseErrorMap } from '../../config/firebase-Error-Map-config';
-import ToggleSignUpAndSignInComponent from '../../components/ToggleSignUpAndSignInComponent';
+import ToggleSignUpAndSignInComponent from '../../components/AuthComponents/ToggleSignUpAndSignInComponent';
 import SignInReCaptchaSecurityText from '../../components/AuthComponents/SignInReCaptchaSecurityText';
 
 // TODO remove the <div mt 10 > => spacer global component

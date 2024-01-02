@@ -1,9 +1,9 @@
 import React from "react";
-import { NormalText } from "./globals";
-import { LinkText } from "./LinkText";
-import { routingConfig } from "../router/routing-config";
-import { Theme } from "../styles/theme";
-import { translationConfig } from "../config/translation-config";
+import { NormalText } from "../globals";
+import { LinkText } from "../LinkText";
+import { routingConfig } from "../../router/routing-config";
+import { Theme } from "../../styles/theme";
+import { translationConfig } from "../../config/translation-config";
 
 const ToggleSignUpAndSignInComponent = ({ isSignin }) => {
     return (
