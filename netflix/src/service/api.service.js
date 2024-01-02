@@ -3,6 +3,9 @@ import {BASE_API_URL, TMDB_API_KEY} from '../config/constants';
 const headers = {
   'Content-Type': 'application/json',
   accept: 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Credentials': 'true',
   Authorization: `Bearer ${TMDB_API_KEY}`,
 };
 
@@ -40,9 +43,7 @@ export async function baseFetchAPI(
     const fetchOptions = {
       method: requestType,
       headers,
-      credentials: 'include', // Equivalent to Axios withCredentials: true
       mode: 'cors',
-      // Additional fetch options can be added here
     };
 
     if (body && requestType !== 'GET') {
