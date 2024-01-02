@@ -26,10 +26,9 @@ const Header = () => {
     const unsubscribe = onAuthStateChanged(auth, (userCred) => {
       if (userCred) {
         const { uid } = userCred;
-        console.log("Authentication Changed",uid)
         dispatch(addAccount(uid));
         if ((window.location.href.includes(routingConfig.signup) || window.location.href.includes(routingConfig.login))) {
-          if (user.name)
+          if (user && user.name)
             navigate(routingConfig.home, { replace: true });
           else
             navigate(routingConfig.profile, { replace: true });
