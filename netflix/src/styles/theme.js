@@ -3,10 +3,15 @@ const white = '#fff';
 export const textLowColor = '#a2a2a2';
 
 export const Theme = {
+  Hover:{
+    Red: '#c00',
+  },
   BG: {
     Red: '#e50914',
     Black: '#333',
-    Orange:"#e87c03"
+    Orange:"#e87c03",
+    Grey:'grey',
+    White: white
   },
   text: {
     BGBlack: {

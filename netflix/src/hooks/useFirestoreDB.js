@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getFirestore,
   collection,
@@ -7,18 +7,18 @@ import {
   setDoc,
   addDoc,
   serverTimestamp,
-  getDocs,
+  getDocs
 } from 'firebase/firestore';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import useFirebase from './useFirebaseAuth';
-import {updateName, updateUsers} from '../redux/slices/userSlice';
-import {useNavigate} from 'react-router-dom';
-import {routingConfig} from '../router/routing-config';
+import { updateName, updateUsers } from '../redux/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { routingConfig } from '../router/routing-config';
 
 const useFirestoreDB = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  const {app} = useFirebase();
+  const { app } = useFirebase();
   const firestoreDB = getFirestore(app);
   const navigate = useNavigate();
 
@@ -50,39 +50,29 @@ const useFirestoreDB = () => {
   };
 
   const addProfile = async (userName) => {
-    if (user)
-      try {
-        let AccountRef = doc(
-          firestoreDB,
-          `Accounts/${user?.uid}/Users`,
-          userName,
-        );
-        const users = await getUsers();
-        const shouldNotAdd = users.find((e) => {
-          return e['name'] === userName;
-        });
-        if (shouldNotAdd) return;
-        await setDoc(AccountRef, {name: userName});
-        selectNameAndNavigate(userName);
-      } catch (e) {
-        console.error(e);
-      }
+    if (user) {
+      let AccountRef = doc(firestoreDB, `Accounts/${user?.uid}/Users`, userName);
+      const users = await getUsers();
+      const shouldNotAdd = users.find((e) => {
+        return e['name'] === userName;
+      });
+      if (shouldNotAdd) return;
+      await setDoc(AccountRef, { name: userName });
+      selectNameAndNavigate(userName);
+    }
   };
 
   const addRecentlyPlayed = async (videoData) => {
     if (user)
       try {
-        let AccountRef = collection(
-          firestoreDB,
-          `Accounts/${user.uid}/Users/${name}/played`,
-        );
+        let AccountRef = collection(firestoreDB, `Accounts/${user.uid}/Users/${name}/played`);
         await addDoc(AccountRef, {
           videoData: {
             id: videoData.id,
             backdrop_path: videoData.backdrop_path,
-            original_title: videoData.original_title,
+            original_title: videoData.original_title
           },
-          timestamp: serverTimestamp(),
+          timestamp: serverTimestamp()
         });
       } catch (e) {
         console.error(e);
@@ -92,17 +82,14 @@ const useFirestoreDB = () => {
   const addToSaved = async (videoData) => {
     if (user)
       try {
-        let AccountRef = collection(
-          firestoreDB,
-          `Accounts/${user?.uid}/Users/${user?.name}/saved`,
-        );
+        let AccountRef = collection(firestoreDB, `Accounts/${user?.uid}/Users/${user?.name}/saved`);
         await addDoc(AccountRef, {
           videoData: {
             id: videoData.id,
             backdrop_path: videoData.backdrop_path,
-            original_title: videoData.original_title,
+            original_title: videoData.original_title
           },
-          timestamp: serverTimestamp(),
+          timestamp: serverTimestamp()
         });
       } catch (e) {
         console.error(e);
@@ -114,11 +101,11 @@ const useFirestoreDB = () => {
       try {
         let AccountRef = collection(
           firestoreDB,
-          `Accounts/${user?.uid}/Users/${user?.name}/searched`,
+          `Accounts/${user?.uid}/Users/${user?.name}/searched`
         );
         await addDoc(AccountRef, {
           searchTag: searchTag,
-          timestamp: serverTimestamp(),
+          timestamp: serverTimestamp()
         });
       } catch (e) {
         console.error(e);
@@ -127,10 +114,7 @@ const useFirestoreDB = () => {
 
   const getRecentlyPlayed = async () => {
     try {
-      let AccountRef = collection(
-        firestoreDB,
-        `Accounts/${user?.uid}/Users/${user?.name}/played`,
-      );
+      let AccountRef = collection(firestoreDB, `Accounts/${user?.uid}/Users/${user?.name}/played`);
       const recenltyDocs = await getDocs(AccountRef);
       console.log(recenltyDocs);
     } catch (e) {
@@ -151,7 +135,7 @@ const useFirestoreDB = () => {
     addRecentlyPlayed,
     getRecentlyPlayed,
     addSearchedTag,
-    addToSaved,
+    addToSaved
   };
 };
 

@@ -1,11 +1,18 @@
-import {NormalText, Heading, SubHeading, ErrorText, SmallText, LinkHrefText} from './Text';
-import {ButtonRed, ButtonW, ButtonG,IconButton} from './Button';
+import { NormalText, Heading, SubHeading, ErrorText, SmallText, LinkHrefText } from './Text';
+import {
+  ButtonRed,
+  ButtonW,
+  ButtonG,
+  IconButton,
+  PrefferedRectangleButton,
+  RectangleButton
+} from './Button';
 import Form from './Form';
 import Image from './Image';
-import {Input, AuthInput} from './Input';
+import { Input, AuthInput } from './Input';
 import Logo from './Logo';
-import {Video} from './Video';
-import {InvisibleScrollContainer} from './InvisibleScrollContainer';
+import { Video } from './Video';
+import { InvisibleScrollContainer } from './InvisibleScrollContainer';
 
 export {
   NormalText,
@@ -15,13 +22,14 @@ export {
   SmallText,
   LinkHrefText,
   Image,
-   ButtonRed,
+  ButtonRed,
+  PrefferedRectangleButton,
+  RectangleButton,
   ButtonW,
   ButtonG,
   Form,
   Input,
   AuthInput,
-
   Logo,
   Video,
   IconButton,

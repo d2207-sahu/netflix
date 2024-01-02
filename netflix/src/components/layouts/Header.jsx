@@ -49,7 +49,8 @@ const Header = () => {
   user && user.users && user.users.forEach((element, index) => {
     if (element.name === user.name) userIndex = index;
   })
-  const showLoginPageComponent = (path === 'login' || path === 'signup');
+  const showLoginPageComponent = (path === routingConfig.login || path === routingConfig.signup);
+  const showProfilePageComponent = (path === routingConfig.profile);
   return (
     <Container $top={0} $position='fixed' $z_index="10" $justifyContent="space-between" >
       <Logo />
@@ -65,7 +66,7 @@ const Header = () => {
             <option title='hn' value={app.language}>{app.languages}</option>
           </select>
           : <></>}
-        {user && <UserProfileImage
+        {(user && showProfilePageComponent) && <UserProfileImage
           onClick={() => { signOut(auth) }}
           className="mr-[3vw] mx-3 cursor-pointer h-[4rem]"
           index={userIndex}

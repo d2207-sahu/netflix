@@ -7,6 +7,7 @@ export const translationConfig = {
   name: 'Name',
   password: 'Password',
   repassword: 'Confirm Password',
+  invalidName: 'Invalid Name',
   passwordMisMatch: 'The entered passwords do not match.',
   signUp: 'Create Account',
   signIn: 'Sign In',

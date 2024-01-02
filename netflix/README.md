@@ -21,3 +21,8 @@ https://github.com/d2207-sahu/netflix/settings/secrets
     - Header
         - Main Movie
         - ALl movie carousels
+
+
+## TODOs
+1. Suspense
+2. Image Loading
