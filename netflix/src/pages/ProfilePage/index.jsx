@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Heading, NormalText } from '../../components/globals'
-import { translationConfig } from '../../config/translation-config'
 import { useSelector } from 'react-redux'
 import { FiUserPlus } from 'react-icons/fi';
 import Header from '../../components/layouts/Header';
@@ -9,8 +8,10 @@ import ProfileContainer from '../../components/AddProfilePageComponents/ProfileC
 import { Theme } from '../../styles/theme';
 import AddProfilePage from './AddProfilePage';
 import UserCard from '../../components/AddProfilePageComponents/UserCard';
+import { useLanguage } from '../../context/LanguageContext';
 
 const ProfilePage = () => {
+    const { languageData } = useLanguage();
     const user = useSelector(store => store.user);
     const [showAddProfile, setShowAddProfile] = useState(false);
     const { selectNameAndNavigate } = useFirestoreDB();
@@ -22,7 +23,7 @@ const ProfilePage = () => {
                 {showAddProfile ?
                     <AddProfilePage setShowAddProfile={setShowAddProfile} /> :
                     (<>
-                        <Heading>{translationConfig.whoWatching}</Heading>
+                        <Heading>{!languageData ? '' : languageData?.whoWatching}</Heading>
                         <div className='flex gap-8'>
                             {user && user?.users && user?.users.map((element, index) =>
                             (<UserCard
@@ -43,7 +44,7 @@ const ProfilePage = () => {
                                 <NormalText
                                     className='mt-4'
                                     $color={Theme.text.BGBlack.Grey}>
-                                    {translationConfig.addProfile}
+                                    {!languageData ? '' : languageData?.addProfile}
                                 </NormalText>
                             </div>
                         </div>

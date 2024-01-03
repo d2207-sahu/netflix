@@ -4,7 +4,6 @@ import { IconButton, NormalText, SmallText, SubHeading } from '../../components/
 import { FiPlus } from 'react-icons/fi'
 import { RxCross2 } from "react-icons/rx";
 import { useMovieData } from '../../hooks/useMovieData'
-import { translationConfig } from '../../config/translation-config'
 import SearchGridContainer from '../../components/SearchGridContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateModalMovieSelectedID, updateModalSelectedVideo } from '../../redux/slices/appSlice'
@@ -12,6 +11,7 @@ import { TMDB_API_IMAGE_CDN_URL, TRAILER } from '../../config/constants'
 import GenreTags from '../../components/MovieCardComponents/GenreTags';
 import RatingTag from '../../components/MovieCardComponents/RatingTag';
 import useFirestoreDB from '../../hooks/useFirestoreDB';
+import { useLanguage } from '../../context/LanguageContext';
 
 
 // when this modal opens, means have to update the url, and also let it read the url also
@@ -159,6 +159,7 @@ const InformationSection = ({ info }) => {
 }
 
 const MoreLikeThisSection = ({ similars }) => {
+    const { languageData } = useLanguage();
     const SimilarMovies = similars.map((movieData) => {
         const trimmedText = movieData.overview.length > 200 ? `${movieData.overview.slice(0, 200)}...` : movieData.overview;
         if (!movieData.poster_path || !movieData.overview) return;
@@ -173,11 +174,13 @@ const MoreLikeThisSection = ({ similars }) => {
             </div>
         </div>;
     })
-    return <GridSectionContainer element={'5'} title={translationConfig.moreLikeThis} entities={SimilarMovies} />;
+    return <GridSectionContainer element={'5'} title={!languageData ? '' : languageData?.moreLikeThis} entities={SimilarMovies} />;
 
 }
 
 const TrailersAndMoreSection = ({ videos }) => {
+    const { languageData } = useLanguage();
+
     const VideoCardsMemo = useMemo(() => {
         const VideoCardsData = {};
         // Seggregating the videos by Type
@@ -206,7 +209,7 @@ const TrailersAndMoreSection = ({ videos }) => {
         })
         return VideoCards
     }, [videos]);
-    return <GridSectionContainer title={translationConfig.trailerAndMore} entities={VideoCardsMemo} />;
+    return <GridSectionContainer title={!languageData ? '' : languageData?.trailerAndMore} entities={VideoCardsMemo} />;
 }
 
 const GridSectionContainer = ({ title, entities, element }) => {
@@ -221,6 +224,7 @@ const GridSectionContainer = ({ title, entities, element }) => {
 }
 
 const AboutMovieSection = ({ title, credits }) => {
+    const { languageData } = useLanguage();
 
     // {
     //     "adult": false,
@@ -262,7 +266,7 @@ const AboutMovieSection = ({ title, credits }) => {
         return CeditSections
     }, [credits]);
     return <div className='flex flex-col w-[100%]'>
-        <SubHeading>{translationConfig.about}{title}</SubHeading>
+        <SubHeading>{!languageData ? '' : languageData?.about}{title}</SubHeading>
         {CerditsSectionMemo}
     </div>;
 }

@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { translationConfig } from '../config/translation-config'
 import { FiCrosshair, FiSearch } from "react-icons/fi";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { routingConfig } from '../router/routing-config';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSearchSliceContainer, updateSearchText } from '../redux/slices/searchSlice';
 import useDebounce from '../hooks/useDebounce';
+import { useLanguage } from '../context/LanguageContext';
 
 const InputComponent = styled.input`    
     color: white;
@@ -33,6 +33,8 @@ const SearchContainer = styled.div`
 
 // TODO optimise this more.
 const SearchComponent = () => {
+    const { languageData } = useLanguage();
+    
     const searchRef = useRef();
     const { searchReduxText, showSearchSliceContainer } = useSelector(store => store.search)
     const dispatch = useDispatch();
@@ -76,7 +78,7 @@ const SearchComponent = () => {
             {searchToggled && <InputComponent
                 value={searchText}
                 ref={searchRef}
-                placeholder={translationConfig.searchPlaceHolder}
+                placeholder={!languageData ? '' : languageData?.searchPlaceHolder}
                 onChange={(value) => { setSearchText(value.target.value) }} />}
             {searchToggled ?
                 <FiCrosshair

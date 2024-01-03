@@ -2,16 +2,17 @@ import React from 'react';
 import Header from '../../components/layouts/Header';
 import useSearch from '../../hooks/useSearch';
 import { Heading, NormalText, SubHeading } from '../../components/globals';
-import { translationConfig } from '../../config/translation-config';
 import MovieCard from '../../components/MovieCard';
 import SearchGridContainer from '../../components/SearchGridContainer';
+import { useLanguage } from '../../context/LanguageContext';
 
 const SearchPage = () => {
+  const { languageData } = useLanguage();
   const [pending, searchResultData, searchReduxText] = useSearch();
 
   const noResultComponent = <div>
     <NormalText>
-      {translationConfig.emptySearchText.replace("{}", `"${searchReduxText}"`)}
+      {!languageData ? '' : languageData?.emptySearchText.replace("{}", `"${searchReduxText}"`)}
     </NormalText>
   </div>;
 

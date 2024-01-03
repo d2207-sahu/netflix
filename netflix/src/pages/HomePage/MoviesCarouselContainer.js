@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {SubHeading} from '../../components/globals';
 import {useSelector} from 'react-redux';
-import {translationConfig} from '../../config/translation-config';
 import MovieCardComponent from '../../components/MovieCard';
 import {
   LeftHandle,
@@ -10,7 +9,10 @@ import {
   SliderContainer,
 } from '../../components/NetflixCaraousel';
 import {FiArrowLeft, FiArrowRight} from 'react-icons/fi';
+import { useLanguage } from '../../context/LanguageContext';
 const MoviesCarouselContainer = () => {
+  const { languageData } = useLanguage();
+
   const {nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies} =
     useSelector((store) => store.movies);
 
@@ -18,19 +20,19 @@ const MoviesCarouselContainer = () => {
     <div className="w-screen h-max">
       <div className=" relative top-[-15vh]">
         <MoviesCarousel
-          title={translationConfig.nowPlaying}
+          title={!languageData ? '' : languageData?.nowPlaying}
           movieCards={nowPlayingMovies}
         />
         <MoviesCarousel
-          title={translationConfig.Popular}
+          title={!languageData ? '' : languageData?.Popular}
           movieCards={popularMovies}
         />
         <MoviesCarousel
-          title={translationConfig.topRated}
+          title={!languageData ? '' : languageData?.topRated}
           movieCards={topRatedMovies}
         />
         <MoviesCarousel
-          title={translationConfig.upcoming}
+          title={!languageData ? '' : languageData?.upcoming}
           movieCards={upcomingMovies}
         />
       </div>

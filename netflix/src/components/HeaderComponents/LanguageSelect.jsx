@@ -8,15 +8,14 @@ const LanguageSelect = () => {
     const app = useSelector(((store) => store.app))
     const dispatch = useDispatch();
 
-
-    return <LanguageSelectContainer onChange={(e) => {
-        dispatch(changeLanguage(e.target.value));
-    }}>
+    return <LanguageSelectContainer
+        value={(app.languages)}
+        onChange={(e) => {
+            dispatch(changeLanguage(e.target.value));
+        }}>
         {Object.keys(Languages).map(e =>
             <LanguageOption
                 key={e}
-                selected={(app.languages) === e}
-                title='en'
                 label={Languages[e]}
                 value={e}>{Languages[e]}</LanguageOption>
         )}
