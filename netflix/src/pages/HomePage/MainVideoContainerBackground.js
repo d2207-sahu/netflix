@@ -22,10 +22,7 @@ const MainVideoContainerBackground = (movies) => {
         <div className="flex mt-6">
           {/* Had to add appropriated Buttons with images at the start */}
           <PlayButton />
-          <ButtonG className="mr-4 flex items-center gap-2">
-            <FiInfo size={'3.5rem'} />
-            More Info
-          </ButtonG>
+          <MoreInfoButton />
         </div>
       </div>
       <VideoBackground movieID={id} />
@@ -55,6 +52,16 @@ export const PlayButton = ({ onClick }) => {
       <FiPlay size={'3.5rem'} fill="black" />
       {!languageData ? '' : languageData?.play}
     </ButtonW>
+  );
+};
+
+export const MoreInfoButton = ({ onClick }) => {
+  const { languageData } = useLanguage();
+  return (
+    <ButtonG onClick={onClick} className="mr-4 flex items-center gap-2">
+      <FiInfo size={'3.5rem'} />
+      {!languageData ? '' : languageData?.moreInfo}
+    </ButtonG>
   );
 };
 

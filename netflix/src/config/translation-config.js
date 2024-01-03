@@ -32,9 +32,11 @@ export const englishConfig = {
   addProfile: 'Add Profile',
   addProfileDesc: 'Add a profile for another person watching Netflix.',
   cancel: 'Cancel',
-  continue: 'Continue'
+  continue: 'Continue',
+  moreInfo: 'More Info'
 };
 export const hindiConfig = {
+  moreInfo: 'और जानकारी',
   authRecapthcaSecurityText:
     'साइन इन को सुरक्षित बनाने के लिए Google reCAPTCHA के द्वारा सुरक्षित है ताकि आप एक बॉट नहीं हैं।',
   email: 'ईमेल',

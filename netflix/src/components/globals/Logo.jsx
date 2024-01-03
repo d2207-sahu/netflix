@@ -4,7 +4,7 @@ import { background_logo_large } from '../../assets';
 
 const LogoImageComponent = styled.img`
   width: 20rem;
-  margin-left: 3%;
+  margin-left: 1.5%;
   @media only screen and (max-width: 767px) {
         /* Mobile styles */
         ${({ $mobileStyles }) => $mobileStyles && css`${$mobileStyles}`}

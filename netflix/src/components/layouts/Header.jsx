@@ -52,7 +52,7 @@ const Header = () => {
     <Container
       $top={0}
       $position='fixed'
-      $z_index="10"
+      $z_index="30"
       $justifyContent="space-between" >
       <Logo />
       {/* Should also contain the navigation dropdown items to show the sections of the application */}

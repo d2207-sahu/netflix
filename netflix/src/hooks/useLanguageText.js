@@ -4,6 +4,7 @@ import { LanguageConfig } from '../config/translation-config';
 import { addLanguageText } from '../redux/slices/appSlice';
 
 // TODO save the thing in Localstorage
+// have to change the URL accordingly
 const useLanguagetext = () => {
   const app = useSelector((store) => store.app);
   const dispatch = useDispatch();
