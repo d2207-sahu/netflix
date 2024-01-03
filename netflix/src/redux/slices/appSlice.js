@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const appInitialState = {
-  languages: 'en',
+  languages: 'en-IN',
   modalMovieSelectedID: null,
   modalSelectedVideo: null,
 };

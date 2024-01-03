@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { translationConfig } from '../config/translation-config'
-import { FiSearch } from "react-icons/fi";
+import { FiCrosshair, FiSearch } from "react-icons/fi";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { routingConfig } from '../router/routing-config';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,8 +11,8 @@ import useDebounce from '../hooks/useDebounce';
 const InputComponent = styled.input`    
     color: white;
     outline: none;
-    border: none;
     background-color: black;
+    border: none;
     padding: 4px;
     font-size: 1.4rem;
 `
@@ -20,13 +20,15 @@ const InputComponent = styled.input`
 const SearchContainer = styled.div`
     border-color: white;
     border-radius: 0;
+    background-color: ${props => !props.$selected ? 'black' : ''};
     border-width: ${props => props.$selected ? props.$selected : '1px'};
-    padding: 4px;
+    padding: .4rem;
     padding-top: 2px;
     margin-right: ${props => props.$selected ? '4px' : '12px'};
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    gap: .8rem;
+    align-items: center;
 `
 
 // TODO optimise this more.
@@ -55,19 +57,36 @@ const SearchComponent = () => {
         if (searchDefferedValue && !(pathname?.includes(routingConfig.search))) {
             navigate(routingConfig.search);
         }
+        if (!searchDefferedValue && (pathname?.includes(routingConfig.search))) {
+            setSearchToggled(prev => !prev)
+            navigate(routingConfig.home);
+        }
     }, [searchDefferedValue]);
 
     //TODO Later on want to useMemo thing
     return (
         <SearchContainer $selected={!searchToggled}>
             <FiSearch
-            className='pt-2'
+                className='pt-1'
                 color='white'
-                size={searchToggled ? '2.7rem' : '2.6rem'}
+                size={searchToggled ? '2.7rem' : '2.9rem'}
                 onClick={() => {
                     setSearchToggled(prevState => !prevState);
                 }} />
-            {searchToggled && <InputComponent value={searchText} ref={searchRef} placeholder={translationConfig.searchPlaceHolder} onChange={(value) => { setSearchText(value.target.value) }} />}
+            {searchToggled && <InputComponent
+                value={searchText}
+                ref={searchRef}
+                placeholder={translationConfig.searchPlaceHolder}
+                onChange={(value) => { setSearchText(value.target.value) }} />}
+            {searchToggled ?
+                <FiCrosshair
+                    onClick={() => {
+                        setSearchText('')
+                        dispatch(updateSearchText(''));
+                    }}
+                    className='pt-1'
+                    size={'2.5rem'}
+                    color='gray' /> : <></>}
         </SearchContainer>
     )
 }

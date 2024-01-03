@@ -6,7 +6,7 @@ import { recapcthaLinkHref, recapcthaLinkText } from "../../config/constants";
 const SignInReCaptchaSecurityText = () => (
     <div className="mt-5">
         <SmallText $grey>{translationConfig.authRecapthcaSecurityText}</SmallText>
-        <a href={recapcthaLinkHref}>
+        <a href={recapcthaLinkHref} target="_blank" rel="noreferrer">
             <LinkHrefText >
                 {recapcthaLinkText}</LinkHrefText>
         </a>
