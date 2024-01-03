@@ -1,17 +1,18 @@
 import React, { useEffect, useMemo, useRef } from 'react'
-import { MovieDescription, MovieTitle, PlayButton } from './MainVideoContainerBackground'
+import { MovieDescription, MovieTitle } from './MainVideoContainerBackground'
 import { IconButton, NormalText, SmallText, SubHeading } from '../../components/globals'
 import { FiPlus } from 'react-icons/fi'
 import { RxCross2 } from "react-icons/rx";
 import { useMovieData } from '../../hooks/useMovieData'
 import SearchGridContainer from '../../components/SearchGridContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateModalMovieSelectedID, updateModalSelectedVideo } from '../../redux/slices/appSlice'
+import { updateModalMovieSelectedID } from '../../redux/slices/appSlice'
 import { TMDB_API_IMAGE_CDN_URL, TRAILER } from '../../config/constants'
 import GenreTags from '../../components/MovieCardComponents/GenreTags';
 import RatingTag from '../../components/MovieCardComponents/RatingTag';
 import useFirestoreDB from '../../hooks/useFirestoreDB';
 import { useLanguage } from '../../context/LanguageContext';
+import PlayButton from '../../components/PlayButton';
 
 
 // when this modal opens, means have to update the url, and also let it read the url also
@@ -108,7 +109,6 @@ const CreditsSection = ({ category, entities }) => {
 }
 
 const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlayed }) => {
-    const dispatch = useDispatch();
 
     return (<div className='w-[100%]  relative'>
         <iframe
@@ -121,17 +121,22 @@ const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlaye
         <div className='flex flex-col w-[100%] absolute top-0 h-[100%] justify-between items-stretch bg-gradient-to-t from-[#181818]'>
             <div className='w-[100%] flex pt-8 px-8 justify-end items-end '> <ModalCloseButton onClick={() => closeModal()} /></div>
             <div className='w-[100%] flex p-32 gap-4 '>
-                <PlayButton onClick={() => {
-                    let videoID = videos.find((video) =>
-                        video.type === "Behind the Scenes"
-                    );
-                    videoID = videoID ? videoID : videos.find((video) =>
-                        video.type === "Featurette"
-                    );
-                    dispatch(updateModalSelectedVideo(videoID ? videoID.key : videos[0].key));
-                    addRecentlyPlayed(info);
-                    closeModal();
-                }} />
+                <PlayButton
+                    onAfterClick={() => {
+                        addRecentlyPlayed(info);
+                        closeModal();
+                    }}
+                    videoID={
+                        () => {
+                            let videoID = videos.find((video) =>
+                                video.type === "Behind the Scenes"
+                            );
+                            videoID = videoID ? videoID : videos.find((video) =>
+                                video.type === "Featurette"
+                            );
+                            return videoID ? videoID.key : videos[0].key
+                        }
+                    } />
                 <AddToMyListButton />
             </div>
         </div>

@@ -1,15 +1,18 @@
 import React from 'react';
 import { Heading, NormalText } from '../../components/globals';
-import { ButtonG, ButtonW } from '../../components/globals/Button';
+import { ButtonG } from '../../components/globals/Button';
 import VideoBackground from './VideoBackground';
-import { FiInfo, FiPlay } from 'react-icons/fi';
+import { FiInfo } from 'react-icons/fi';
 import { useLanguage } from '../../context/LanguageContext';
+import PlayButton from '../../components/PlayButton';
+import { useSelector } from 'react-redux';
 
 const MainVideoContainerBackground = (movies) => {
+  const videoData = useSelector((store) => store.movies?.homeTeaserVideoData);
+
   // Had to handle this case very efficiently
   if (!movies.props) return <>Loading..</>;
   const { title, overview, id } = movies.props[0];
-
   // TODO remove grasdient and havbe all the text this calss
   // text-shadow: 0 1px 1px rgba(0,0,0,.7);
 
@@ -21,7 +24,7 @@ const MainVideoContainerBackground = (movies) => {
         <MovieDescription desc={overview} className={'lg:w-[30vw] sm:w-[60vw]'} />
         <div className="flex mt-6">
           {/* Had to add appropriated Buttons with images at the start */}
-          <PlayButton />
+          <PlayButton videoID={videoData?.key}/>
           <MoreInfoButton />
         </div>
       </div>
@@ -42,16 +45,6 @@ export const MovieTitle = ({ title, className }) => {
     <Heading $showShadow className={className}>
       {title}
     </Heading>
-  );
-};
-
-export const PlayButton = ({ onClick }) => {
-  const { languageData } = useLanguage();
-  return (
-    <ButtonW onClick={onClick} className="mr-4 flex items-center gap-2">
-      <FiPlay size={'3.5rem'} fill="black" />
-      {!languageData ? '' : languageData?.play}
-    </ButtonW>
   );
 };
 

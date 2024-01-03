@@ -26,3 +26,5 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 ## TODOs
 1. Suspense
 2. Image Loading
+3. MoviwModal back button not wokring.
+4. onHover call for the API of the videos.. to get the videoID for play button.
