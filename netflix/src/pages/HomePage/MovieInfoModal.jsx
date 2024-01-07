@@ -13,6 +13,7 @@ import RatingTag from '../../components/MovieCardComponents/RatingTag';
 import useFirestoreDB from '../../hooks/useFirestoreDB';
 import { useLanguage } from '../../context/LanguageContext';
 import PlayButton from '../../components/PlayButton';
+import ShimmerLoading from '../../components/Shimmer/ShimmerLoading';
 
 
 // when this modal opens, means have to update the url, and also let it read the url also
@@ -59,13 +60,13 @@ const MovieInfoModal = () => {
     if (!(movideDetail?.id)) return <></>;
     const video = findTrailerVideo ?? videos[0];
     return (
-        <dialog ref={dialogRef} id="MODAL" className='shadow-md flex flex-col justify-start items-start mx-auto mb-auto mt-auto outline-none bg-[#181818] rounded-2xl w-[80%]' >
-            {pending ? "Loading..." : <>
+        <dialog ref={dialogRef} id="MODAL" className={`shadow-md ${pending ? 'justify-center items-center' : ''} flex flex-col justify-start items-start mx-auto mb-auto mt-auto outline-none bg-[#181818] rounded-2xl w-[80%]`} >
+            {pending ? <ShimmerLoading /> : <>
                 <VideoModalSection videos={videos} addRecentlyPlayed={addRecentlyPlayed} info={info} videoID={video?.key} closeModal={closeModal} movieDetail={movideDetail} />
                 <div className='flex flex-col px-16 py-4'>
                     {info && <InformationSection info={info} />}
                     {similars && <MoreLikeThisSection similars={similars} />}
-                    {videos && <TrailersAndMoreSection videos={videos ?? []} />}
+                    {videos.length > 0 && <TrailersAndMoreSection videos={videos ?? []} />}
                     {(credits) && <AboutMovieSection title={info ? info.title : ""} credits={credits} />}
                     {/* TODO later on can have the collection thing */}
                 </div>

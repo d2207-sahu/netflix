@@ -99,8 +99,7 @@ const useCarouselMoviesList = () => {
     });
   }, []);
 
-  console.log(loadingCarousel);
-  return { nowPlayingMovies, topRatedMovies };
+  return { nowPlayingMovies, topRatedMovies, loadingCarousel };
 };
 
 export default useCarouselMoviesList;

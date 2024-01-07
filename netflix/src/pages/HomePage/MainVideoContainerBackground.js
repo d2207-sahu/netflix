@@ -5,10 +5,12 @@ import VideoBackground from './VideoBackground';
 import { FiInfo } from 'react-icons/fi';
 import { useLanguage } from '../../context/LanguageContext';
 import PlayButton from '../../components/PlayButton';
-import {  useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ShimmerLoading from '../../components/Shimmer/ShimmerLoading';
+import { updateModalMovieSelectedID } from '../../redux/slices/appSlice';
 
 const MainVideoContainerBackground = (movies) => {
+  const dispatch = useDispatch();
   const { homeTeaserVideoData, loadingCarousel } = useSelector((store) => store.movies);
   // Had to handle this case very efficiently
   if (!movies.props) return <>Loading..</>;
@@ -30,7 +32,12 @@ const MainVideoContainerBackground = (movies) => {
             <div className="flex mt-6">
               {/* Had to add appropriated Buttons with images at the start */}
               <PlayButton videoID={homeTeaserVideoData?.key} movieData={homeTeaserVideoData} />
-              <MoreInfoButton />
+              <MoreInfoButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(updateModalMovieSelectedID(homeTeaserVideoData));
+                }}
+              />
             </div>
           </div>
           <VideoBackground movieID={id} />

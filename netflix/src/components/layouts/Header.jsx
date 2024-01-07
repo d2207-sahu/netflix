@@ -57,9 +57,11 @@ const Header = () => {
       $position='fixed'
       $z_index="30"
       $justifyContent="space-between" >
-      <Logo />
-      {/* Should also contain the navigation dropdown items to show the sections of the application */}
-      <LinkText to={routingConfig.mylist} text={"My List"}></LinkText>
+      <div className='flex items-center justify-start gap-5'>
+        <Logo />
+        {/* Should also contain the navigation dropdown items to show the sections of the application */}
+        <LinkText to={routingConfig.mylist} className='m-auto w-max' text={"My List"}></LinkText>
+      </div>
       <div className='flex h-[inherit] justify-between items-center gap-2'>
         {showAuthheaders && <SearchComponent />}
         {showAuthheaders && <LanguageSelect />}

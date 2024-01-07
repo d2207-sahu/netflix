@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export const LinkText = ({ to, text }) => {
     return (
         <Link to={to}>
-            <NormalText className='text-white hover:underline'>
+            <NormalText className='text-white hover:underline w-max'>
                 {text}
             </NormalText>
         </Link>

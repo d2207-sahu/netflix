@@ -60,12 +60,12 @@ const MovieCardComponent = ({ movieDetail }) => {
         setOnMouseOver(true);
     }
     return (
-        <MovieCard key={movieDetail.id} className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
+        <MovieCard key={movieDetail?.id} className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
             onMouseOver={onMouseOverFunction}
             onMouseLeave={onMouseLeave}>
             <img
-                alt={movieDetail.original_title}
-                src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail.backdrop_path}
+                alt={movieDetail?.original_title}
+                src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail?.backdrop_path}
                 className="min-w-[100%] shadow-lg shadow-black rounded-t-md"
             />
             {onMouseOver &&
@@ -84,7 +84,7 @@ const MovieCardComponent = ({ movieDetail }) => {
                     </div>
                     <div className='flex'>
                         <NormalText>
-                            {movieDetail.original_title}
+                            {movieDetail?.original_title}
                         </NormalText>
                     </div>
                     <div className='flex flex-wrap justify-between items-center py-3'>

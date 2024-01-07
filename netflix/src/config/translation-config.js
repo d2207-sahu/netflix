@@ -36,6 +36,7 @@ export const englishConfig = {
   continue: 'Continue',
   moreInfo: 'More Info',
   recenltyPlayed: 'Recently Played',
+  recentlyPlayedTitle: 'Continue Watching for ',
 };
 export const hindiConfig = {
   moreInfo: 'और जानकारी',

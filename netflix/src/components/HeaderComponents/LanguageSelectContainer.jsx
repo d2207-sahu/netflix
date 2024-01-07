@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const LanguageSelectContainer = styled.select`
     width: 100%;
+    cursor: pointer;
     color: inherit;
     min-height: 16px;
     font-size: 1.3rem;

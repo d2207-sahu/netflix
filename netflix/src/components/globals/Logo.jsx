@@ -27,6 +27,7 @@ const Logo = () => {
       if (!(pathname === routingConfig.home))
         navigate(routingConfig.home)
     }}
+    className="ml-[3vw]"
     src={background_logo_large}
     alt="Netflix Logo"
   />;

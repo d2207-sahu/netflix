@@ -58,7 +58,7 @@ const MoviesCarouselContainer = () => {
             )}
             {user?.played.length > 0 && (
               <MoviesCarousel
-                title={!languageData ? '' : languageData?.recenltyPlayed}
+                title={!languageData ? '' : languageData?.recentlyPlayedTitle + user?.name}
                 movieCards={user?.played.map((e) => e.videoData)}
               />
             )}

@@ -19,6 +19,7 @@ const InputComponent = styled.input`
 
 const SearchContainer = styled.div`
     border-color: white;
+    cursor: pointer;
     border-radius: 0;
     background-color: ${props => !props.$selected ? 'black' : ''};
     border-width: ${props => props.$selected ? props.$selected : '1px'};

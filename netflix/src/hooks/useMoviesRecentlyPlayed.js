@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useFirebase from './useFirebaseAuth';
 import { addToPlayedMovies, updatePlayedMovies } from '../redux/slices/userSlice';
 import { useEffect, useState } from 'react';
+const _ = require('lodash');
 
 const useMoviesRecentlyPlayed = () => {
   const played = useSelector((store) => store.user?.played);
@@ -31,18 +32,26 @@ const useMoviesRecentlyPlayed = () => {
       }
   };
 
-  const saveMovieToRecentlyPlayed = async ( videoData ) => {
+  const saveMovieToRecentlyPlayed = async (videoData) => {
     if (user && videoData)
       try {
-        const playedCollection = collection(
-          firestoreDB,
-          `Accounts/${user?.uid}/Users/${user?.name}/played`
-        );
-        await addDoc(playedCollection, {
-          videoData: videoData,
-          timestamp: Date.now()
-        });
-        dispatch(addToPlayedMovies(videoData));
+        if (
+          !(
+            played.filter((e) => {
+              return _.isEqual(e.videoData, videoData);
+            }).length > 0
+          )
+        ) {
+          const playedCollection = collection(
+            firestoreDB,
+            `Accounts/${user?.uid}/Users/${user?.name}/played`
+          );
+          await addDoc(playedCollection, {
+            videoData: videoData,
+            timestamp: Date.now()
+          });
+          dispatch(addToPlayedMovies(videoData));
+        }
       } catch (e) {
         console.error(e);
       }
@@ -53,7 +62,7 @@ const useMoviesRecentlyPlayed = () => {
     if (played) getAllMoviesSavedtoRecenltyPlayed();
   }, []);
 
-  return {played, pending, getAllMoviesSavedtoRecenltyPlayed, saveMovieToRecentlyPlayed};
+  return { played, pending, getAllMoviesSavedtoRecenltyPlayed, saveMovieToRecentlyPlayed };
 };
 
 export default useMoviesRecentlyPlayed;
