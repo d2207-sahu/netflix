@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import Logo from '../globals/Logo';
 import Container from '../globals/Container';
 import { useFirebase } from '../../hooks';
@@ -8,6 +8,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { routingConfig } from '../../router/routing-config';
 import SearchComponent from '../SearchComponent';
 import UserProfileImage from '../UserProfileImage';
+import LanguageSelect from '../HeaderComponents/LanguageSelect';
+import { LinkText } from '../LinkText';
+import useFirestoreDB from '../../hooks/useFirestoreDB';
 
 /**
  * This Component is rendered in every page
@@ -15,9 +18,9 @@ import UserProfileImage from '../UserProfileImage';
  */
 const Header = () => {
   const navigate = useNavigate();
-  const {pathname } = useLocation();
+  useFirestoreDB();
+  const { pathname } = useLocation();
   const user = useSelector(((store) => store.user))
-  const app = useSelector(((store) => store.app))
   const { auth, onAuthStateChanged, signOut } = useFirebase();
   const dispatch = useDispatch();
 
@@ -45,13 +48,45 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  let userIndex = useMemo(() => setUserIndex(user), [user]);
+  let showAuthheaders = decideShowAuthHeaders(pathname);
+
+  return (
+    <Container
+      $top={0}
+      $position='fixed'
+      $z_index="30"
+      $justifyContent="space-between" >
+      <div className='flex items-center justify-start gap-5'>
+        <Logo />
+        {/* Should also contain the navigation dropdown items to show the sections of the application */}
+        <LinkText to={routingConfig.mylist} className='m-auto w-max' text={"My List"}></LinkText>
+      </div>
+      <div className='flex h-[inherit] justify-between items-center gap-2'>
+        {showAuthheaders && <SearchComponent />}
+        {showAuthheaders && <LanguageSelect />}
+        {(user && showAuthheaders) && <UserProfileImage
+          onClick={() => { signOut(auth) }}
+          className="mr-[3vw] mx-3 cursor-pointer h-[4rem] rounded-[.5rem]"
+          index={userIndex}
+          alt='user' />}
+      </div>
+    </Container>
+  )
+}
+
+function setUserIndex(user) {
   let userIndex = 0;
   user && user.users && user.users.forEach((element, index) => {
     if (element.name === user.name) userIndex = index;
   })
+  return userIndex;
+}
+
+function decideShowAuthHeaders(pathname) {
   let showAuthheaders;
   switch (pathname) {
-    case  routingConfig.login:
+    case routingConfig.login:
       showAuthheaders = false;
       break;
     case routingConfig.profile:
@@ -64,29 +99,7 @@ const Header = () => {
       showAuthheaders = true;
       break;
   }
-  return (
-    <Container $top={0} $position='fixed' $z_index="10" $justifyContent="space-between" >
-      <Logo />
-      {/* Should also contain the navigation dropdown items to show the sections of the application */}
-      {/* This should have signin button if not logged in */}
-      <div className='flex h-[inherit] justify-between items-center'>
-        {showAuthheaders ? <SearchComponent /> : <></>}
-        {/* Had to keep a constants file in the CONSTANTS, and update the thing accordingly */}
-        {/* // There is header component in the top of signup page */}
-        {showAuthheaders ?
-          <select >
-            <option title='en' value={app.languages}>{app.languages}</option>
-            <option title='hn' value={app.language}>{app.languages}</option>
-          </select>
-          : <></>}
-        {(user && showAuthheaders) && <UserProfileImage
-          onClick={() => { signOut(auth) }}
-          className="mr-[3vw] mx-3 cursor-pointer h-[4rem]"
-          index={userIndex}
-          alt='user' />}
-      </div>
-    </Container>
-  )
+  return showAuthheaders
 }
 
 export default Header

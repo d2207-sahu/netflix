@@ -1,7 +1,6 @@
 
 import React, { useRef, useState } from 'react'
 import { ErrorText, Heading, PrefferedRectangleButton, RectangleButton, SmallText } from '../../components/globals'
-import { translationConfig } from '../../config/translation-config'
 import { useSelector } from 'react-redux'
 import useFirestoreDB from '../../hooks/useFirestoreDB';
 import { validateName } from '../../utils/validation';
@@ -9,8 +8,10 @@ import UserProfileImage from '../../components/UserProfileImage';
 import { Theme } from '../../styles/theme';
 import ProfileEntryInput from '../../components/AddProfilePageComponents/ProfileEntryInput';
 import AddNameContianer from '../../components/AddProfilePageComponents/AddNameContainer';
+import { useLanguage } from '../../context/LanguageContext';
 
 const AddProfilePage = ({ setShowAddProfile }) => {
+    const { languageData } = useLanguage();
     const users = useSelector(store => store.user.users);
     const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(false);
@@ -29,16 +30,16 @@ const AddProfilePage = ({ setShowAddProfile }) => {
             }
 
         } else {
-            setErrorText(translationConfig.invalidName);
+            setErrorText(!languageData ? '' : languageData?.invalidName);
             setLoading(false);
         }
     }
 
     return <div className='flex flex-col justify-start items-start gap-4'>
-        <Heading>{translationConfig.addProfile}</Heading>
+        <Heading>{!languageData ? '' : languageData?.addProfile}</Heading>
         <SmallText
             $color={Theme.text.BGBlack.Grey}>
-            {translationConfig.addProfileDesc}</SmallText>
+            {!languageData ? '' : languageData?.addProfileDesc}</SmallText>
         <AddNameContianer className='flex items-center gap-5'>
             <UserProfileImage
                 alt="Add users"
@@ -56,11 +57,11 @@ const AddProfilePage = ({ setShowAddProfile }) => {
             <PrefferedRectangleButton $loading={loading} onClick={(e) => {
                 e.preventDefault();
                 addUserProfileName();
-            }}>{loading ? "" : translationConfig.continue}</PrefferedRectangleButton>
+            }}>{loading ? "" : !languageData ? '' : languageData?.continue}</PrefferedRectangleButton>
             <RectangleButton
                 onClick={() =>
                     setShowAddProfile(prev => !prev)}>
-                {translationConfig.cancel}
+                {!languageData ? '' : languageData?.cancel}
             </RectangleButton>
         </div>
     </div>

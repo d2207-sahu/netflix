@@ -43,7 +43,19 @@ const LinkHrefText = styled(SmallText)`
     color:${Theme.text.BGBlack.Blue};
 `;
 
-
+const ExploreMoreText = styled.div`
+    cursor: pointer;
+    display: inline-block;
+    font-size: .9vw;
+    line-height: .8vw;
+    margin-right: 4px;
+    max-width: 0;
+    opacity: 0;
+    transition: max-width 1s,opacity 1s,transform .75s;
+    vertical-align: bottom;
+    white-space: nowrap;
+       color: #54b9c5;
+`
 
 const SubHeading = styled.h2`
     color: white;
@@ -65,4 +77,4 @@ const ErrorText = styled.h2`
         text-shadow: 0 1px 1px rgba(0,0,0,.7);`}
 `;
 
-export { Heading, SubHeading, NormalText, ErrorText, SmallText ,LinkHrefText}
+export { Heading, SubHeading, NormalText, ErrorText, SmallText, LinkHrefText, ExploreMoreText }

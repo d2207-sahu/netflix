@@ -1,6 +1,6 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     *{
@@ -18,13 +18,48 @@ const GlobalStyle = createGlobalStyle`
         background-color: black;
         overflow-x: clip;
     }
-
+    
     body.openModal{
        overflow: hidden;
     }
     dialog::backdrop{
       background-color: #000;
       opacity: 0.4;
+    }
+
+    iframe::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmerAnimation 1.5s infinite;
+    }
+
+    img::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmerAnimation 1.5s infinite;
+    }
+
+    @keyframes shimmerAnimation {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
     }
 `;
 
@@ -34,7 +69,7 @@ export const size = {
   md: '900px', // for tablets
   lg: '1280px', // for laptops
   xl: '1440px', // for desktop / monitors
-  xxl: '1920px', // for big screens
+  xxl: '1920px' // for big screens
 };
 
 export const deviceMaxWidth = {
@@ -43,7 +78,7 @@ export const deviceMaxWidth = {
   md: `(max-width: ${size.md})`,
   lg: `(max-width: ${size.lg})`,
   xl: `(max-width: ${size.xl})`,
-  xxl: `(max-width: ${size.xxl})`,
+  xxl: `(max-width: ${size.xxl})`
 };
 
 const device = {
@@ -52,7 +87,7 @@ const device = {
   md: '900px',
   lg: '1280px',
   xl: '1440px',
-  xxl: '1920px',
+  xxl: '1920px'
 };
 
 export const media = {
@@ -85,7 +120,7 @@ export const media = {
     @media (max-width: ${device.xxl}) {
       ${css(...args)};
     }
-  `,
+  `
 };
 
 export default GlobalStyle;
