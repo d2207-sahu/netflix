@@ -9,7 +9,7 @@ const GenreTags = ({ genreIDs }) => {
     const textColor = Theme.text.BGBlack.Grey;
     return <SmallText className={`text-[${textColor}]`}>
         {genreIDs?.map((genreId) => {
-            const genre = addMovieGenres.find((genre) => genre.id === genreId);
+            const genre = addMovieGenres?.find((genre) => genre.id === genreId);
             if (genre)
                 return genre.name;
         }).join(" • ")}

@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialUserState = {
   state: false,
@@ -11,7 +11,7 @@ const initialUserState = {
   name: '',
   played: [],
   searched: [],
-  saved: [],
+  saved: []
 };
 
 const userSlice = createSlice({
@@ -22,7 +22,7 @@ const userSlice = createSlice({
       state = {
         ...state,
         state: true,
-        uid: action.payload,
+        uid: action.payload
       };
       return state;
     },
@@ -40,13 +40,37 @@ const userSlice = createSlice({
       state.searched = [];
       return state;
     },
+    updateSavedMovies: (state, action) => {
+      state.saved = action.payload;
+      return state;
+    },
+    addToSavedMovies: (state, action) => {
+      state.saved = [...state.saved, action.payload];
+      return state;
+    },
+    updatePlayedMovies: (state, action) => {
+      state.played = action.payload;
+      return state;
+    },
+    addToPlayedMovies: (state, action) => {
+      state.played.push(action.payload);
+      return state;
+    },
     // eslint-disable-next-line no-unused-vars
     removeAccount: (state, action) => {
       return null;
-    },
-  },
+    }
+  }
 });
 
-export const {addAccount, removeAccount, updateName, updateUsers} =
-  userSlice.actions;
+export const {
+  addAccount,
+  updateSavedMovies,
+  addToSavedMovies,
+  updatePlayedMovies,
+  addToPlayedMovies,
+  removeAccount,
+  updateName,
+  updateUsers
+} = userSlice.actions;
 export default userSlice.reducer;

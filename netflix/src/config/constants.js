@@ -16,3 +16,7 @@ export const SEARCH_API_URL = 'search/movie';
 export const ALL_GENRE = '/genre/movie/list';
 export const recapcthaLinkText = '<![CDATA[<b>Learn more.</b>]]>';
 export const recapcthaLinkHref = 'https://policies.google.com/privacy';
+export const Languages = {
+  'en-IN': 'English',
+  'hi-IN': 'हिन्दी'
+};

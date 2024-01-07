@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { IconButton, NormalText } from './globals';
 import { TMDB_API_IMAGE_CDN_URL } from '../config/constants';
 import styled from 'styled-components';
-import { FiInfo, FiPlay, FiPlus } from 'react-icons/fi';
+import { FiInfo } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { updateModalMovieSelectedID } from '../redux/slices/appSlice';
 import GenreTags from './MovieCardComponents/GenreTags';
 import RatingTag from './MovieCardComponents/RatingTag';
-import useFirestoreDB from '../hooks/useFirestoreDB';
+import PlayButton from './PlayButton';
+import AddToMyListButton from './AddToMyListButton';
 
 const MovieCard = styled.div`
     cursor: pointer;
@@ -48,7 +49,6 @@ const MovieCard = styled.div`
 
 const MovieCardComponent = ({ movieDetail }) => {
     const dispatch = useDispatch()
-    const { addToSaved } = useFirestoreDB();
     const [onMouseOver, setOnMouseOver] = useState(false);
     const imageWidth = 'w300';
     const onMouseLeave = (event) => {
@@ -60,35 +60,31 @@ const MovieCardComponent = ({ movieDetail }) => {
         setOnMouseOver(true);
     }
     return (
-        <MovieCard key={movieDetail.id} className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
+        <MovieCard key={movieDetail?.id} className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
             onMouseOver={onMouseOverFunction}
             onMouseLeave={onMouseLeave}>
             <img
-                alt={movieDetail.original_title}
-                src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail.backdrop_path}
+                alt={movieDetail?.original_title}
+                src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail?.backdrop_path}
                 className="min-w-[100%] shadow-lg shadow-black rounded-t-md"
             />
             {onMouseOver &&
                 <div className='p-[1rem] bg-[#181818] shadow-lg shadow-black rounded-b-md cursor-pointer'>
                     <div className='flex justify-between items-center py-4'>
                         <div className=' flex gap-4'>
-                            <IconButton className='rounded'>
-                                <FiPlay fill='#ffff' className=' fill-white' />
-                            </IconButton>
-                            <IconButton onClick={() => { addToSaved(movieDetail) }}>
-                                <FiPlus />
-                            </IconButton>
+                            <PlayButton rounded={true} movieID={movieDetail?.id} movieData={movieDetail} />
+                            <AddToMyListButton movieDetail={movieDetail} />
                         </div>
                         <IconButton onClick={(e) => {
                             e.preventDefault();
-                            dispatch(updateModalMovieSelectedID(movieDetail.id));
+                            dispatch(updateModalMovieSelectedID(movieDetail));
                         }}>
                             <FiInfo />
                         </IconButton>
                     </div>
                     <div className='flex'>
                         <NormalText>
-                            {movieDetail.original_title}
+                            {movieDetail?.original_title}
                         </NormalText>
                     </div>
                     <div className='flex flex-wrap justify-between items-center py-3'>

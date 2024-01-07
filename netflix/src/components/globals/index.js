@@ -1,4 +1,12 @@
-import { NormalText, Heading, SubHeading, ErrorText, SmallText, LinkHrefText } from './Text';
+import {
+  NormalText,
+  Heading,
+  SubHeading,
+  ErrorText,
+  SmallText,
+  LinkHrefText,
+  ExploreMoreText
+} from './Text';
 import {
   ButtonRed,
   ButtonW,
@@ -33,5 +41,6 @@ export {
   Logo,
   Video,
   IconButton,
+  ExploreMoreText,
   InvisibleScrollContainer
 };

@@ -19,6 +19,7 @@ const useSearch = () => {
       SEARCH_API_URL + `?query=${searchReduxText}&page=${page}`,
       null,
       (data) => {
+        console.log(data.results)
         return data.results;
       },
       (searchError) => {

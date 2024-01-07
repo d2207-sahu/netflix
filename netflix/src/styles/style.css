@@ -7,4 +7,10 @@
   .clip-top-part {
     clip-path: rect(10%, 100%, 100%, 100%);
   }
+
+  .shimmer-black {
+    background: linear-gradient(to right, #3232328c 8%, #32323251 18%, #12121283 33%);
+    background-size: 1000px 100%;
+    animation:  shimmer 2.2s linear infinite forwards;
+  }
 }
