@@ -14,7 +14,7 @@ import useMoviesRecentlyPlayed from '../hooks/useMoviesRecentlyPlayed';
 // movieData is passed all the time
 const PlayButton = ({ onAfterClick, rounded, videoID, movieID, movieData }) => {
     const [getMovieVideos, videos, pending] = useMovieVideos({ movieID });
-    const [saveMovieToRecentlyPlayed] = useMoviesRecentlyPlayed();
+    const { saveMovieToRecentlyPlayed } = useMoviesRecentlyPlayed();
     const { languageData } = useLanguage();
     const dispatch = useDispatch();
 

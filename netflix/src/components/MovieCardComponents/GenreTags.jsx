@@ -7,7 +7,6 @@ const GenreTags = ({ genreIDs }) => {
     const { addMovieGenres } =
         useSelector((store) => store.movies);
     const textColor = Theme.text.BGBlack.Grey;
-    console.log(genreIDs,addMovieGenres)
     return <SmallText className={`text-[${textColor}]`}>
         {genreIDs?.map((genreId) => {
             const genre = addMovieGenres?.find((genre) => genre.id === genreId);

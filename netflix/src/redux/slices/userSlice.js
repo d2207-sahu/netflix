@@ -49,11 +49,11 @@ const userSlice = createSlice({
       return state;
     },
     updatePlayedMovies: (state, action) => {
-      state.played = action;
+      state.played = action.payload;
       return state;
     },
     addToPlayedMovies: (state, action) => {
-      state.played.push(action);
+      state.played.push(action.payload);
       return state;
     },
     // eslint-disable-next-line no-unused-vars

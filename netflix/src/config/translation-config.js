@@ -34,7 +34,8 @@ export const englishConfig = {
   addProfileDesc: 'Add a profile for another person watching Netflix.',
   cancel: 'Cancel',
   continue: 'Continue',
-  moreInfo: 'More Info'
+  moreInfo: 'More Info',
+  recenltyPlayed: 'Recently Played',
 };
 export const hindiConfig = {
   moreInfo: 'और जानकारी',

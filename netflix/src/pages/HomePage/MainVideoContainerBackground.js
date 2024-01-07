@@ -29,7 +29,7 @@ const MainVideoContainerBackground = (movies) => {
             <MovieDescription desc={overview} className={'lg:w-[30vw] sm:w-[60vw]'} />
             <div className="flex mt-6">
               {/* Had to add appropriated Buttons with images at the start */}
-              <PlayButton videoID={homeTeaserVideoData?.key}  />
+              <PlayButton videoID={homeTeaserVideoData?.key} movieData={homeTeaserVideoData} />
               <MoreInfoButton />
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, getFirestore, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import useFirebase from './useFirebaseAuth';
 import { addToPlayedMovies, updatePlayedMovies } from '../redux/slices/userSlice';
@@ -31,8 +31,8 @@ const useMoviesRecentlyPlayed = () => {
       }
   };
 
-  const saveMovieToRecentlyPlayed = async ({ videoData }) => {
-    if (user)
+  const saveMovieToRecentlyPlayed = async ( videoData ) => {
+    if (user && videoData)
       try {
         const playedCollection = collection(
           firestoreDB,
@@ -40,7 +40,7 @@ const useMoviesRecentlyPlayed = () => {
         );
         await addDoc(playedCollection, {
           videoData: videoData,
-          timestamp: serverTimestamp().toMillis()
+          timestamp: Date.now()
         });
         dispatch(addToPlayedMovies(videoData));
       } catch (e) {
@@ -53,7 +53,7 @@ const useMoviesRecentlyPlayed = () => {
     if (played) getAllMoviesSavedtoRecenltyPlayed();
   }, []);
 
-  return [played, pending, getAllMoviesSavedtoRecenltyPlayed, saveMovieToRecentlyPlayed];
+  return {played, pending, getAllMoviesSavedtoRecenltyPlayed, saveMovieToRecentlyPlayed};
 };
 
 export default useMoviesRecentlyPlayed;

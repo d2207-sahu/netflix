@@ -72,12 +72,12 @@ const MovieCardComponent = ({ movieDetail }) => {
                 <div className='p-[1rem] bg-[#181818] shadow-lg shadow-black rounded-b-md cursor-pointer'>
                     <div className='flex justify-between items-center py-4'>
                         <div className=' flex gap-4'>
-                            <PlayButton rounded={true} movieID={movieDetail?.id} />
+                            <PlayButton rounded={true} movieID={movieDetail?.id} movieData={movieDetail} />
                             <AddToMyListButton movieDetail={movieDetail} />
                         </div>
                         <IconButton onClick={(e) => {
                             e.preventDefault();
-                            dispatch(updateModalMovieSelectedID(movieDetail.id));
+                            dispatch(updateModalMovieSelectedID(movieDetail));
                         }}>
                             <FiInfo />
                         </IconButton>

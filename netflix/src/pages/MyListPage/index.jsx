@@ -10,7 +10,6 @@ import ShimmerCarouselGrid from '../../components/Shimmer/ShimmerCarouselGrid';
 const MyListPage = () => {
     const {user, pending} = useMoviesMyList();
     const { languageData } = useLanguage()
-console.log(user.saved)
     return (
         <>
             <Header />

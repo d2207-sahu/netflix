@@ -11,12 +11,16 @@ import {
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { useLanguage } from '../../context/LanguageContext';
 import ShimmerCarouselRow from '../../components/Shimmer/ShimmerCarouselRow';
+import useMoviesMyList from '../../hooks/useMoviesMyList';
+import useMoviesRecentlyPlayed from '../../hooks/useMoviesRecentlyPlayed';
 
 const MoviesCarouselContainer = () => {
   const { languageData } = useLanguage();
 
   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loadingCarousel } =
     useSelector((store) => store.movies);
+  useMoviesRecentlyPlayed();
+  const { user } = useMoviesMyList();
 
   return (
     <div className="w-screen h-max">
@@ -46,6 +50,18 @@ const MoviesCarouselContainer = () => {
               title={!languageData ? '' : languageData?.upcoming}
               movieCards={upcomingMovies}
             />
+            {user?.saved.length > 0 && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.mylist}
+                movieCards={user?.saved.map((e) => e.videoData)}
+              />
+            )}
+            {user?.played.length > 0 && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.recenltyPlayed}
+                movieCards={user?.played.map((e) => e.videoData)}
+              />
+            )}
           </>
         )}
       </div>
@@ -84,7 +100,7 @@ const MoviesCarousel = ({ title, movieCards }) => {
         )}
         <Slider $sliderIndex={`${sliderIndex * 100}%`}>
           {movieCards?.map((movieDetail) => (
-            <MovieCardComponent key={movieDetail.id} movieDetail={movieDetail} />
+            <MovieCardComponent key={movieDetail?.id} movieDetail={movieDetail} />
           ))}
         </Slider>
         {onMouseHover && (

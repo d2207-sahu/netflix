@@ -17,7 +17,7 @@ import PlayButton from '../../components/PlayButton';
 
 // when this modal opens, means have to update the url, and also let it read the url also
 const MovieInfoModal = () => {
-    const renderID = useSelector(store => store.app.modalMovieSelectedID);
+    const movideDetail = useSelector(store => store.app.modalMovieSelectedID);
     const { addRecentlyPlayed } = useFirestoreDB();
     const dispatch = useDispatch();
     const dialogRef = useRef();
@@ -40,29 +40,28 @@ const MovieInfoModal = () => {
                     closeModal()
                 }
             });
-            if (renderID)
+            if ((movideDetail?.id))
                 dialogRef.current.showModal();
         }
-    }, [renderID]);
+    }, [(movideDetail)]);
 
     // SOmetimes the API fails, have to call it again... Give the retry button to the user.
     const { info,
         videos,
         credits,
         similars, pending } =
-        useMovieData({ movieID: renderID, isHome: false })
+        useMovieData({ movieID: (movideDetail?.id), isHome: false })
     const findTrailerVideo = useMemo(() => {
         const initialLoadVideo =
             videos.find((video) => (video.type === TRAILER));
         return initialLoadVideo;
     }, [videos]);
-    if (!renderID) return <></>;
+    if (!(movideDetail?.id)) return <></>;
     const video = findTrailerVideo ?? videos[0];
-    console.log(findTrailerVideo, info, videos, credits, similars, pending, renderID)
     return (
         <dialog ref={dialogRef} id="MODAL" className='shadow-md flex flex-col justify-start items-start mx-auto mb-auto mt-auto outline-none bg-[#181818] rounded-2xl w-[80%]' >
             {pending ? "Loading..." : <>
-                <VideoModalSection videos={videos} addRecentlyPlayed={addRecentlyPlayed} info={info} videoID={video?.key} closeModal={closeModal} />
+                <VideoModalSection videos={videos} addRecentlyPlayed={addRecentlyPlayed} info={info} videoID={video?.key} closeModal={closeModal} movieDetail={movideDetail} />
                 <div className='flex flex-col px-16 py-4'>
                     {info && <InformationSection info={info} />}
                     {similars && <MoreLikeThisSection similars={similars} />}
@@ -108,7 +107,7 @@ const CreditsSection = ({ category, entities }) => {
     </span>
 }
 
-const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlayed }) => {
+const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlayed, movieDetail }) => {
 
     return (<div className='w-[100%]  relative'>
         <iframe
@@ -136,7 +135,8 @@ const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlaye
                             );
                             return videoID ? videoID.key : videos[0].key
                         }
-                    } />
+                    }
+                    movieData={movieDetail} />
                 <AddToMyListButton />
             </div>
         </div>
