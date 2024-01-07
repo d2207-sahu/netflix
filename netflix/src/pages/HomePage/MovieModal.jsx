@@ -59,7 +59,7 @@ const MovieModal = () => {
     }, [videoID]);
     if (!videoID) return <></>;
     return (
-        <div ref={dialogRef} className='p-0 m-0 relative h-[100%] w-[100%] z-30' >
+        <div ref={dialogRef} className='p-0 m-0 relative h-[100%] w-[100%] z-50' >
             <iframe
                 ref={youtubeRef}
                 className="h-[100vh] w-[100vw] clip-top-part before:bg-[ rgba(255, 255, 255, 0.8)]"

@@ -4,7 +4,7 @@ import { IconButton, NormalText, SmallText, SubHeading } from '../../components/
 import { FiPlus } from 'react-icons/fi'
 import { RxCross2 } from "react-icons/rx";
 import { useMovieData } from '../../hooks/useMovieData'
-import SearchGridContainer from '../../components/SearchGridContainer'
+import GridContainer from '../../components/GridContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateModalMovieSelectedID } from '../../redux/slices/appSlice'
 import { TMDB_API_IMAGE_CDN_URL, TRAILER } from '../../config/constants'
@@ -222,9 +222,9 @@ const GridSectionContainer = ({ title, entities, element }) => {
         <SubHeading>
             {title}
         </SubHeading>
-        <SearchGridContainer $margin={'4rem 0'} $rowGap={"1rem"} $element={element ?? '4'}>
+        <GridContainer $margin={'4rem 0'} $rowGap={"1rem"} $element={element ?? '4'}>
             {entities}
-        </SearchGridContainer>
+        </GridContainer>
     </div>;
 }
 

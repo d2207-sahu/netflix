@@ -5,4 +5,5 @@ export const routingConfig = {
   signup: '/signup',
   search: '/search',
   profile: '/profile',
+  mylist: '/mylist',
 };

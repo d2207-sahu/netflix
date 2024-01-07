@@ -5,6 +5,7 @@ export const englishConfig = {
   authRecapthcaSecurityText: 'Sign in is protected by Google reCAPTCHA to ensure you’re not a bot.',
   email: 'Email',
   name: 'Name',
+  mylist: 'My List',
   password: 'Password',
   repassword: 'Confirm Password',
   invalidName: 'Invalid Name',

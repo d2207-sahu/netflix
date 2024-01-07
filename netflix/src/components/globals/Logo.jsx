@@ -21,7 +21,7 @@ const LogoImageComponent = styled.img`
 
 const Logo = () => {
   const { pathname } = useLocation();
-  const { navigate } = useNavigate()
+  const navigate = useNavigate()
   return <LogoImageComponent
     onClick={() => {
       if (!(pathname === routingConfig.home))

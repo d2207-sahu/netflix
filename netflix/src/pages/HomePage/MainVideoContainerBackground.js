@@ -5,30 +5,37 @@ import VideoBackground from './VideoBackground';
 import { FiInfo } from 'react-icons/fi';
 import { useLanguage } from '../../context/LanguageContext';
 import PlayButton from '../../components/PlayButton';
-import { useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
+import ShimmerLoading from '../../components/Shimmer/ShimmerLoading';
 
 const MainVideoContainerBackground = (movies) => {
-  const videoData = useSelector((store) => store.movies?.homeTeaserVideoData);
-
+  const { homeTeaserVideoData, loadingCarousel } = useSelector((store) => store.movies);
   // Had to handle this case very efficiently
   if (!movies.props) return <>Loading..</>;
   const { title, overview, id } = movies.props[0];
   // TODO remove grasdient and havbe all the text this calss
   // text-shadow: 0 1px 1px rgba(0,0,0,.7);
-
   return (
     <div>
-      <div className="flex flex-col justify-center items-start h-screen overflow-hidden top-0 bottom-0 absolute pl-[5%] bg-gradient-to-r from-black">
-        <MovieTitle title={title} className={'lg:w-[45vw] sm:w-[90vw]'} />
-        {/* Have this fade out later on  */}
-        <MovieDescription desc={overview} className={'lg:w-[30vw] sm:w-[60vw]'} />
-        <div className="flex mt-6">
-          {/* Had to add appropriated Buttons with images at the start */}
-          <PlayButton videoID={videoData?.key}/>
-          <MoreInfoButton />
-        </div>
-      </div>
-      <VideoBackground movieID={id} />
+      {loadingCarousel ? (
+        <>
+          <ShimmerLoading />
+        </>
+      ) : (
+        <>
+          <div className="flex flex-col justify-center items-start h-screen overflow-hidden top-0 bottom-0 absolute pl-[5%] bg-gradient-to-r from-black">
+            <MovieTitle title={title} className={'lg:w-[45vw] sm:w-[90vw]'} />
+            {/* Have this fade out later on  */}
+            <MovieDescription desc={overview} className={'lg:w-[30vw] sm:w-[60vw]'} />
+            <div className="flex mt-6">
+              {/* Had to add appropriated Buttons with images at the start */}
+              <PlayButton videoID={homeTeaserVideoData?.key}  />
+              <MoreInfoButton />
+            </div>
+          </div>
+          <VideoBackground movieID={id} />
+        </>
+      )}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import Header from '../../components/layouts/Header';
 import useSearch from '../../hooks/useSearch';
 import { Heading, NormalText, SubHeading } from '../../components/globals';
 import MovieCard from '../../components/MovieCard';
-import SearchGridContainer from '../../components/SearchGridContainer';
+import GridContainer from '../../components/GridContainer';
 import { useLanguage } from '../../context/LanguageContext';
 
 const SearchPage = () => {
@@ -15,7 +15,7 @@ const SearchPage = () => {
       {!languageData ? '' : languageData?.emptySearchText.replace("{}", `"${searchReduxText}"`)}
     </NormalText>
   </div>;
-
+  console.log(searchResultData);
   return (
     <div className='bg-black flex flex-col justify-center items-center'>
       <Header />
@@ -29,10 +29,10 @@ const SearchPage = () => {
         </div>) : searchResultData ?
         <div>
           <div className='mx-[4%] mb-4 flex justify-start pt-[10%]'>
-            <SubHeading>Search Results for {searchReduxText}
+            <SubHeading>{`Search Results for ${searchReduxText}`}
             </SubHeading>
           </div>
-          <SearchGridContainer>
+          <GridContainer>
             {searchResultData
               .filter((data) => data.backdrop_path !== null).
               map((movieData) =>
@@ -40,7 +40,7 @@ const SearchPage = () => {
                   search={true}
                   key={movieData.id}
                   movieDetail={movieData} />)}
-          </SearchGridContainer>
+          </GridContainer>
         </div>
         : noResultComponent}
     </div>

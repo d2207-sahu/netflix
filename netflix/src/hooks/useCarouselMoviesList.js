@@ -1,20 +1,21 @@
-import {baseFetchAPI} from '../service/api.service';
-import {useDispatch, useSelector} from 'react-redux';
+import { baseFetchAPI } from '../service/api.service';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addAllMovieGenres,
   addNowPlayingMovies,
   addPopularMovies,
   addTopRatedMovies,
   addUpcomingMovies,
+  toggleLoadingCarousel
 } from '../redux/slices/movieSlice';
 import {
   ALL_GENRE,
   NOW_PLAYING_API_URL,
   POPULAR_API_URL,
   TOP_RATED_API_URL,
-  UPCOMING_API_URL,
+  UPCOMING_API_URL
 } from '../config/constants';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 const useCarouselMoviesList = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const useCarouselMoviesList = () => {
     topRatedMovies,
     upcomingMovies,
     addMovieGenres,
+    loadingCarousel
   } = useSelector((store) => store.movies);
 
   const getNowPlayingMovies = async () => {
@@ -35,7 +37,7 @@ const useCarouselMoviesList = () => {
       async (data) => {
         dispatch(addNowPlayingMovies(data.results));
       },
-      (err) => console.error(err),
+      (err) => console.error(err)
     );
   };
   const getPopularMovies = async () => {
@@ -46,7 +48,7 @@ const useCarouselMoviesList = () => {
       async (data) => {
         dispatch(addPopularMovies(data.results?.reverse()));
       },
-      (err) => console.error(err),
+      (err) => console.error(err)
     );
   };
   const getTopRatedMovies = async () => {
@@ -57,7 +59,7 @@ const useCarouselMoviesList = () => {
       async (data) => {
         dispatch(addTopRatedMovies(data.results));
       },
-      (err) => console.error(err),
+      (err) => console.error(err)
     );
   };
   const getUpcomingMovies = async () => {
@@ -68,7 +70,7 @@ const useCarouselMoviesList = () => {
       async (data) => {
         dispatch(addUpcomingMovies(data.results));
       },
-      (err) => console.error(err),
+      (err) => console.error(err)
     );
   };
 
@@ -80,18 +82,24 @@ const useCarouselMoviesList = () => {
       async (data) => {
         dispatch(addAllMovieGenres(data.genres));
       },
-      (err) => console.error(err),
+      (err) => console.error(err)
     );
   };
 
   useEffect(() => {
-    !addMovieGenres && getAllGenres();
-    !nowPlayingMovies && getNowPlayingMovies();
-    !popularMovies && getPopularMovies();
-    !topRatedMovies && getTopRatedMovies();
-    !upcomingMovies && getUpcomingMovies();
+    dispatch(toggleLoadingCarousel(true));
+    Promise.allSettled([
+      !addMovieGenres && getAllGenres(),
+      !nowPlayingMovies && getNowPlayingMovies(),
+      !popularMovies && getPopularMovies(),
+      !topRatedMovies && getTopRatedMovies(),
+      !upcomingMovies && getUpcomingMovies()
+    ]).finally(() => {
+      dispatch(toggleLoadingCarousel(false));
+    });
   }, []);
 
+  console.log(loadingCarousel);
   return { nowPlayingMovies, topRatedMovies };
 };
 

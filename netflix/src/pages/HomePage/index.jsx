@@ -5,17 +5,15 @@ import MainVideoContainerBackground from './MainVideoContainerBackground'
 import MoviesCarouselContainer from './MoviesCarouselContainer'
 import MovieInfoModal from './MovieInfoModal'
 import MovieModal from './MovieModal'
-import useFirestoreDB from '../../hooks/useFirestoreDB'
 
 export const HomePage = () => {
-  useFirestoreDB();
   const { nowPlayingMovies, topRatedMovies } = useCarouselMoviesList();
-  
+
   return (<>
-    <MovieModal  />
-    <MovieInfoModal  />
+    <MovieModal />
+    <MovieInfoModal />
     <Header />
-    <MainVideoContainerBackground props={nowPlayingMovies ? nowPlayingMovies : topRatedMovies} />
+    <MainVideoContainerBackground props={nowPlayingMovies ? nowPlayingMovies : topRatedMovies}  />
     <MoviesCarouselContainer />
   </>
   )

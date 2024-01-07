@@ -9,6 +9,8 @@ import { routingConfig } from '../../router/routing-config';
 import SearchComponent from '../SearchComponent';
 import UserProfileImage from '../UserProfileImage';
 import LanguageSelect from '../HeaderComponents/LanguageSelect';
+import { LinkText } from '../LinkText';
+import useFirestoreDB from '../../hooks/useFirestoreDB';
 
 /**
  * This Component is rendered in every page
@@ -16,6 +18,7 @@ import LanguageSelect from '../HeaderComponents/LanguageSelect';
  */
 const Header = () => {
   const navigate = useNavigate();
+  useFirestoreDB();
   const { pathname } = useLocation();
   const user = useSelector(((store) => store.user))
   const { auth, onAuthStateChanged, signOut } = useFirebase();
@@ -56,6 +59,7 @@ const Header = () => {
       $justifyContent="space-between" >
       <Logo />
       {/* Should also contain the navigation dropdown items to show the sections of the application */}
+      <LinkText to={routingConfig.mylist} text={"My List"}></LinkText>
       <div className='flex h-[inherit] justify-between items-center gap-2'>
         {showAuthheaders && <SearchComponent />}
         {showAuthheaders && <LanguageSelect />}
