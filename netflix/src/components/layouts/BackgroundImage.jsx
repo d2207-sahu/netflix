@@ -4,7 +4,7 @@ import { background_image } from '../../assets'
 
 export const BackgroundImage = () => {
     return (
-        <Image className='opacity-[.5]'
+        <Image className='opacity-[.5] hidden sm:block'
             $position="fixed"
             $minHeight="max-content"
             $minWidth="100vw"

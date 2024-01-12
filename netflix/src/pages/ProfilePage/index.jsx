@@ -24,7 +24,7 @@ const ProfilePage = () => {
                     <AddProfilePage setShowAddProfile={setShowAddProfile} /> :
                     (<>
                         <Heading>{!languageData ? '' : languageData?.whoWatching}</Heading>
-                        <div className='flex gap-8'>
+                        <div className='flex gap-8 flex-wrap justify-center'>
                             {user && user?.users && user?.users.map((element, index) =>
                             (<UserCard
                                 key={element.name}

@@ -27,3 +27,5 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 1. Suspense
 2. Image Loading
 5. Mobile version is not getting the FIrbase list, as the user is not getting updated
+6. Footer Make
+7. Make the DIalog openning to be full screen
