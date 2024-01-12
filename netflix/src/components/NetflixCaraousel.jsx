@@ -9,6 +9,10 @@ export const SliderContainer = styled.div`
     display: flex;
     overflow-x: clip; 
     overflow-y: visible !important;
+
+    @media (max-width: 640px){
+        overflow-x: scroll; 
+    }
 `;
 
 export const Slider = styled.div`

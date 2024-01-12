@@ -9,6 +9,7 @@ const LanguageSelect = () => {
     const dispatch = useDispatch();
 
     return <LanguageSelectContainer
+        className="hidden sm:block"
         value={(app.languages)}
         onChange={(e) => {
             dispatch(changeLanguage(e.target.value));
