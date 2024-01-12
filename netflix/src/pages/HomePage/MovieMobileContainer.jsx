@@ -6,7 +6,7 @@ import AddToMyListButton from '../../components/AddToMyListButton'
 const MovieMobileContainer
     = ({ movieDetailData }) => {
         return (
-            <div className='mt-[25%] mb-5 w-screen rounded-xl  h-[80%] min-h-[540px] '>
+            <div className='mt-[25%] mb-5 w-screen rounded-xl  h-[80%] min-h-[540px] block sm:hidden'>
                 <div className='border-white border border-10 gap-5 rounded-xl m-10  flex flex-col justify-end '>
                     <img
                         alt={movieDetailData?.original_title}

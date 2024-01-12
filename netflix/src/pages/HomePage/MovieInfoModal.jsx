@@ -115,7 +115,7 @@ const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlaye
             id={videoID}
             className="h-[80vh] aspect-video w-[100%] rounded-t-xl"
             // loop=1 hd=1
-            src={`https://www.youtube.com/embed/${videoID}?autoplay=0&mute=1&showinfo=0&controls=0&rel=0&hd=0&ap=%2526fmt%3D18&fmt=18`}
+            src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1&showinfo=0&controls=0&rel=0&hd=0&ap=%2526fmt%3D18&fmt=18`}
             allow="accelerometer; autoplay; encrypted-media; gyroscope;"
         ></iframe>
         <div className='flex flex-col w-[100%] absolute top-0 h-[100%] justify-between items-stretch bg-gradient-to-t from-[#181818]'>
