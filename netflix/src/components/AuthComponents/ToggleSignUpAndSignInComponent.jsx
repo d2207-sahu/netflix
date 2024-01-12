@@ -18,6 +18,7 @@ const ToggleSignUpAndSignInComponent = ({ isSignin }) => {
                     !languageData ? '' : languageData?.alreadySignedUp}
             </NormalText>
             <LinkText
+                mobileShow={true}
                 to={isSignin ?
                     routingConfig.signup :
                     routingConfig.login}

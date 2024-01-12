@@ -45,7 +45,7 @@ const userSlice = createSlice({
       return state;
     },
     addToSavedMovies: (state, action) => {
-      state.saved = [...state.saved, action.payload];
+      state.saved = [...state.saved, {videoData: action.payload}];
       return state;
     },
     updatePlayedMovies: (state, action) => {
@@ -53,7 +53,7 @@ const userSlice = createSlice({
       return state;
     },
     addToPlayedMovies: (state, action) => {
-      state.played.push(action.payload);
+      state.saved = [...state.played, {videoData: action.payload}];
       return state;
     },
     // eslint-disable-next-line no-unused-vars

@@ -68,9 +68,9 @@ const SearchComponent = () => {
 
     //TODO Later on want to useMemo thing
     return (
-        <SearchContainer $selected={!searchToggled}>
-            <FiSearch
-                className='pt-1'
+        <SearchContainer $selected={!searchToggled} className='hidden sm:block'>
+            <FiSearch 
+                className='pt-1 hidden sm:block'
                 color='white'
                 size={searchToggled ? '2.7rem' : '2.9rem'}
                 onClick={() => {
@@ -87,7 +87,7 @@ const SearchComponent = () => {
                         setSearchText('')
                         dispatch(updateSearchText(''));
                     }}
-                    className='pt-1'
+                    className='pt-1 '
                     size={'2.5rem'}
                     color='gray' /> : <></>}
         </SearchContainer>
