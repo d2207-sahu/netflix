@@ -1,6 +1,8 @@
 export const TMDB_API_KEY = process.env['REACT_APP_TMDB_API_KEY'];
-export const TMDB_API_IMAGE_CDN_URL = process.env['REACT_APP_TMDB_API_IMAGE_CDN_URL'];
-export const BASE_API_URL = process.env['REACT_APP_BASE_API_URL'];
+export const TMDB_API_IMAGE_CDN_URL =
+  process.env['REACT_APP_PROXY_DOMAIN'] + process.env['REACT_APP_TMDB_API_IMAGE_CDN_URL'];
+export const BASE_API_URL =
+  process.env['REACT_APP_PROXY_DOMAIN'] + process.env['REACT_APP_BASE_API_URL'];
 export const MOVIE_API_URL = 'movie/';
 export const NOW_PLAYING_API_URL = MOVIE_API_URL + 'now_playing';
 export const TOP_RATED_API_URL = MOVIE_API_URL + 'top_rated';

@@ -40,19 +40,6 @@ const GlobalStyle = createGlobalStyle`
       animation: shimmerAnimation 1.5s infinite;
     }
 
-    img::before {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: shimmerAnimation 1.5s infinite;
-    }
-
     @keyframes shimmerAnimation {
       0% {
         background-position: 200% 0;

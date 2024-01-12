@@ -24,7 +24,7 @@ const MoviesCarouselContainer = () => {
 
   return (
     <div className="w-screen h-max">
-      <div className=" relative top-[-15vh]">
+      <div className="relative top-[-15vh]">
         {loadingCarousel ? (
           <div className="mx-10">
             <ShimmerCarouselRow />
@@ -34,22 +34,31 @@ const MoviesCarouselContainer = () => {
           </div>
         ) : (
           <>
-            <MoviesCarousel
-              title={!languageData ? '' : languageData?.nowPlaying}
-              movieCards={nowPlayingMovies}
-            />
-            <MoviesCarousel
-              title={!languageData ? '' : languageData?.Popular}
-              movieCards={popularMovies}
-            />
-            <MoviesCarousel
-              title={!languageData ? '' : languageData?.topRated}
-              movieCards={topRatedMovies}
-            />
-            <MoviesCarousel
-              title={!languageData ? '' : languageData?.upcoming}
-              movieCards={upcomingMovies}
-            />
+            {nowPlayingMovies && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.nowPlaying}
+                movieCards={nowPlayingMovies}
+              />
+            )}
+            {popularMovies && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.Popular}
+                movieCards={popularMovies}
+              />
+            )}
+            {upcomingMovies && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.upcoming}
+                movieCards={upcomingMovies}
+              />
+            )}
+            {topRatedMovies && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.topRated}
+                movieCards={topRatedMovies}
+              />
+            )}
+            
             {user?.saved.length > 0 && (
               <MoviesCarousel
                 title={!languageData ? '' : languageData?.mylist}
@@ -72,7 +81,6 @@ const MoviesCarouselContainer = () => {
 const MoviesCarousel = ({ title, movieCards }) => {
   const [sliderIndex, setSliderIndex] = useState(0);
   const [onMouseHover, setMouseHover] = useState(false);
-
   return (
     <div
       onMouseOver={() => {
