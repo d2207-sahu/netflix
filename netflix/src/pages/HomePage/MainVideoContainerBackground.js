@@ -8,6 +8,7 @@ import PlayButton from '../../components/PlayButton';
 import { useDispatch, useSelector } from 'react-redux';
 import ShimmerLoading from '../../components/Shimmer/ShimmerLoading';
 import { updateModalMovieSelectedID } from '../../redux/slices/appSlice';
+import MovieMobileContainer from './MovieMobileContainer';
 
 const MainVideoContainerBackground = (movies) => {
   const dispatch = useDispatch();
@@ -18,32 +19,35 @@ const MainVideoContainerBackground = (movies) => {
   // TODO remove grasdient and havbe all the text this calss
   // text-shadow: 0 1px 1px rgba(0,0,0,.7);
   return (
-    <div>
-      {loadingCarousel ? (
-        <>
-          <ShimmerLoading />
-        </>
-      ) : (
-        <>
-          <div className="flex flex-col justify-center items-start h-screen overflow-hidden top-0 bottom-0 absolute pl-[5%] bg-gradient-to-r from-black">
-            <MovieTitle title={title} className={'lg:w-[45vw] sm:w-[90vw]'} />
-            {/* Have this fade out later on  */}
-            <MovieDescription desc={overview} className={'lg:w-[30vw] sm:w-[60vw]'} />
-            <div className="flex mt-6">
-              {/* Had to add appropriated Buttons with images at the start */}
-              <PlayButton videoID={homeTeaserVideoData?.key} movieData={homeTeaserVideoData} />
-              <MoreInfoButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  dispatch(updateModalMovieSelectedID(homeTeaserVideoData));
-                }}
-              />
+    <>
+      <MovieMobileContainer movieDetailData={movies.props[0]}/>
+      <div className="hidden sm:block">
+        {loadingCarousel ? (
+          <>
+            <ShimmerLoading />
+          </>
+        ) : (
+          <>
+            <div className="flex flex-col justify-center items-start h-screen overflow-hidden top-0 bottom-0 absolute pl-[5%] bg-gradient-to-r from-black">
+              <MovieTitle title={title} className={'lg:w-[45vw] sm:w-[90vw]'} />
+              {/* Have this fade out later on  */}
+              <MovieDescription desc={overview} className={'lg:w-[30vw] sm:w-[60vw]'} />
+              <div className="flex mt-6">
+                {/* Had to add appropriated Buttons with images at the start */}
+                <PlayButton videoID={homeTeaserVideoData?.key} movieData={homeTeaserVideoData} />
+                <MoreInfoButton
+                  onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(updateModalMovieSelectedID(homeTeaserVideoData));
+                  }}
+                />
+              </div>
             </div>
-          </div>
-          <VideoBackground movieID={id} />
-        </>
-      )}
-    </div>
+            <VideoBackground movieID={id} />
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

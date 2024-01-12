@@ -79,6 +79,7 @@ const useFirestoreDB = () => {
 
   useEffect(() => {
     if (user?.uid && !user?.users) {
+      console.log("RUNING THIE")
       getUsers();
       updateNameAtStart();
     }

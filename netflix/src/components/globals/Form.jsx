@@ -17,6 +17,10 @@ const Form = styled.form`
     border-radius: 0.4rem;
     background-color: rgb(0, 0, 0, 0.8);
     min-height: fit-content;
+
+    @media (max-width: 640px) {
+        width: 90%;
+    }
 `;
 
 export default Form

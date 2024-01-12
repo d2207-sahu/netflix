@@ -13,7 +13,7 @@ export const HomePage = () => {
     <MovieModal />
     <MovieInfoModal />
     <Header />
-    <MainVideoContainerBackground props={nowPlayingMovies ? nowPlayingMovies : topRatedMovies}  />
+    <MainVideoContainerBackground props={nowPlayingMovies ? nowPlayingMovies : topRatedMovies} />
     <MoviesCarouselContainer />
   </>
   )

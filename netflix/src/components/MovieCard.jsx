@@ -15,14 +15,17 @@ const MovieCard = styled.div`
     flex: 0 0 20%;
     min-width: 20%;
     min-height: fit-content;
-    @media (width: 600px) {
+    @media (max-width: 640px) {
         flex: 0 0 33.3%;
         min-width: 33.3%;
+        height: auto;
+        aspect-ratio: inherit;
     }
-    @media (max-width: 1024px) {
-        flex: 0 0 25%;
-        min-width: 25%;
-    }
+    /* @media (max-width: 1024px) {
+        flex: 0 0 33.3%;
+        min-width: 33.3%;
+        /* aspect-ratio: inherit; 
+    } */
     background-color: #181818;
     aspect-ratio: 16/9;
     margin: .25rem;
@@ -66,7 +69,12 @@ const MovieCardComponent = ({ movieDetail }) => {
             <img
                 alt={movieDetail?.original_title}
                 src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail?.backdrop_path}
-                className="min-w-[100%] shadow-lg shadow-black rounded-t-md"
+                className="min-w-[100%] shadow-lg shadow-black rounded-t-md hidden sm:block"
+            />
+            <img
+                alt={movieDetail?.original_title}
+                src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail?.poster_path}
+                className="min-w-[100%] shadow-lg shadow-black rounded-t-md block sm:hidden"
             />
             {onMouseOver &&
                 <div className='p-[1rem] bg-[#181818] shadow-lg shadow-black rounded-b-md cursor-pointer'>

@@ -1,5 +1,6 @@
 import background_image from './images/netflix-background.jpg';
 import background_logo_large from './images/netflix-large-logo.png';
+import background_logo_small from './images/netflix-small-logo.png';
 import userRed from './images/user-red.png';
 import userBlack from './images/user-black.png';
 import userBlue from './images/user-blue.png';
@@ -10,6 +11,7 @@ import userGreen from './images/user-green.png';
 export {
   background_image,
   background_logo_large,
+  background_logo_small,
   userRed,
   userBlack,
   userYellow,

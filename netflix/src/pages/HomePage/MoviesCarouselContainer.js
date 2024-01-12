@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ExploreMoreText, SubHeading } from '../../components/globals';
 import { useSelector } from 'react-redux';
 import MovieCardComponent from '../../components/MovieCard';
@@ -16,15 +16,16 @@ import useMoviesRecentlyPlayed from '../../hooks/useMoviesRecentlyPlayed';
 
 const MoviesCarouselContainer = () => {
   const { languageData } = useLanguage();
-
   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loadingCarousel } =
     useSelector((store) => store.movies);
   useMoviesRecentlyPlayed();
   const { user } = useMoviesMyList();
-
+  useEffect(() => {
+    console.log(user.saved)
+  }, [user?.saved, user?.played, user?.searched]);
   return (
     <div className="w-screen h-max">
-      <div className=" relative top-[-15vh]">
+      <div className="relative ">
         {loadingCarousel ? (
           <div className="mx-10">
             <ShimmerCarouselRow />
@@ -34,26 +35,10 @@ const MoviesCarouselContainer = () => {
           </div>
         ) : (
           <>
-            <MoviesCarousel
-              title={!languageData ? '' : languageData?.nowPlaying}
-              movieCards={nowPlayingMovies}
-            />
-            <MoviesCarousel
-              title={!languageData ? '' : languageData?.Popular}
-              movieCards={popularMovies}
-            />
-            <MoviesCarousel
-              title={!languageData ? '' : languageData?.topRated}
-              movieCards={topRatedMovies}
-            />
-            <MoviesCarousel
-              title={!languageData ? '' : languageData?.upcoming}
-              movieCards={upcomingMovies}
-            />
-            {user?.saved.length > 0 && (
+            {nowPlayingMovies && (
               <MoviesCarousel
-                title={!languageData ? '' : languageData?.mylist}
-                movieCards={user?.saved.map((e) => e.videoData)}
+                title={!languageData ? '' : languageData?.nowPlaying}
+                movieCards={nowPlayingMovies}
               />
             )}
             {user?.played.length > 0 && (
@@ -62,6 +47,33 @@ const MoviesCarouselContainer = () => {
                 movieCards={user?.played.map((e) => e.videoData)}
               />
             )}
+            {popularMovies && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.Popular}
+                movieCards={popularMovies}
+              />
+            )}
+
+            {topRatedMovies && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.topRated}
+                movieCards={topRatedMovies}
+              />
+            )}
+
+            {user?.saved.length > 0 && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.mylist}
+                movieCards={user?.saved.map((e) => e.videoData)}
+              />
+            )}
+            {upcomingMovies && (
+              <MoviesCarousel
+                title={!languageData ? '' : languageData?.upcoming}
+                movieCards={upcomingMovies}
+              />
+            )}
+            <div className="m-10"></div>
           </>
         )}
       </div>
@@ -72,7 +84,6 @@ const MoviesCarouselContainer = () => {
 const MoviesCarousel = ({ title, movieCards }) => {
   const [sliderIndex, setSliderIndex] = useState(0);
   const [onMouseHover, setMouseHover] = useState(false);
-
   return (
     <div
       onMouseOver={() => {
@@ -83,7 +94,7 @@ const MoviesCarousel = ({ title, movieCards }) => {
       }}
     >
       <div className="flex gap-5">
-        <SubHeading className="pl-[3.1%] mt-24 mb-8 font-bold text-sm" $fontSize={'2.0rem'}>
+        <SubHeading className="pl-[3.1%] mt-12 pt-12 mb-8 font-bold text-sm" $fontSize={'2.0rem'}>
           {title}
         </SubHeading>
         {onMouseHover && <ExploreMoreText>Explore More</ExploreMoreText>}
