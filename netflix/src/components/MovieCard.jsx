@@ -13,20 +13,19 @@ import AddToMyListButton from './AddToMyListButton';
 const MovieCard = styled.div`
     cursor: pointer;
     flex: 0 0 20%;
-    height: auto;
     min-width: 20%;
     min-height: fit-content;
-    @media (width: 600px) {
-        flex: 0 0 50%;
-        min-width: 50%;
-            aspect-ratio: inherit;
-    }
-    @media (max-width: 1024px) {
+    @media (max-width: 640px) {
         flex: 0 0 33.3%;
         min-width: 33.3%;
-    aspect-ratio: inherit;
-
+        height: auto;
+        aspect-ratio: inherit;
     }
+    /* @media (max-width: 1024px) {
+        flex: 0 0 33.3%;
+        min-width: 33.3%;
+        /* aspect-ratio: inherit; 
+    } */
     background-color: #181818;
     aspect-ratio: 16/9;
     margin: .25rem;
@@ -72,7 +71,8 @@ const MovieCardComponent = ({ movieDetail }) => {
                 src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail?.backdrop_path}
                 className="min-w-[100%] shadow-lg shadow-black rounded-t-md hidden sm:block"
             />
-            <img alt={movieDetail?.original_title}
+            <img
+                alt={movieDetail?.original_title}
                 src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail?.poster_path}
                 className="min-w-[100%] shadow-lg shadow-black rounded-t-md block sm:hidden"
             />

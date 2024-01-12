@@ -59,7 +59,7 @@ const useMoviesRecentlyPlayed = () => {
 
   // This will only at the start of the hook, only if the saved is empty
   useEffect(() => {
-    if (played) getAllMoviesSavedtoRecenltyPlayed();
+    if (played.length == 0) getAllMoviesSavedtoRecenltyPlayed();
   }, []);
 
   return { played, pending, getAllMoviesSavedtoRecenltyPlayed, saveMovieToRecentlyPlayed };

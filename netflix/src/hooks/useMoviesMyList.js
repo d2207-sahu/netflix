@@ -21,10 +21,11 @@ const useMoviesMyList = () => {
           firestoreDB,
           `Accounts/${user?.uid}/Users/${user?.name}/saved`
         );
-        const recenltyDocs = await getDocs(savedCollection);
+        let recenltyDocs = await getDocs(savedCollection);
+        recenltyDocs = recenltyDocs.docs.map((e) => e.data());
         setPending(false);
-        if (recenltyDocs.docs.length > 0) {
-          dispatch(updateSavedMovies(recenltyDocs.docs.map((e) => e.data())));
+        if (recenltyDocs.length > 0) {
+          dispatch(updateSavedMovies(recenltyDocs));
         }
       } catch (e) {
         setPending(false);
@@ -36,9 +37,15 @@ const useMoviesMyList = () => {
     if (user)
       try {
         setSavePending(true);
-        const userSavedList = [...(user.saved)];
-        console.log(user.saved,userSavedList);
-        if (!(userSavedList.filter((e)=>{ return _.isEqual(e.videoData, videoData)}).length > 0)) {
+        const userSavedList = [...user.saved];
+        console.log(user.saved, userSavedList);
+        if (
+          !(
+            userSavedList.filter((e) => {
+              return _.isEqual(e.videoData, videoData);
+            }).length > 0
+          )
+        ) {
           setSavePending(true);
           const savedCollection = collection(
             firestoreDB,
@@ -59,9 +66,9 @@ const useMoviesMyList = () => {
 
   // This will only at the start of the hook, only if the saved is empty
   useEffect(() => {
-    if (user.saved) getAllMoviesSavedtoMyList();
+    if (user.saved.length == 0) getAllMoviesSavedtoMyList();
   }, []);
-  
+
   return { saveMovieToMyList, user, savePending, pending, getAllMoviesSavedtoMyList };
 };
 
