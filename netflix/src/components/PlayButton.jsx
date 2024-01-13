@@ -1,45 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLanguage } from '../context/LanguageContext';
 import { ButtonG, ButtonW, IconButton } from './globals';
 import { FiLoader, FiPlay } from 'react-icons/fi';
-import { updateModalSelectedVideo } from '../redux/slices/appSlice';
-import { useDispatch } from 'react-redux';
-import useMovieVideos from '../hooks/useMovieVideos';
 import { Theme } from '../styles/theme';
-import useMoviesRecentlyPlayed from '../hooks/useMoviesRecentlyPlayed';
+import usePlay from '../hooks/usePlay';
 
-// If given the videoID then well and good,
-// If not given take the movie ID and get the videos
-// movieID is passed when we dont ahve the videoID
-// movieData is passed all the time
 const PlayButton = ({ onAfterClick, rounded, videoID, movieID, movieData }) => {
-    const [getMovieVideos, videos, pending] = useMovieVideos({ movieID });
-    const { saveMovieToRecentlyPlayed } = useMoviesRecentlyPlayed();
+    const { onPlayClick, pending } = usePlay({ onAfterClick, videoID, movieID, movieData });
     const { languageData } = useLanguage();
-    const dispatch = useDispatch();
 
-    const onPlayClick = () => {
-        if (movieID) {
-            getMovieVideos();
-        } else {
-            if (videoID)
-                dispatch(updateModalSelectedVideo(videoID));
-            if (onAfterClick)
-                onAfterClick()
-        }
-    }
-
-    useEffect(() => {
-        if (videos.length >= 1) {
-            if (videos[0].key) {
-                saveMovieToRecentlyPlayed(movieData)
-                dispatch(updateModalSelectedVideo(videos[0].key));
-            }
-            if (onAfterClick)
-                onAfterClick()
-        }
-    }, [videos]);
-
+    // TODO can optimise this
     return rounded ?
         pending ?
             <IconButton className='rounded'>

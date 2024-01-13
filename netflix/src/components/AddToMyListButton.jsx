@@ -15,7 +15,7 @@ const AddToMyListButton = ({ movieDetail, rounded }) => {
     const savedListMemoizedValue = useMemo(() => user?.saved.filter((savedData) => savedData.videoData?.id === movieDetail?.id), [user?.saved])
     useEffect(() => {
         const hasValue = savedListMemoizedValue;
-        if (hasValue.length > 0)
+        if (hasValue?.length > 0)
             setSuccessState(true);
     }, [user?.saved]);
 

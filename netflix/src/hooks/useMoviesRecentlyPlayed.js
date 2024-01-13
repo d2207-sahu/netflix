@@ -14,7 +14,7 @@ const useMoviesRecentlyPlayed = () => {
   const firestoreDB = getFirestore(app);
 
   const getAllMoviesSavedtoRecenltyPlayed = async () => {
-    if (user)
+    if (user && user?.uid && user?.name)
       try {
         setPending(true);
         const playedCollection = collection(
@@ -33,7 +33,7 @@ const useMoviesRecentlyPlayed = () => {
   };
 
   const saveMovieToRecentlyPlayed = async (videoData) => {
-    if (user && videoData)
+    if (user && user?.uid  &&  user?.name && videoData)
       try {
         if (
           !(
@@ -60,7 +60,7 @@ const useMoviesRecentlyPlayed = () => {
   // This will only at the start of the hook, only if the saved is empty
   useEffect(() => {
     if (played.length == 0) getAllMoviesSavedtoRecenltyPlayed();
-  }, []);
+  }, [user?.uid]);
 
   return { played, pending, getAllMoviesSavedtoRecenltyPlayed, saveMovieToRecentlyPlayed };
 };

@@ -60,7 +60,7 @@ const MovieInfoModal = () => {
     if (!(movideDetail?.id)) return <></>;
     const video = findTrailerVideo ?? videos[0];
     return (
-        <dialog ref={dialogRef} id="MODAL" className={`shadow-md ${pending ? 'justify-center items-center' : ''} flex flex-col justify-start items-start mx-auto mb-auto mt-auto outline-none bg-[#181818] rounded-2xl w-[80%]`} >
+        <dialog ref={dialogRef} id="MODAL" className={`shadow-md ${pending ? 'justify-center items-center' : ''} flex flex-col justify-start items-start m-0 sm:m-auto outline-none bg-[#181818] rounded-2xl w-[100vw] sm:w-[80%]`} >
             {pending ? <ShimmerLoading /> : <>
                 <VideoModalSection videos={videos} addRecentlyPlayed={addRecentlyPlayed} info={info} videoID={video?.key} closeModal={closeModal} movieDetail={movideDetail} />
                 <div className='flex flex-col px-16 py-4'>
@@ -110,7 +110,7 @@ const CreditsSection = ({ category, entities }) => {
 
 const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlayed, movieDetail }) => {
 
-    return (<div className='w-[100%]  relative'>
+    return (<div className='w-[100%] relative'>
         <iframe
             id={videoID}
             className="h-[80vh] aspect-video w-[100%] rounded-t-xl"
