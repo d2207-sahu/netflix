@@ -2,17 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { ExploreMoreText, SubHeading } from '../../components/globals';
 import { useSelector } from 'react-redux';
 import MovieCardComponent from '../../components/MovieCard';
-import {
-  LeftHandle,
-  RightHandle,
-  Slider,
-  SliderContainer
-} from '../../components/NetflixCaraousel';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { useLanguage } from '../../context/LanguageContext';
 import ShimmerCarouselRow from '../../components/Shimmer/ShimmerCarouselRow';
 import useMoviesMyList from '../../hooks/useMoviesMyList';
 import useMoviesRecentlyPlayed from '../../hooks/useMoviesRecentlyPlayed';
+import { SliderContainer } from '../../components/globals/SliderContainer';
+import { LeftHandle, RightHandle } from '../../components/globals/SliderHandlers';
+import { Slider } from '../../components/globals/Slider';
 
 const MoviesCarouselContainer = () => {
   const { languageData } = useLanguage();
@@ -20,9 +17,7 @@ const MoviesCarouselContainer = () => {
     useSelector((store) => store.movies);
   useMoviesRecentlyPlayed();
   const { user } = useMoviesMyList();
-  useEffect(() => {
-    console.log(user.saved)
-  }, [user?.saved, user?.played, user?.searched]);
+  useEffect(() => {}, [user?.saved, user?.played, user?.searched]);
   return (
     <div className="w-screen h-max">
       <div className="relative ">
