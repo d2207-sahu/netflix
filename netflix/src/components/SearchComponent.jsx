@@ -46,14 +46,12 @@ const SearchComponent = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('ref')
         dispatch(toggleSearchSliceContainer(searchToggled));
         if (searchRef?.current)
             searchRef?.current.focus()
     }, [searchToggled]);
 
     useEffect(() => {
-        console.log('API Call')
         // Setting the text in redux, makes the useSearch Effect execute and call the API
         dispatch(updateSearchText(searchText));
         // Handles Routing
