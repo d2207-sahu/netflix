@@ -21,7 +21,6 @@ const MoviesCarouselContainer = () => {
   useMoviesRecentlyPlayed();
   const { user } = useMoviesMyList();
   useEffect(() => {
-    console.log(user.saved)
   }, [user?.saved, user?.played, user?.searched]);
   return (
     <div className="w-screen h-max">

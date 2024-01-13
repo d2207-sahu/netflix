@@ -6,7 +6,7 @@ import {
   doc,
   setDoc,
   addDoc,
-  serverTimestamp,
+  serverTimestamp
 } from 'firebase/firestore';
 import { useEffect } from 'react';
 import useFirebase from './useFirebaseAuth';
@@ -33,6 +33,9 @@ const useFirestoreDB = () => {
         return users;
       } catch (e) {
         console.error(e);
+        setTimeout(() => {
+          getUsers();
+        }, 10000);
         return [];
       }
   };
@@ -79,7 +82,6 @@ const useFirestoreDB = () => {
 
   useEffect(() => {
     if (user?.uid && !user?.users) {
-      console.log("RUNING THIE")
       getUsers();
       updateNameAtStart();
     }

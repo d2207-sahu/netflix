@@ -73,6 +73,11 @@ const RectangleButton = styled.button`
         border: 0.1rem solid ${Theme.text.BGGrey.White};
         color: ${Theme.text.BGGrey.White};
     }
+
+    @media (max-width: 640px) {
+        min-height: 40px;
+        min-width: 20vw;
+    }
 `
 
 const PrefferedRectangleButton = styled(RectangleButton)`
