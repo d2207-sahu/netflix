@@ -17,7 +17,7 @@ const SearchPage = () => {
   </div>;
   console.log(searchResultData);
   return (
-    <div className='bg-black flex flex-col justify-center items-center'>
+    <div className='bg-black flex flex-col justify-center items-start'>
       <Header />
       {/*TODO change the Loading handle UI. */}
       {pending ? (
@@ -28,7 +28,7 @@ const SearchPage = () => {
           </Heading>
         </div>) : searchResultData ?
         <div>
-          <div className='mx-[4%] mb-4 flex justify-start pt-[10%]'>
+          <div className='mx-[4%] items-start mt-[15%] mb-4 flex justify-start pt-[10%]'>
             <SubHeading>{`Search Results for ${searchReduxText}`}
             </SubHeading>
           </div>
