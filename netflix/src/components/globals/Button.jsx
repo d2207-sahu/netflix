@@ -77,6 +77,7 @@ const RectangleButton = styled.button`
     @media (max-width: 640px) {
         min-height: 40px;
         min-width: 20vw;
+        font-size: 1.6rem;
     }
 `
 

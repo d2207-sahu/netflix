@@ -15,7 +15,6 @@ import { useLanguage } from '../../context/LanguageContext';
 import PlayButton from '../../components/PlayButton';
 import ShimmerLoading from '../../components/Shimmer/ShimmerLoading';
 
-
 // when this modal opens, means have to update the url, and also let it read the url also
 const MovieInfoModal = () => {
     const movideDetail = useSelector(store => store.app.modalMovieSelectedID);

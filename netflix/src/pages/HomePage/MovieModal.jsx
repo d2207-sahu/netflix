@@ -68,7 +68,7 @@ const MovieModal = () => {
                 allow="accelerometer; autoplay; encrypted-media; gyroscope;"
                 allowFullScreen
             ></iframe>
-            <div className='flex flex-col absolute top-0 h-min justify-between items-stretch'>
+            <div className='flex flex-col absolute top-0 h-min justify-between items-stretch bg-black'>
                 <FiSkipBack size={'6rem'} color='#fff' className='hover:scale-2 hover:bg-black rounded-[2rem] p-4' onClick={() => {
                     closeModal();
                 }}></FiSkipBack>
