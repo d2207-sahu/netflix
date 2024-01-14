@@ -45,13 +45,15 @@ const AddProfilePage = ({ setShowAddProfile }) => {
                 alt="Add users"
                 className=' rounded-[4px] max-h-[180px] max-w-[180px] min-h-[80px] min-w-[80px] w-[8vw] h-[8vw]'
                 index={users ? users.length : 0} />
-            <ProfileEntryInput
-                onChange={(e) => {
-                    e.preventDefault();
-                    setErrorText('');
-                }}
-                ref={userNameref} />
-            <ErrorText>{errorText}</ErrorText>
+            <div className='flex flex-col justify-start items-start'>
+                <ProfileEntryInput
+                    onChange={(e) => {
+                        e.preventDefault();
+                        setErrorText('');
+                    }}
+                    ref={userNameref} />
+                <ErrorText>{errorText}</ErrorText>
+            </div>
         </AddNameContianer>
         <div className='flex gap-5'>
             <PrefferedRectangleButton $loading={loading} onClick={(e) => {

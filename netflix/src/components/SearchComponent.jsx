@@ -35,7 +35,7 @@ const SearchContainer = styled.div`
 // TODO optimise this more.
 const SearchComponent = () => {
     const { languageData } = useLanguage();
-    
+
     const searchRef = useRef();
     const { searchReduxText, showSearchSliceContainer } = useSelector(store => store.search)
     const dispatch = useDispatch();
@@ -66,9 +66,9 @@ const SearchComponent = () => {
 
     //TODO Later on want to useMemo thing
     return (
-        <SearchContainer $selected={!searchToggled} className='hidden sm:block'>
-            <FiSearch 
-                className='pt-1 hidden sm:block'
+        <SearchContainer $selected={!searchToggled}>
+            <FiSearch
+                className='pt-1'
                 color='white'
                 size={searchToggled ? '2.7rem' : '2.9rem'}
                 onClick={() => {
@@ -84,6 +84,7 @@ const SearchComponent = () => {
                     onClick={() => {
                         setSearchText('')
                         dispatch(updateSearchText(''));
+                        setSearchToggled(prevState => !prevState);
                     }}
                     className='pt-1 '
                     size={'2.5rem'}

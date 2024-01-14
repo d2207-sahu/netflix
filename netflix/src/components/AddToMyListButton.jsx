@@ -35,7 +35,7 @@ const AddToMyListButton = ({ movieDetail, rounded }) => {
             <ButtonW className="mr-4 flex  items-center justify-center gap-2">
                 <FiLoader size={'3.5rem'} className='animate-spin' fill="black" />
             </ButtonW> :
-            <ButtonG onClick={handleAddButtonClick} className="mr-4 flex items-center gap-2">
+            <ButtonG onClick={handleAddButtonClick} className="mr-4 flex justify-center items-center gap-2">
                 {successState ?
                     <FiCheckCircle size={'3.5rem'} />
                     : <FiPlus size={'3.5rem'} fill='#ffff' className=' fill-white' />

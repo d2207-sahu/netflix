@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 import Logo from '../globals/Logo';
 import Container from '../globals/Container';
 import { useFirebase } from '../../hooks';
@@ -48,7 +48,6 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
-  let userIndex = useMemo(() => setUserIndex(user), [user]);
   let showAuthheaders = decideShowAuthHeaders(pathname);
 
   return (
@@ -67,20 +66,11 @@ const Header = () => {
         {showAuthheaders && <LanguageSelect />}
         {(user && showAuthheaders) && <UserProfileImage
           onClick={() => { signOut(auth) }}
-          className="mr-[3vw] mx-3 cursor-pointer h-[4rem] rounded-[.5rem]"
-          index={userIndex}
+          className="mr-[3vw] mx-3 cursor-pointer h-[4rem] rounded-[.5rem] sm:block hidden"
           alt='user' />}
       </div>
     </Container>
   )
-}
-
-function setUserIndex(user) {
-  let userIndex = 0;
-  user && user.users && user.users.forEach((element, index) => {
-    if (element.name === user.name) userIndex = index;
-  })
-  return userIndex;
 }
 
 function decideShowAuthHeaders(pathname) {

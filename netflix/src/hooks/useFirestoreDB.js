@@ -90,7 +90,8 @@ const useFirestoreDB = () => {
   return {
     addProfile,
     selectNameAndNavigate,
-    addSearchedTag
+    addSearchedTag,
+    app
   };
 };
 

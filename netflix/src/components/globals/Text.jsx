@@ -39,6 +39,19 @@ const SmallText = styled.p`
         text-shadow: 0 1px 1px rgba(0,0,0,.7);`}
 `;
 
+const TinyText = styled.p`
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size:${props => props.$fontSize ?? '1rem'};
+    color:${props => props.$color ?? Theme.text.BGBlack.White};
+    ${props => props.$grey && `
+        color:${Theme.text.BGBlack.Grey}`
+    }
+    ${props =>
+        props.$showShadow && `
+        text-shadow: 0 1px 1px rgba(0,0,0,.7);`}
+`;
+
 const LinkHrefText = styled(SmallText)`
     color:${Theme.text.BGBlack.Blue};
 `;
@@ -77,4 +90,4 @@ const ErrorText = styled.h2`
         text-shadow: 0 1px 1px rgba(0,0,0,.7);`}
 `;
 
-export { Heading, SubHeading, NormalText, ErrorText, SmallText, LinkHrefText, ExploreMoreText }
+export { Heading, SubHeading, NormalText, ErrorText, SmallText, LinkHrefText, ExploreMoreText, TinyText }

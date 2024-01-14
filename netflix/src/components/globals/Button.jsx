@@ -20,7 +20,7 @@ const ButtonW = styled.button`
     background-color: white;
     border: 0;
     border-radius: .5rem;
-    padding: 0.5rem  2rem;
+    padding: 0.5rem 2rem;
     color: black;
     font-size: 1.6rem;
     font-weight: 500;
@@ -49,8 +49,9 @@ const IconButton = styled.button`
     border-width: 1.5px;
     outline: 1px;
     outline-color: white;
-    border-radius: 4rem;
-    padding:0.75rem;
+    border-radius: 10rem;
+    padding: 1rem;
+    
     color: white;
     font-size: 1.8rem;
     &:hover{
@@ -77,6 +78,7 @@ const RectangleButton = styled.button`
     @media (max-width: 640px) {
         min-height: 40px;
         min-width: 20vw;
+        font-size: 1.6rem;
     }
 `
 

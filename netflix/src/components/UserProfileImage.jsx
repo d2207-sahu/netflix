@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { userRed, userBlack, userBlue, userYellow, userGreen } from '../assets';
+import { useSelector } from 'react-redux';
 // import { ButtonW } from './globals';
 
 const userImages = [
@@ -9,7 +10,10 @@ const userImages = [
     userYellow,
     userGreen
 ];
-const UserProfileImage = ({ onClick, className, alt, index }) => {
+const UserProfileImage = ({ onClick, className, alt }) => {
+    const user = useSelector(((store) => store.user))
+    let index = useMemo(() => setUserIndex(user), [user]);
+
     const [isHovered, setIsHovered] = useState(false);
     const dialogRef = useRef();
     const closeModal = () => {
@@ -32,6 +36,14 @@ const UserProfileImage = ({ onClick, className, alt, index }) => {
             });
         }
     }, [(isHovered)]);
+    function setUserIndex(user) {
+        let userIndex = 0;
+        user && user.users && user.users.forEach((element, index) => {
+            if (element.name === user.name) userIndex = index;
+        })
+        return userIndex;
+    }
+
     return (
         <>
             <img

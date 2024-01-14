@@ -23,7 +23,7 @@ const PlayButton = ({ onAfterClick, rounded, videoID, movieID, movieData }) => {
             <ButtonG className="mr-4 flex  items-center justify-center gap-2">
                 <FiLoader size={'3.5rem'} className='animate-spin' fill="black" />
             </ButtonG> :
-            <ButtonW onClick={onPlayClick} className="mr-4 flex items-center gap-2">
+            <ButtonW onClick={onPlayClick} className="mr-4 flex justify-center items-center gap-2">
                 <FiPlay size={'3.5rem'} fill="black" />
                 {!languageData ? '' : languageData?.play}
             </ButtonW>

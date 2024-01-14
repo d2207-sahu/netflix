@@ -20,7 +20,7 @@ const MoviesCarouselContainer = () => {
   useEffect(() => {}, [user?.saved, user?.played, user?.searched]);
   return (
     <div className="w-screen h-max">
-      <div className="relative ">
+      <div className="relative top-0 sm:top-[-15rem] " >
         {loadingCarousel ? (
           <div className="mx-10">
             <ShimmerCarouselRow />
@@ -68,7 +68,7 @@ const MoviesCarouselContainer = () => {
                 movieCards={upcomingMovies}
               />
             )}
-            <div className="m-10"></div>
+            <div className="m-[15vh]"></div>
           </>
         )}
       </div>
