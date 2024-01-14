@@ -11,10 +11,15 @@ const ProfileEntryInput = styled.input`
     margin: 0 0.8em 0 0;
     padding: 0.2em 0.6em;
     text-indent: 0.1vw;
-    width: 18em;
+    width: 18rem;
 
     &:active{
         outline: none;
+    }
+
+    @media (max-width: 640px) {
+        min-height: 40px;
+        font-size: 1.6rem;
     }
 `
 export default ProfileEntryInput;

@@ -48,6 +48,14 @@ const userSlice = createSlice({
       state.saved = [...state.saved, {videoData: action.payload}];
       return state;
     },
+    updateSearchedMovies: (state, action) => {
+      state.searched = action.payload;
+      return state;
+    },
+    addToSearchedMovies: (state, action) => {
+      state.searched = [...state.searched, {videoData: action.payload}];
+      return state;
+    },
     updatePlayedMovies: (state, action) => {
       state.played = action.payload;
       return state;
@@ -69,6 +77,8 @@ export const {
   addToSavedMovies,
   updatePlayedMovies,
   addToPlayedMovies,
+  updateSearchedMovies,
+  addToSearchedMovies,
   removeAccount,
   updateName,
   updateUsers

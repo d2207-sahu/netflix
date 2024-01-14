@@ -72,9 +72,15 @@ const MovieCardComponent = ({ movieDetail }) => {
     // This has to be replaced by useInfo thing.
     const { onPlayClick } = usePlay({ movieID: movieDetail?.id, movieData: movieDetail })
     return (
-        <MovieCard key={movieDetail?.id} className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
+        <MovieCard
+            key={movieDetail?.id}
+            className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
             onMouseOver={onMouseOverFunction}
-            onTouchEnd={onPlayClick}
+            onClick={(e) => {
+                e.preventDefault();
+                onPlayClick();
+                e.stopPropagation();
+            }}
             onMouseLeave={onMouseLeave}>
             <img
                 alt={movieDetail?.original_title}
@@ -95,7 +101,9 @@ const MovieCardComponent = ({ movieDetail }) => {
                         </div>
                         <IconButton onClick={(e) => {
                             e.preventDefault();
+                            e.stopPropagation();
                             dispatch(updateModalMovieSelectedID(movieDetail));
+                            e.stopPropagation();
                         }}>
                             <FiInfo />
                         </IconButton>

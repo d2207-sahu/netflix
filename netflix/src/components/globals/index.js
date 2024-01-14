@@ -5,6 +5,7 @@ import {
   ErrorText,
   SmallText,
   LinkHrefText,
+  TinyText,
   ExploreMoreText
 } from './Text';
 import {
@@ -29,6 +30,7 @@ export {
   ErrorText,
   SmallText,
   LinkHrefText,
+  TinyText,
   Image,
   ButtonRed,
   PrefferedRectangleButton,
