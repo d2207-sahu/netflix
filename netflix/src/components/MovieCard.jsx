@@ -76,7 +76,11 @@ const MovieCardComponent = ({ movieDetail }) => {
             key={movieDetail?.id}
             className={`bg-white ${onMouseOver ? 'z-30' : ''}`}
             onMouseOver={onMouseOverFunction}
-            onClick={onPlayClick}
+            onClick={(e) => {
+                e.preventDefault();
+                onPlayClick();
+                e.stopPropagation();
+            }}
             onMouseLeave={onMouseLeave}>
             <img
                 alt={movieDetail?.original_title}
@@ -97,7 +101,9 @@ const MovieCardComponent = ({ movieDetail }) => {
                         </div>
                         <IconButton onClick={(e) => {
                             e.preventDefault();
+                            e.stopPropagation();
                             dispatch(updateModalMovieSelectedID(movieDetail));
+                            e.stopPropagation();
                         }}>
                             <FiInfo />
                         </IconButton>

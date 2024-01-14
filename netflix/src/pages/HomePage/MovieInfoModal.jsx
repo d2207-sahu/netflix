@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 import { MovieDescription, MovieTitle } from './MainVideoContainerBackground'
 import { IconButton, NormalText, SmallText, SubHeading } from '../../components/globals'
-import { FiPlus } from 'react-icons/fi'
 import { RxCross2 } from "react-icons/rx";
 import { useMovieData } from '../../hooks/useMovieData'
 import GridContainer from '../../components/GridContainer'
@@ -14,6 +13,7 @@ import useFirestoreDB from '../../hooks/useFirestoreDB';
 import { useLanguage } from '../../context/LanguageContext';
 import PlayButton from '../../components/PlayButton';
 import ShimmerLoading from '../../components/Shimmer/ShimmerLoading';
+import AddToMyListButton from '../../components/AddToMyListButton';
 
 // when this modal opens, means have to update the url, and also let it read the url also
 const MovieInfoModal = () => {
@@ -59,10 +59,10 @@ const MovieInfoModal = () => {
     if (!(movideDetail?.id)) return <></>;
     const video = findTrailerVideo ?? videos[0];
     return (
-        <dialog ref={dialogRef} id="MODAL" className={`shadow-md ${pending ? 'justify-center items-center' : ''} flex flex-col justify-start items-start m-0 sm:m-auto outline-none bg-[#181818] rounded-2xl w-[100vw] sm:w-[80%]`} >
+        <dialog ref={dialogRef} id="MODAL" className={`shadow-md ${pending ? 'justify-center ' : ''} sm:max-h-[100%] sm:max-w-[100%] flex flex-col justify-start  m-0 sm:m-auto outline-none bg-[#181818] rounded-2xl w-[100vw] sm:w-[70%] min-w-[60%]`} >
             {pending ? <ShimmerLoading /> : <>
                 <VideoModalSection videos={videos} addRecentlyPlayed={addRecentlyPlayed} info={info} videoID={video?.key} closeModal={closeModal} movieDetail={movideDetail} />
-                <div className='flex flex-col px-16 py-4'>
+                <div className='flex flex-col px-5 sm:px-16  py-4'>
                     {info && <InformationSection info={info} />}
                     {similars && <MoreLikeThisSection similars={similars} />}
                     {videos.length > 0 && <TrailersAndMoreSection videos={videos ?? []} />}
@@ -75,8 +75,6 @@ const MovieInfoModal = () => {
     )
 }
 
-//  Handle all the saving to list logic from here, just take the movieID in this component
-const AddToMyListButton = () => <IconButton><FiPlus size={'3.2rem'}></FiPlus></IconButton>
 const ModalCloseButton = ({ onClick }) => <IconButton onClick={onClick}><RxCross2 size={'3.2rem'}></RxCross2></IconButton>
 const ReleaseDate = ({ release_date }) => {
     // extract the year only
@@ -109,15 +107,15 @@ const CreditsSection = ({ category, entities }) => {
 
 const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlayed, movieDetail }) => {
 
-    return (<div className='w-[100%] relative'>
+    return (<div className='sm:w-[100%] relative sm:aspect-video'>
         <iframe
             id={videoID}
-            className="h-[80vh] aspect-video w-[100%] rounded-t-xl"
+            className=" sm:h-[80vh] aspect-video w-[100%] rounded-t-xl"
             // loop=1 hd=1
             src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1&showinfo=0&controls=0&rel=0&hd=0&ap=%2526fmt%3D18&fmt=18`}
             allow="accelerometer; autoplay; encrypted-media; gyroscope;"
         ></iframe>
-        <div className='flex flex-col w-[100%] absolute top-0 h-[100%] justify-between items-stretch bg-gradient-to-t from-[#181818]'>
+        <div className=' hidden sm:flex flex-col w-[100%] absolute top-0 h-[100%] justify-between items-stretch bg-gradient-to-t from-[#181818]'>
             <div className='w-[100%] flex pt-8 px-8 justify-end items-end '> <ModalCloseButton onClick={() => closeModal()} /></div>
             <div className='w-[100%] flex p-32 gap-4 '>
                 <PlayButton
@@ -137,7 +135,31 @@ const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlaye
                         }
                     }
                     movieData={movieDetail} />
-                <AddToMyListButton />
+                <AddToMyListButton movieDetail={movieDetail} />
+            </div>
+        </div>
+        <div className=' flex sm:hidden flex-col w-[100%] top-0 h-[100%] justify-between items-stretch bg-gradient-to-t from-[#181818]'>
+            {/* <div className='w-[100%] flex pt-8 px-8 justify-end items-end '> <ModalCloseButton onClick={() => closeModal()} /></div> */}
+            <div className='w-[100%] flex flex-col p-5 gap-4 '>
+                <MovieTitle title={info?.title} className={"block"} />
+                <PlayButton
+                    onAfterClick={() => {
+                        addRecentlyPlayed(info);
+                        closeModal();
+                    }}
+                    videoID={   
+                        () => {
+                            let videoID = videos.find((video) =>
+                                video.type === "Behind the Scenes"
+                            );
+                            videoID = videoID ? videoID : videos.find((video) =>
+                                video.type === "Featurette"
+                            );
+                            return videoID ? videoID.key : videos[0].key
+                        }
+                    }
+                    movieData={movieDetail} />
+                <AddToMyListButton movieDetail={movieDetail} rounded={true} />
             </div>
         </div>
     </div>);
@@ -155,7 +177,7 @@ const InformationSection = ({ info }) => {
                 <AdultTag adult={adult} />
                 <LangaugeTag original_language={original_language} />
             </div>
-            <MovieTitle title={title} className={""} />
+            <MovieTitle title={title} className={"hidden sm:block"}  />
             <MovieDescription desc={tagline} className={"w-[60%] text-pretty italic"} />
             <SmallText className={"w-[50%]"} >{overview} </SmallText>
         </div>
@@ -168,7 +190,7 @@ const MoreLikeThisSection = ({ similars }) => {
     const SimilarMovies = similars.map((movieData) => {
         const trimmedText = movieData.overview.length > 200 ? `${movieData.overview.slice(0, 200)}...` : movieData.overview;
         if (!movieData.poster_path || !movieData.overview) return;
-        return <div key={movieData.id} className='aspect-square h-max bg-[#2f2f2f] m-4 rounded-[0.5rem]'>
+        return <div key={movieData.id} className='aspect-square cursor-pointer h-max bg-[#2f2f2f] m-4 rounded-[0.5rem]'>
             <img className='rounded-t-[1rem] w-[100%]' src={`${TMDB_API_IMAGE_CDN_URL + 'w200'}${movieData.poster_path}`} alt={`Video: ${movieData.title}`} />
             <div className='flex flex-col py-8 px-4 gap-4 h-[-webkit-fill-available] mb-4 overflow-clip'>
                 <div className='flex justify-between items-stretch'>
@@ -179,7 +201,7 @@ const MoreLikeThisSection = ({ similars }) => {
             </div>
         </div>;
     })
-    return <GridSectionContainer element={'5'} title={!languageData ? '' : languageData?.moreLikeThis} entities={SimilarMovies} />;
+    return <GridSectionContainer  title={!languageData ? '' : languageData?.moreLikeThis} entities={SimilarMovies} />;
 
 }
 
@@ -204,7 +226,7 @@ const TrailersAndMoreSection = ({ videos }) => {
                 if (videoType === "Clip")
                     return;
                 return (
-                    <div key={videoData.key} className='aspect-video p-2 flex flex-col justify-center items-start'>
+                    <div key={videoData.key} className='aspect-video p-2 cursor-pointer flex flex-col justify-center items-start'>
                         <img className='rounded-t-[1rem]' src={`https://img.youtube.com/vi/${videoData.key}/mqdefault.jpg`} alt={`Video: ${videoData.name}`} />
                         <NormalText className='p-2'>{videoType + ": " + trimmedText} </NormalText>
                     </div>
@@ -222,7 +244,7 @@ const GridSectionContainer = ({ title, entities, element }) => {
         <SubHeading>
             {title}
         </SubHeading>
-        <GridContainer $margin={'4rem 0'} $rowGap={"1rem"} $element={element ?? '4'}>
+        <GridContainer $margin={'4rem 0'} $rowGap={"1rem"} $element={element ?? '3'}>
             {entities}
         </GridContainer>
     </div>;
