@@ -11,6 +11,7 @@ const LanguageSelect = () => {
     return <LanguageSelectContainer
         className="hidden sm:block"
         value={(app.languages)}
+        aria-label="Language Select"
         onChange={(e) => {
             dispatch(changeLanguage(e.target.value));
         }}>

@@ -9,10 +9,13 @@
   <meta name="description" content="Netflix" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/netflix_icon.ico" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <link rel="stylesheet" type="text/css" charset="UTF-8"
-    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    frame-src https://www.youtube.com/;
+    img-src data: https: http:;
+    script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com;
+    style-src 'self' 'unsafe-inline'; 
+    connect-src 'self' https://firestore.googleapis.com/ https://identitytoolkit.googleapis.com https://corsproxy.org https://securetoken.googleapis.com;" />
   <title>Netflix</title>
   <style>
     body {
