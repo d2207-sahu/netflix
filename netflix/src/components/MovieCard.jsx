@@ -83,12 +83,20 @@ const MovieCardComponent = ({ movieDetail }) => {
             }}
             onMouseLeave={onMouseLeave}>
             <img
+                loading='lazy'
                 alt={movieDetail?.original_title}
+                srcSet={`${TMDB_API_IMAGE_CDN_URL + 'w200' + movieDetail?.backdrop_path} 320w,
+                ${TMDB_API_IMAGE_CDN_URL + 'w300' + movieDetail?.backdrop_path} 640w, 
+                ${TMDB_API_IMAGE_CDN_URL + 'w300' + movieDetail?.backdrop_path} 800w `}
                 src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail?.backdrop_path}
                 className="min-w-[100%] shadow-lg shadow-black rounded-t-md hidden sm:block"
             />
             <img
+                loading='lazy'
                 alt={movieDetail?.original_title}
+                srcSet={`${TMDB_API_IMAGE_CDN_URL + 'w200' + movieDetail?.poster_path} 320w,
+                ${TMDB_API_IMAGE_CDN_URL + 'w400' + movieDetail?.poster_path} 640w, 
+                ${TMDB_API_IMAGE_CDN_URL + 'w300' + movieDetail?.poster_path} 800w `}
                 src={TMDB_API_IMAGE_CDN_URL + imageWidth + movieDetail?.poster_path}
                 className="min-w-[100%] shadow-lg shadow-black rounded-t-md block sm:hidden"
             />

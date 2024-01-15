@@ -20,6 +20,7 @@ const Form = styled.form`
 
     @media (max-width: 640px) {
         width: 90%;
+        margin-top: 18%;
     }
 `;
 

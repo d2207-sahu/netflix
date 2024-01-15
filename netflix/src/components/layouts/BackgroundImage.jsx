@@ -17,6 +17,7 @@ export const BackgroundImage = () => {
                 min-height: 100vh;
             `}
             src={background_image}
-            alt='Background Image' />
+            alt='Background Image' 
+            loading="lazy"/>
     )
 }
