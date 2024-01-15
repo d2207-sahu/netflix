@@ -30,3 +30,5 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 7. Make the DIalog openning to be full screen
 8. Make the recently vided and mylist adding duplicates had to fix that.
 9. Search not working
+10. Lazy Loading the Owl carousel
+11. Create own library of iamge laoding https://github.com/mbrevda/react-image/blob/master/dev/app.tsx

@@ -191,7 +191,7 @@ const MoreLikeThisSection = ({ similars }) => {
         const trimmedText = movieData.overview.length > 200 ? `${movieData.overview.slice(0, 200)}...` : movieData.overview;
         if (!movieData.poster_path || !movieData.overview) return;
         return <div key={movieData.id} className='aspect-square cursor-pointer h-max bg-[#2f2f2f] m-4 rounded-[0.5rem]'>
-            <img className='rounded-t-[1rem] w-[100%]' src={`${TMDB_API_IMAGE_CDN_URL + 'w200'}${movieData.poster_path}`} alt={`Video: ${movieData.title}`} />
+            <img className='rounded-t-[1rem] w-[100%]' loading="lazy" src={`${TMDB_API_IMAGE_CDN_URL + 'w200'}${movieData.poster_path}`} alt={`Video: ${movieData.title}`} />
             <div className='flex flex-col py-8 px-4 gap-4 h-[-webkit-fill-available] mb-4 overflow-clip'>
                 <div className='flex justify-between items-stretch'>
                     <AdultTag />
@@ -227,7 +227,7 @@ const TrailersAndMoreSection = ({ videos }) => {
                     return;
                 return (
                     <div key={videoData.key} className='aspect-video p-2 cursor-pointer flex flex-col justify-center items-start'>
-                        <img className='rounded-t-[1rem]' src={`https://img.youtube.com/vi/${videoData.key}/mqdefault.jpg`} alt={`Video: ${videoData.name}`} />
+                        <img loading="lazy" className='rounded-t-[1rem]' src={`https://img.youtube.com/vi/${videoData.key}/mqdefault.jpg`} alt={`Video: ${videoData.name}`} />
                         <NormalText className='p-2'>{videoType + ": " + trimmedText} </NormalText>
                     </div>
                 )

@@ -50,6 +50,7 @@ const UserProfileImage = ({ onClick, className, alt }) => {
                 onMouseOver={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 alt={alt}
+                loading="lazy"
                 onClick={onClick}
                 className={className}
                 src={userImages[index ?? 0]} />
