@@ -26,6 +26,7 @@ const Logo = () => {
         if (!(pathname === routingConfig.home))
           navigate(routingConfig.home)
       }}
+      loading="lazy"
       className="w-[2.5rem] m-[2rem] block sm:hidden"
       src={background_logo_small}
       alt="Netflix Logo"
@@ -38,6 +39,7 @@ const Logo = () => {
       className="ml-[1.5%] w-[20rem] hidden sm:block"
       src={background_logo_large}
       alt="Netflix Logo"
+      loading="lazy"
     />
   </>;
 };
