@@ -7,7 +7,7 @@ import MovieInfoModal from './MovieInfoModal'
 import MovieModal from './MovieModal'
 import BottomNavBar from '../../components/layouts/BottomNavBar'
 
-export const HomePage = () => {
+const HomePage = () => {
   const { nowPlayingMovies, topRatedMovies } = useCarouselMoviesList();
 
   return (<>
@@ -20,3 +20,4 @@ export const HomePage = () => {
   </>
   )
 }
+export default HomePage

@@ -8,6 +8,7 @@ import { FirebaseErrorMap } from '../../config/firebase-Error-Map-config';
 import ToggleSignUpAndSignInComponent from '../../components/AuthComponents/ToggleSignUpAndSignInComponent';
 import SignInReCaptchaSecurityText from '../../components/AuthComponents/SignInReCaptchaSecurityText';
 import { useLanguage } from '../../context/LanguageContext';
+import Footer from '../../components/layouts/Footer';
 
 // TODO remove the <div mt 10 > => spacer global component
 const LoginPage = () => {
@@ -83,6 +84,7 @@ const LoginPage = () => {
             <ToggleSignUpAndSignInComponent isSignin />
             <SignInReCaptchaSecurityText />
         </Form >
+        <Footer />
     </div >)
 }
 

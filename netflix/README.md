@@ -27,14 +27,14 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 1. Suspense
 6. Footer Make
 7. Make the DIalog openning to be full screen
-8. Make the recently vided and mylist adding duplicates had to fix that.
 9. Search not working
 10. Lazy Loading the Owl carousel
 11. Create own library of iamge laoding https://github.com/mbrevda/react-image/blob/master/dev/app.tsx
 12. Make the timestamp sort of recently vierwwndand mylist others
 
 # Project Title: 📛
-[Live Link / Demo Link](🔗)
+Netflix
+[https://netflix-divyanshu.vercel.app/browse](🔗)
 
 ## Table of Content: 📑
 - [About the Project](#about-the-project)
