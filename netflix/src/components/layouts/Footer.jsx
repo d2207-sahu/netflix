@@ -1,21 +1,35 @@
 import React from 'react'
 import LanguageSelect from '../HeaderComponents/LanguageSelect'
-import { LinkHrefText } from '../globals'
+import { FooterLinkText, NormalText } from '../globals'
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
-    return (
-        <div className="w-screen px-20 py-5 flex flex-col justify-start items-start">
-            <div>Questions? Call 000-800-919-1694</div>
-            <div className="flex flex-wrap w-[100%]">
-                <LinkHrefText >HHSKADH</LinkHrefText>
-                <LinkHrefText >HHSKeweADH</LinkHrefText>
-                <LinkHrefText >HHSasdKADH</LinkHrefText>
-                <LinkHrefText >asd</LinkHrefText>
-                <LinkHrefText >ewe</LinkHrefText>
+    const { footerConfig } = useSelector((store) => store.config);
+    return footerConfig.isVisible ?
+        <div className="w-screen sm:flex hidden bottom-0 mt-10 bg-opacity-75 bg-[#000000bf]">
+            <div className="px-20 py-5 mx-auto max-w-[1000px] min-w-[70%] flex mt-0 flex-col justify-start items-start">
+                <NormalText
+                    className="my-10">
+                    {footerConfig.ctaHeading}
+                    <a
+                        href={footerConfig.ctaLink}>
+                        {footerConfig.ctaLinkText}
+                    </a></NormalText>
+                <div className="flex mb-10 justify-between flex-wrap w-[100%]">
+                    {footerConfig.footerLink.map((e) => {
+                        return <a
+                            key={e.text}
+                            href={e.href}>
+                            <FooterLinkText
+                                className="pr-20" >
+                                {e.text}</FooterLinkText>
+                        </a>
+                    })}
+                </div>
+                <LanguageSelect />
+                <div className="m-[5vh]"></div>
             </div>
-            <LanguageSelect />
-        </div>
-    )
+        </div> : <></>
 }
 
 export default Footer

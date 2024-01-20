@@ -6,7 +6,8 @@ import {
   SmallText,
   LinkHrefText,
   TinyText,
-  ExploreMoreText
+  ExploreMoreText,
+  FooterLinkText
 } from './Text';
 import {
   ButtonRed,
@@ -40,6 +41,7 @@ export {
   Form,
   Input,
   AuthInput,
+  FooterLinkText,
   Logo,
   Video,
   IconButton,

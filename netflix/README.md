@@ -25,7 +25,7 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 
 ## TODOs
 1. Suspense
-6. Footer Make
+3. Clicking on the netflix logo clears the search
 7. Make the DIalog openning to be full screen
 9. Search not working
 10. Lazy Loading the Owl carousel
