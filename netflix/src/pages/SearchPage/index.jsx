@@ -9,6 +9,7 @@ import { SliderContainer } from '../../components/globals/SliderContainer';
 import { Slider } from '../../components/globals/Slider';
 import MovieCardComponent from '../../components/MovieCard';
 import { useSelector } from 'react-redux';
+import Footer from '../../components/layouts/Footer';
 
 const SearchPage = () => {
   const { languageData } = useLanguage();
@@ -19,7 +20,6 @@ const SearchPage = () => {
       {!languageData ? '' : languageData?.emptySearchText.replace("{}", `"${searchReduxText}"`)}
     </NormalText>
   </div>;
-  console.log(searchResultData);
   return (
     <div className='bg-black flex flex-col justify-center items-start'>
       <Header />
@@ -52,8 +52,10 @@ const SearchPage = () => {
                   key={movieData.id}
                   movieDetail={movieData} />)}
           </GridContainer>
+          
         </div>
         : noResultComponent}
+        <Footer />
     </div>
   );
 };

@@ -10,9 +10,18 @@ const userImages = [
     userYellow,
     userGreen
 ];
-const UserProfileImage = ({ onClick, className, alt }) => {
+
+function setUserIndex(user) {
+    let userIndex = 0;
+    user && user.users && user.users.forEach((element, index) => {
+        if (element.name === user.name) userIndex = index;
+    })
+    return userIndex;
+}
+
+const UserProfileImage = ({ onClick, className, alt, index }) => {
     const user = useSelector(((store) => store.user))
-    let index = useMemo(() => setUserIndex(user), [user]);
+    let indexP = useMemo(() => setUserIndex(user), [user]);
 
     const [isHovered, setIsHovered] = useState(false);
     const dialogRef = useRef();
@@ -36,13 +45,6 @@ const UserProfileImage = ({ onClick, className, alt }) => {
             });
         }
     }, [(isHovered)]);
-    function setUserIndex(user) {
-        let userIndex = 0;
-        user && user.users && user.users.forEach((element, index) => {
-            if (element.name === user.name) userIndex = index;
-        })
-        return userIndex;
-    }
 
     return (
         <>
@@ -53,7 +55,7 @@ const UserProfileImage = ({ onClick, className, alt }) => {
                 loading="lazy"
                 onClick={onClick}
                 className={className}
-                src={userImages[index ?? 0]} />
+                src={userImages[index ?? indexP]} />
             {/* <dialog ref={dialogRef} className='flex justify-end items-center bg-black shadow-md'>
                 <div className='flex flex-col items-start'>
                     <ButtonW>Logout</ButtonW>

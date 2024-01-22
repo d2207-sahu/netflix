@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import useFirebase from './useFirebaseAuth';
 import { addToSavedMovies, updateSavedMovies } from '../redux/slices/userSlice';
 import { useEffect, useState } from 'react';
-const _ = require('lodash');
 
 const useMoviesMyList = () => {
   const user = useSelector((store) => store.user);
@@ -38,11 +37,10 @@ const useMoviesMyList = () => {
       try {
         setSavePending(true);
         const userSavedList = [...user.saved];
-        console.log(user.saved, userSavedList);
         if (
           !(
             userSavedList.filter((e) => {
-              return _.isEqual(e.videoData, videoData);
+              return (e.videoData.id === videoData.id);
             }).length > 0
           )
         ) {
@@ -66,7 +64,7 @@ const useMoviesMyList = () => {
 
   // This will only at the start of the hook, only if the saved is empty
   useEffect(() => {
-    if (user.saved.length == 0) getAllMoviesSavedtoMyList();
+    if (user?.saved.length == 0) getAllMoviesSavedtoMyList();
   }, [user?.uid]);
 
   return { saveMovieToMyList, user, savePending, pending, getAllMoviesSavedtoMyList };

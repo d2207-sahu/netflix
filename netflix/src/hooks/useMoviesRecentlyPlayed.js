@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import useFirebase from './useFirebaseAuth';
 import { addToPlayedMovies, updatePlayedMovies } from '../redux/slices/userSlice';
 import { useEffect, useState } from 'react';
-const _ = require('lodash');
 
 const useMoviesRecentlyPlayed = () => {
   const played = useSelector((store) => store.user?.played);
@@ -33,12 +32,12 @@ const useMoviesRecentlyPlayed = () => {
   };
 
   const saveMovieToRecentlyPlayed = async (videoData) => {
-    if (user && user?.uid  &&  user?.name && videoData)
+    if (user && user?.uid && user?.name && videoData)
       try {
         if (
           !(
             played.filter((e) => {
-              return _.isEqual(e.videoData, videoData);
+              return e.videoData.id === videoData.id;
             }).length > 0
           )
         ) {
