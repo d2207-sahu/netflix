@@ -10,7 +10,8 @@ const LanguageSelectContainer = styled.select`
     border-style: solid;
     -webkit-filter: opacity( 100% );
     filter: opacity( 100% );
-    padding: .5rem;
+    padding: 1rem;
+    margin: .5rem;
     line-height: 1.25rem;
     appearance: none;
     background: transparent;

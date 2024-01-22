@@ -25,11 +25,11 @@ const ProfilePage = () => {
                     (<>
                         <Heading>{!languageData ? '' : languageData?.whoWatching}</Heading>
                         <div className='flex gap-8 flex-wrap justify-center'>
-                            {user && user?.users && user?.users.map((element, index) =>
+                            {user && user?.users && user?.users.map((element, indexT) =>
                             (<UserCard
                                 key={element.name}
                                 onClick={() => { selectNameAndNavigate(element.name) }}
-                                index={index}
+                                index={indexT}
                                 user={element} />))}
                             <div className='mt-10 flex flex-col items-center'>
                                 <ProfileContainer

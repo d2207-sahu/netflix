@@ -6,8 +6,9 @@ import MoviesCarouselContainer from './MoviesCarouselContainer'
 import MovieInfoModal from './MovieInfoModal'
 import MovieModal from './MovieModal'
 import BottomNavBar from '../../components/layouts/BottomNavBar'
+import Footer from '../../components/layouts/Footer'
 
-export const HomePage = () => {
+const HomePage = () => {
   const { nowPlayingMovies, topRatedMovies } = useCarouselMoviesList();
 
   return (<>
@@ -17,6 +18,8 @@ export const HomePage = () => {
     <MainVideoContainerBackground props={nowPlayingMovies ? nowPlayingMovies : topRatedMovies} />
     <MoviesCarouselContainer />
     <BottomNavBar />
+    <Footer />
   </>
   )
 }
+export default HomePage

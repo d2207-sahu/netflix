@@ -9,8 +9,12 @@ const AddToMyListButton = ({ movieDetail, rounded }) => {
     const { saveMovieToMyList, savePending, user } = useMoviesMyList();
     const { languageData } = useLanguage();
     const [successState, setSuccessState] = useState(false);
-    const handleAddButtonClick = () => {
-        if (!successState) saveMovieToMyList({ videoData: movieDetail })
+    const handleAddButtonClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!successState) saveMovieToMyList({ videoData: movieDetail });
+        e.stopPropagation();
+
     }
     const savedListMemoizedValue = useMemo(() => user?.saved.filter((savedData) => savedData.videoData?.id === movieDetail?.id), [user?.saved])
     useEffect(() => {
