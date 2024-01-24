@@ -32,6 +32,10 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 11. Create own library of iamge laoding https://github.com/mbrevda/react-image/blob/master/dev/app.tsx
 12. Make the timestamp sort of recently vierwwndand mylist others
 
+## SECURITY TODOS
+1. Iframe protection -> X-Frame-Options in react application + CSP headers
+2. React XSS attack, href attack + props attack not escaped.
+3. Already Handled CSP Headers
 # Project Title: 📛
 Netflix
 [https://netflix-divyanshu.vercel.app/browse](🔗)
