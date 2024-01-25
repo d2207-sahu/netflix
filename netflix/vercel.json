@@ -18,6 +18,10 @@
         {
           "key": "Referrer-Policy",
           "value": "no-referrer"
+        },
+        {
+          "key": "X-Xss-Protection",
+          "value": 1
         }
       ]
     }

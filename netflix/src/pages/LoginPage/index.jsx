@@ -4,7 +4,7 @@ import { BackgroundImage } from '../../components/layouts/BackgroundImage';
 import { AuthInput, ButtonRed, ErrorText, Form, Heading } from "../../components/globals"
 import { validateEmail, validateName, validatePassword } from '../../utils/validation';
 import { useFirebase } from '../../hooks';
-import { FirebaseErrorMap } from '../../config/firebase-Error-Map-config';
+import { FirebaseErrorMap } from '../../constants/firebase-Error-Map';
 import ToggleSignUpAndSignInComponent from '../../components/AuthComponents/ToggleSignUpAndSignInComponent';
 import SignInReCaptchaSecurityText from '../../components/AuthComponents/SignInReCaptchaSecurityText';
 import { useLanguage } from '../../context/LanguageContext';
