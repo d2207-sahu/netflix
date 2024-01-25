@@ -3,9 +3,9 @@ import {BASE_API_URL, TMDB_API_KEY} from '../config/constants';
 const headers = {
   'Content-Type': 'application/json',
   accept: 'application/json',
-  'Access-Control-Allow-Origin': '*',
+  // 'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Credentials': 'true',
+  // 'Access-Control-Allow-Credentials': 'true',
   Authorization: `Bearer ${TMDB_API_KEY}`,
 };
 
