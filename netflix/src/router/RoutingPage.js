@@ -11,63 +11,40 @@ import MyListPage from '../pages/MyListPage';
 import ShimmerLoading from '../components/Shimmer/ShimmerLoading';
 const HomePage = React.lazy(() => import('../pages/HomePage'));
 
-export const RoutingComponent = () => {
-  const appRouter = createBrowserRouter([
-    {
-      path: routingConfig.index,
-      element: <Navigate to="/browse" />
-    },
-    {
-      index: true,
-      path: routingConfig.home,
-      element: (
-        <Suspense fallback={<ShimmerLoading />}>
-          <HomePage />
-        </Suspense>
-      )
-    },
-    {
-      path: routingConfig.login,
-      element: (
-        <Suspense fallback={<ShimmerLoading />}>
-          <LoginPage />
-        </Suspense>
-      )
-    },
-    {
-      path: routingConfig.signup,
-      element: (
-        <Suspense fallback={<ShimmerLoading />}>
-          <SignUpPage />
-        </Suspense>
-      )
-    },
-    {
-      path: routingConfig.search,
-      element: (
-        <Suspense fallback={<ShimmerLoading />}>
-          <SearchPage />
-        </Suspense>
-      )
-    },
-    {
-      path: routingConfig.profile,
-      element: (
-        <Suspense fallback={<ShimmerLoading />}>
-          <ProfilePage />
-        </Suspense>
-      )
-    },
-    {
-      path: routingConfig.mylist,
-      element: (
-        <Suspense fallback={<ShimmerLoading />}>
-          <MyListPage />
-        </Suspense>
-      )
-    }
-  ]);
+/**
+ * @function
+ * @param {index} boolean 
+ * @param {path} string path 
+ * @param {child} React.element Page Component 
+ * @returns RouteObject
+ */
+function suspensePathLoader({ index, path, child }) {
+  return {
+    index: index,
+    path: path,
+    element: <Suspense fallback={<ShimmerLoading />}>{child}</Suspense>
+  };
+}
 
+const paths = [
+  { index: true, path: routingConfig.home, child: <HomePage /> },
+  { index: false, path: routingConfig.home, child: <HomePage /> },
+  { index: false, path: routingConfig.login, child: <LoginPage /> },
+  { index: false, path: routingConfig.signup, child: <SignUpPage /> },
+  { index: false, path: routingConfig.search, child: <SearchPage /> },
+  { index: false, path: routingConfig.mylist, child: <MyListPage /> },
+  { index: false, path: routingConfig.profile, child: <ProfilePage /> }
+];
+
+const appRouter = createBrowserRouter([
+  {
+    path: routingConfig.index,
+    element: <Navigate to="/browse" />
+  },
+  ...paths.map((path) => suspensePathLoader(path))
+]);
+
+export const RoutingComponent = () => {
   return (
     <>
       <GlobalStyle />
