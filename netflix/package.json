@@ -7,6 +7,7 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
     "autoprefixer": "^10.4.16",
+    "create-next-app": "^14.1.0",
     "firebase": "^10.7.1",
     "postcss-cli": "^11.0.0",
     "react": "^18.2.0",
