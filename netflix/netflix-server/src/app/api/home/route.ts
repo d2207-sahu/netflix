@@ -14,6 +14,11 @@ export async function GET(request: Request) {
         title: movieTypes[index],
         data: responseData.value
       };
+    } else {
+      return {
+        title: movieTypes[index],
+        error: responseData
+      };
     }
   });
 
