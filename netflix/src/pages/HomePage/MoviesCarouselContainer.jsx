@@ -22,59 +22,33 @@ const MoviesCarouselContainer = () => {
    * This useEffect is reloading the page when user.saved, user.played, or user.searched is updated.
    * Because this is needed as this is added dynamically when the user interacts.
    */
-  useEffect(() => {}, [user?.saved, user?.played, user?.searched]);
+  useEffect(() => { }, [user?.saved, user?.played, user?.searched]);
+
+  const movieCarouselsData = [
+    { show: nowPlayingMovies, title: !languageData ? '' : languageData?.nowPlaying, movieData: nowPlayingMovies },
+    { show: user?.played.length > 0, title: !languageData ? '' : languageData?.recentlyPlayedTitle + user?.name, movieData: user?.played.map((e) => e.videoData) },
+    { show: popularMovies, title: !languageData ? '' : languageData?.Popular, movieData: popularMovies },
+    { show: topRatedMovies, title: !languageData ? '' : languageData?.topRated, movieData: topRatedMovies },
+    { show: upcomingMovies, title: !languageData ? '' : languageData?.upcoming, movieData: upcomingMovies },
+    { show: user?.saved.length > 0, title: !languageData ? '' : languageData?.mylist, movieData: user?.saved.map((e) => e.videoData) },
+  ];
 
   return (
     <div className="w-screen h-min">
       <div className="relative top-0 sm:top-[-23rem]">
         {loadingCarousel ? (
           <div className="mx-10">
-            <ShimmerCarouselRow />
-            <ShimmerCarouselRow />
-            <ShimmerCarouselRow />
-            <ShimmerCarouselRow />
+            {movieCarouselsData.map((carouselData) => <ShimmerCarouselRow key={carouselData.title} />)}
           </div>
         ) : (
-          <>
-            {nowPlayingMovies && (
+          movieCarouselsData.map((carouselData) => {
+            return carouselData.show && (
               <MoviesCarousel
-                title={!languageData ? '' : languageData?.nowPlaying}
-                movieCards={nowPlayingMovies}
+                title={carouselData.title}
+                movieCards={carouselData.movieData}
               />
-            )}
-            {user?.played.length > 0 && (
-              <MoviesCarousel
-                title={!languageData ? '' : languageData?.recentlyPlayedTitle + user?.name}
-                movieCards={user?.played.map((e) => e.videoData)}
-              />
-            )}
-            {popularMovies && (
-              <MoviesCarousel
-                title={!languageData ? '' : languageData?.Popular}
-                movieCards={popularMovies}
-              />
-            )}
-
-            {topRatedMovies && (
-              <MoviesCarousel
-                title={!languageData ? '' : languageData?.topRated}
-                movieCards={topRatedMovies}
-              />
-            )}
-
-            {user?.saved.length > 0 && (
-              <MoviesCarousel
-                title={!languageData ? '' : languageData?.mylist}
-                movieCards={user?.saved.map((e) => e.videoData)}
-              />
-            )}
-            {upcomingMovies && (
-              <MoviesCarousel
-                title={!languageData ? '' : languageData?.upcoming}
-                movieCards={upcomingMovies}
-              />
-            )}
-          </>
+            )
+          })
         )}
       </div>
     </div>
