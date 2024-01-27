@@ -1,26 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { ExploreMoreText, SubHeading } from '../../components/globals';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import MovieCardComponent from '../../components/MovieCard';
-import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { useLanguage } from '../../context/LanguageContext';
 import ShimmerCarouselRow from '../../components/Shimmer/ShimmerCarouselRow';
 import useMoviesMyList from '../../hooks/useMoviesMyList';
 import useMoviesRecentlyPlayed from '../../hooks/useMoviesRecentlyPlayed';
-import { SliderContainer } from '../../components/globals/SliderContainer';
-import { LeftHandle, RightHandle } from '../../components/globals/SliderHandlers';
-import { Slider } from '../../components/globals/Slider';
+import MoviesCarousel from '../../components/MovieComponents/MovieCarousel';
 
 const MoviesCarouselContainer = () => {
   const { languageData } = useLanguage();
+  /**
+   * Reading movies data stored in the redux store
+   */
   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loadingCarousel } =
     useSelector((store) => store.movies);
+
   useMoviesRecentlyPlayed();
+
   const { user } = useMoviesMyList();
+
+  /**
+   * This useEffect is reloading the page when user.saved, user.played, or user.searched is updated.
+   * Because this is needed as this is added dynamically when the user interacts.
+   */
   useEffect(() => {}, [user?.saved, user?.played, user?.searched]);
+
   return (
     <div className="w-screen h-min">
-      <div className="relative top-0 sm:top-[-15rem] " >
+      <div className="relative top-0 sm:top-[-23rem]">
         {loadingCarousel ? (
           <div className="mx-10">
             <ShimmerCarouselRow />
@@ -71,54 +77,6 @@ const MoviesCarouselContainer = () => {
           </>
         )}
       </div>
-    </div>
-  );
-};
-
-const MoviesCarousel = ({ title, movieCards }) => {
-  const [sliderIndex, setSliderIndex] = useState(0);
-  const [onMouseHover, setMouseHover] = useState(false);
-  return (
-    <div
-      onMouseOver={() => {
-        setMouseHover(true);
-      }}
-      onMouseLeave={() => {
-        setMouseHover(false);
-      }}
-    >
-      <div className="flex gap-5">
-        <SubHeading className="pl-[3.1%] mt-12 pt-12 mb-8 font-bold text-sm" $fontSize={'2.0rem'}>
-          {title}
-        </SubHeading>
-        {onMouseHover && <ExploreMoreText>Explore More</ExploreMoreText>}
-      </div>
-      <SliderContainer>
-        {onMouseHover && (
-          <LeftHandle
-            onClick={() => {
-              setSliderIndex((prev) => prev + 1);
-            }}
-          >
-            <FiArrowLeft size={30} className="m-auto" />
-          </LeftHandle>
-        )}
-        <Slider $sliderIndex={`${sliderIndex * 100}%`}>
-          {movieCards?.map((movieDetail) => (
-            <MovieCardComponent key={movieDetail?.id} movieDetail={movieDetail} />
-          ))}
-        </Slider>
-        {onMouseHover && (
-          <RightHandle
-            onClick={() => {
-              setSliderIndex((prev) => prev - 1);
-            }}
-            $marginRight="16px"
-          >
-            <FiArrowRight size={30} className="m-auto" />
-          </RightHandle>
-        )}
-      </SliderContainer>
     </div>
   );
 };

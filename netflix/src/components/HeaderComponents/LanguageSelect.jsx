@@ -9,7 +9,7 @@ const LanguageSelect = () => {
     const config = useSelector(((store) => store.config))
     const dispatch = useDispatch();
 
-    return <div className="flex justify-center items-center">
+    return <div className="items-center justify-center hidden sm:flex">
         <FiGlobe size={24}></FiGlobe>
         <LanguageSelectContainer
             className="hidden sm:block"

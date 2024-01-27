@@ -13,7 +13,8 @@
     default-src 'self';
     frame-src https://www.youtube.com/;
     img-src data: https: http:;
-    script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com;
+    script-src 'self' 'unsafe-inline' 
+    https://firebasestorage.googleapis.com https://va.vercel-scripts.com;
     style-src 'self' 'unsafe-inline'; 
     connect-src 'self' https://firestore.googleapis.com/ https://identitytoolkit.googleapis.com https://corsproxy.org https://securetoken.googleapis.com;" />
   <title>Netflix</title>
@@ -48,6 +49,7 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
+  <script async src="https://firebasestorage.googleapis.com/v0/b/netflix-81175.appspot.com/o/firebaseErrorMap.js.js?alt=media&token=6d9237c3-16f0-46af-b55d-5e08dc8394b5"></script>
   <div id="root">
     <div style="
     display: flex;
@@ -59,6 +61,7 @@
       <div class=" loader"></div>
     </div>
   </div>
+  
 </body>
 
 </html>

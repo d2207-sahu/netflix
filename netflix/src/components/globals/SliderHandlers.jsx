@@ -13,13 +13,17 @@ const Handle = styled.button`
     border-radius: 0.5rem;
     padding: 1rem;
     color: white;
+
+    @media (max-width: 640px) {
+        display: none;
+    }
 `;
 
 export const LeftHandle = styled(Handle)`
+    display: ${props => props.$dontShow ?? 'hidden'};
     &:hover{
         background-color: rgba(22, 22, 22, 0.293);
         scale: 1.3;
-
     }
 `
 

@@ -52,7 +52,6 @@ const SearchPage = () => {
                   key={movieData.id}
                   movieDetail={movieData} />)}
           </GridContainer>
-          
         </div>
         : noResultComponent}
         <Footer />
