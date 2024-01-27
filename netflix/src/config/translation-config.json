@@ -1,0 +1,109 @@
+{
+  "parameters": {
+    "authRecapthcaSecurityText": {
+      "defaultValue": "Sign in is protected by Google reCAPTCHA to ensure you’re not a bot."
+    },
+    "email": {
+      "defaultValue": "Email"
+    },
+    "name": {
+      "defaultValue": "Name"
+    },
+    "mylist": {
+      "defaultValue": "My List"
+    },
+    "password": {
+      "defaultValue": "Password"
+    },
+    "repassword": {
+      "defaultValue": "Confirm Password"
+    },
+    "invalidName": {
+      "defaultValue": "Invalid Name"
+    },
+    "passwordMisMatch": {
+      "defaultValue": "The entered passwords do not match."
+    },
+    "signUp": {
+      "defaultValue": "Create Account"
+    },
+    "signIn": {
+      "defaultValue": "Sign In"
+    },
+    "signUpNow": {
+      "defaultValue": "Sign Up Now"
+    },
+    "signInNow": {
+      "defaultValue": "Sign In Now"
+    },
+    "emailInvlaid": {
+      "defaultValue": "Email is not valid"
+    },
+    "passwordInvlaid": {
+      "defaultValue": "Password is not valid"
+    },
+    "nameInvalid": {
+      "defaultValue": "Name is Invalid"
+    },
+    "newToNetflix": {
+      "defaultValue": "New to Netflix?"
+    },
+    "alreadySignedUp": {
+      "defaultValue": "Already Signed Up?"
+    },
+    "nowPlaying": {
+      "defaultValue": "Now Playing"
+    },
+    "topRated": {
+      "defaultValue": "Top Rated"
+    },
+    "upcoming": {
+      "defaultValue": "Upcoming"
+    },
+    "Popular": {
+      "defaultValue": "Popular"
+    },
+    "play": {
+      "defaultValue": "Play"
+    },
+    "searchPlaceHolder": {
+      "defaultValue": "Title, peoples, genres"
+    },
+    "emptySearchText": {
+      "defaultValue": "Your search for {} did not find any matches"
+    },
+    "about": {
+      "defaultValue": "About "
+    },
+    "trailerAndMore": {
+      "defaultValue": "Trailer & More"
+    },
+    "moreLikeThis": {
+      "defaultValue": "More Like This"
+    },
+    "whoWatching": {
+      "defaultValue": "Who's Watching?"
+    },
+    "addProfile": {
+      "defaultValue": "Add Profile"
+    },
+    "addProfileDesc": {
+      "defaultValue": "Add a profile for another person watching Netflix."
+    },
+    "cancel": {
+      "defaultValue": "Cancel"
+    },
+    "continue": {
+      "defaultValue": "Continue"
+    },
+    "moreInfo": {
+      "defaultValue": "More Info"
+    },
+    "recenltyPlayed": {
+      "defaultValue": "Recently Played"
+    },
+    "recentlyPlayedTitle": {
+      "defaultValue": "Continue Watching for "
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateModalSelectedVideo } from '../../redux/slices/appSlice';
+import { updateModalSelectedVideo } from '../redux/slices/appSlice';
 import { FiSkipBack } from 'react-icons/fi';
 
 // updateModalSelectedVideo

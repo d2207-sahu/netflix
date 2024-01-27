@@ -1,19 +1,20 @@
 import React, { useEffect, useMemo, useRef } from 'react'
-import { MovieDescription, MovieTitle } from './MainVideoContainerBackground'
-import { IconButton, NormalText, SmallText, SubHeading } from '../../components/globals'
+import { IconButton, NormalText, SmallText, SubHeading } from '../components/globals'
 import { RxCross2 } from "react-icons/rx";
-import { useMovieData } from '../../hooks/useMovieData'
-import GridContainer from '../../components/GridContainer'
+import { useMovieData } from '../hooks/useMovieData'
+import GridContainer from '../components/GridContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateModalMovieSelectedID } from '../../redux/slices/appSlice'
-import { TMDB_API_IMAGE_CDN_URL, TRAILER } from '../../config/constants'
-import GenreTags from '../../components/MovieCardComponents/GenreTags';
-import RatingTag from '../../components/MovieCardComponents/RatingTag';
-import useFirestoreDB from '../../hooks/useFirestoreDB';
-import { useLanguage } from '../../context/LanguageContext';
-import PlayButton from '../../components/PlayButton';
-import ShimmerLoading from '../../components/Shimmer/ShimmerLoading';
-import AddToMyListButton from '../../components/AddToMyListButton';
+import { updateModalMovieSelectedID } from '../redux/slices/appSlice'
+import { TMDB_API_IMAGE_CDN_URL, TRAILER } from '../config/constants'
+import GenreTags from '../components/MovieComponents/GenreTags';
+import RatingTag from '../components/MovieComponents/RatingTag';
+import useFirestoreDB from '../hooks/useFirestoreDB';
+import { useLanguage } from '../context/LanguageContext';
+import PlayButton from '../components/PlayButton';
+import ShimmerLoading from '../components/Shimmer/ShimmerLoading';
+import AddToMyListButton from '../components/AddToMyListButton';
+import MovieTitle from '../components/MovieComponents/MovieTitle';
+import MovieDescription from '../components/MovieComponents/MovieDescription';
 
 // when this modal opens, means have to update the url, and also let it read the url also
 const MovieInfoModal = () => {

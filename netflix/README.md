@@ -27,7 +27,7 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 1. Suspense
 3. Clicking on the netflix logo clears the search
 7. Make the DIalog openning to be full screen
-9. Search not working
+9. Search not working -> CORS URL is not allowing to work
 10. Lazy Loading the Owl carousel
 11. Create own library of iamge laoding https://github.com/mbrevda/react-image/blob/master/dev/app.tsx
 12. Make the timestamp sort of recently vierwwndand mylist others
@@ -36,7 +36,8 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 1. remove the fireabse-error-map.js -> server
 
 ## SECURITY TODOS
-1. Iframe protection -> X-Frame-Options in react application + CSP headers
+1. Make every URL to be parsed
+2. Iframe protection -> X-Frame-Options in react application + CSP headers
 2. React XSS attack, href attack + props attack not escaped.
 3. Already Handled CSP Headers
 # Project Title: 📛
