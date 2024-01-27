@@ -32,6 +32,10 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 11. Create own library of iamge laoding https://github.com/mbrevda/react-image/blob/master/dev/app.tsx
 12. Make the timestamp sort of recently vierwwndand mylist others
 
+## Error Handling
+1. react global Error Boundary
+2. react Component Wise Error Boundary
+
 ## CONFIG UI
 1. remove the fireabse-error-map.js -> server
 
