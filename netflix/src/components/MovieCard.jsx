@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { FiInfo } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { updateModalMovieSelectedID } from '../redux/slices/appSlice';
-import GenreTags from './MovieCardComponents/GenreTags';
-import RatingTag from './MovieCardComponents/RatingTag';
+import GenreTags from './MovieComponents/GenreTags';
+import RatingTag from './MovieComponents/RatingTag';
 import PlayButton from './PlayButton';
 import AddToMyListButton from './AddToMyListButton';
 import usePlay from '../hooks/usePlay';
@@ -21,14 +21,14 @@ const MovieCard = styled.div`
     margin: .25rem;
     border-radius: 0.5rem;
     transition-duration: 1000ms;
-    transition: ease-in;
+    transition: ease-in-out;
     clip: rect(1px,1px,1px,1px)!important;
 
     &:hover{
         position: relative;
         z-index: 20;
         transition-duration: 1500ms;
-        transition: ease-out;
+        transition: ease-in-out;
         clip: rect(1px,1px,1px,1px)!important;
         transform-origin: center center;
         transform: translateX(0px) translateY(-104px) scaleX(1.1) scaleY(1.1) translateZ(0px);
@@ -102,8 +102,8 @@ const MovieCardComponent = ({ movieDetail }) => {
             />
             {onMouseOver &&
                 <div className='p-[1rem] bg-[#181818] shadow-lg shadow-black rounded-b-md cursor-pointer hidden sm:block'>
-                    <div className='flex justify-between items-center py-4'>
-                        <div className=' flex gap-4'>
+                    <div className='flex items-center justify-between py-4'>
+                        <div className='flex gap-4 '>
                             <PlayButton rounded={true} movieID={movieDetail?.id} movieData={movieDetail} />
                             <AddToMyListButton movieDetail={movieDetail} />
                         </div>
@@ -121,7 +121,7 @@ const MovieCardComponent = ({ movieDetail }) => {
                             {movieDetail?.original_title}
                         </NormalText>
                     </div>
-                    <div className='flex flex-wrap justify-between items-center py-3'>
+                    <div className='flex flex-wrap items-center justify-between py-3'>
                         <GenreTags genreIDs={movieDetail?.genre_ids} />
                         <RatingTag vote_count={movieDetail?.vote_count} vote_average={movieDetail?.vote_average} />
                     </div>

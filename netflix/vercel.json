@@ -21,7 +21,7 @@
         },
         {
           "key": "X-Xss-Protection",
-          "value": 1
+          "value": "1"
         }
       ]
     }

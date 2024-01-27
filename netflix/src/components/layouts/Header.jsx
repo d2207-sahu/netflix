@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addAccount, removeAccount } from '../../redux/slices/userSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { routingConfig } from '../../router/routing-config';
-import SearchComponent from '../SearchComponent';
 import UserProfileImage from '../UserProfileImage';
 import LanguageSelect from '../HeaderComponents/LanguageSelect';
 import { LinkText } from '../LinkText';
 import useFirestoreDB from '../../hooks/useFirestoreDB';
+import SearchComponent from '../../pages/SearchPage/SearchComponent';
 
 /**
  * This Component is rendered in every page

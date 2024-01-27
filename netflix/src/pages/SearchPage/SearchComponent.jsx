@@ -1,36 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
 import { FiCrosshair, FiSearch } from "react-icons/fi";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { routingConfig } from '../router/routing-config';
+import { routingConfig } from '../../router/routing-config';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSearchSliceContainer, updateSearchText } from '../redux/slices/searchSlice';
-import useDebounce from '../hooks/useDebounce';
-import { useLanguage } from '../context/LanguageContext';
-
-const InputComponent = styled.input`    
-    color: white;
-    outline: none;
-    background-color: black;
-    border: none;
-    padding: 4px;
-    font-size: 1.4rem;
-`
-
-const SearchContainer = styled.div`
-    border-color: white;
-    cursor: pointer;
-    border-radius: 0;
-    background-color: ${props => !props.$selected ? 'black' : ''};
-    border-width: ${props => props.$selected ? props.$selected : '1px'};
-    padding: .4rem;
-    padding-top: 2px;
-    margin-right: ${props => props.$selected ? '4px' : '12px'};
-    display: flex;
-    flex-direction: row;
-    gap: .8rem;
-    align-items: center;
-`
+import { toggleSearchSliceContainer, updateSearchText } from '../../redux/slices/searchSlice';
+import useDebounce from '../../hooks/useDebounce';
+import { useLanguage } from '../../context/LanguageContext';
+import SearchContainer from '../../components/SearchComponents/SearchContainer';
+import SearchInputComponent from '../../components/SearchComponents/SearchInputComponent';
 
 // TODO optimise this more.
 const SearchComponent = () => {
@@ -74,7 +51,7 @@ const SearchComponent = () => {
                 onClick={() => {
                     setSearchToggled(prevState => !prevState);
                 }} />
-            {searchToggled && <InputComponent
+            {searchToggled && <SearchInputComponent
                 value={searchText}
                 ref={searchRef}
                 placeholder={!languageData ? '' : languageData?.searchPlaceHolder}
