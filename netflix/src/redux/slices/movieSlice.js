@@ -24,6 +24,9 @@ const movieSlice = createSlice({
       state.loadingCarousel = action.payload;
       return state;
     },
+    addHomeMoviesData: (state, action) => {
+      state.homeMoviesData = action.payload;
+    },
     addNowPlayingMovies: (state, action) => {
       state.nowPlayingMovies = action.payload;
     },
@@ -61,6 +64,7 @@ export const {
   addNowPlayingMovies,
   addTopRatedMovies,
   addPopularMovies,
+  addHomeMoviesData,
   addUpcomingMovies,
   addHomeTeaserVideoID,
   addAllMovieGenres,

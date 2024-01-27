@@ -1,4 +1,4 @@
-import {BASE_API_URL, TMDB_API_KEY} from '../config/constants';
+import { BACKEND_API_URL, BASE_API_URL, TMDB_API_KEY } from '../config/constants';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -6,7 +6,7 @@ const headers = {
   // 'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   // 'Access-Control-Allow-Credentials': 'true',
-  Authorization: `Bearer ${TMDB_API_KEY}`,
+  Authorization: `Bearer ${TMDB_API_KEY}`
 };
 
 /**
@@ -24,13 +24,7 @@ const headers = {
  *   The provided callbacks allow for custom handling of the response data or errors.
  * @throws {Error} If an unsupported request type is provided.
  */
-export async function baseFetchAPI(
-  requestType,
-  url,
-  body,
-  successCallback,
-  errorCallback,
-) {
+export async function baseFetchAPI(requestType, url, body, successCallback, errorCallback) {
   try {
     if (requestType === 'POST') {
       headers['Content-Type'] = 'application/json';
@@ -43,13 +37,62 @@ export async function baseFetchAPI(
     const fetchOptions = {
       method: requestType,
       headers,
-      mode: 'cors',
+      mode: 'cors'
     };
 
     if (body && requestType !== 'GET') {
       fetchOptions.body = JSON.stringify(body);
     }
     const response = await fetch(BASE_API_URL + url, fetchOptions);
+
+    if (response.ok) {
+      const responseData = await response.json();
+      return successCallback(responseData);
+    } else {
+      const errorData = await response.json();
+      return errorHandler(url, errorData, errorCallback);
+    }
+  } catch (e) {
+    return errorHandler(url, e, errorCallback);
+  }
+}
+
+/**
+ * @function
+ * @constant
+ * @param {string} requestType - The type of HTTP request (e.g., "GET", "POST", "DELETE").
+ * @param {string} url - The URL endpoint for the API request.
+ * @param {object} body - The payload or data to include in the request body (used for POST requests).
+ * @param {function} successCallback - A callback function to handle a successful response.
+ * @param {function} errorCallback - A callback function to handle errors or unsuccessful API requests.
+ * @param {function} finalCallback - A callback function to handle errors or unsuccessful API requests.
+ * @description
+ *   This function makes generic API requests using the fetch API.
+ *   It supports various HTTP request types and handles both successful responses and errors.
+ *   The provided callbacks allow for custom handling of the response data or errors.
+ * @throws {Error} If an unsupported request type is provided.
+ */
+export async function basePublicFetchAPI(requestType, url, body, successCallback, errorCallback) {
+  try {
+    if (requestType === 'POST') {
+      headers['Content-Type'] = 'application/json';
+    }
+
+    if (requestType === 'GET' || requestType === 'DELETE') {
+      delete headers['Content-Type'];
+    }
+
+    const fetchOptions = {
+      method: requestType
+    };
+
+    if (body && requestType !== 'GET') {
+      fetchOptions.body = JSON.stringify(body);
+    }
+    console.log('HAHA');
+
+    const response = await fetch(BACKEND_API_URL + url, fetchOptions);
+    console.log('HAHA', response);
 
     if (response.ok) {
       const responseData = await response.json();
