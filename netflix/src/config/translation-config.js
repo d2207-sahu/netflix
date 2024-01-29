@@ -11,7 +11,7 @@ export const englishConfig = {
   invalidName: 'Invalid Name',
   passwordMisMatch: 'The entered passwords do not match.',
   signUp: 'Create Account',
-  signIn: 'Sign In AMIIEEEEEE',
+  signIn: 'Sign In',
   signUpNow: 'Sign Up Now',
   signInNow: 'Sign In Now',
   emailInvlaid: 'Email is not valid',
