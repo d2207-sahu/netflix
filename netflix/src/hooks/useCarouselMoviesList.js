@@ -18,7 +18,7 @@ const useCarouselMoviesList = () => {
   const getHomeMoviesData = async () => {
     basePublicFetchAPI(
       'GET',
-      'home',
+      '/home',
       null,
       async (data) => {
         dispatch(addHomeMoviesData(data.results));
