@@ -1,55 +1,32 @@
-import { baseFetchAPI, basePublicFetchAPI } from '../service/api.service';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  addHomeMoviesData,
-  addNowPlayingMovies,
-  toggleLoadingCarousel
-} from '../redux/slices/movieSlice';
-import { NOW_PLAYING_API_URL } from '../config/constants';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { basePublicFetchAPI } from '../service/api.service';
+import { addBrowseData, toggleLoadingCarousel } from '../redux/slices/movieSlice';
+import { browseJSON } from '../constants/browse';
 
-const useCarouselMoviesList = () => {
+const useBrowse = () => {
   const dispatch = useDispatch();
 
-  const { nowPlayingMovies, topRatedMovies, loadingCarousel } = useSelector(
-    (store) => store.movies
-  );
-
-  const getHomeMoviesData = async () => {
-    basePublicFetchAPI(
+  const getBrowseData = async () => {
+    dispatch(toggleLoadingCarousel(true));
+    setTimeout(() => {
+      dispatch(addBrowseData(browseJSON.data));
+    }, 1000);
+    await basePublicFetchAPI(
       'GET',
       '/browse',
       null,
       async (data) => {
-        console.log(data);
-        dispatch(addHomeMoviesData(data.results));
+        dispatch(addBrowseData(data));
       },
       (err) => console.error(err)
     );
-  };
-
-  const getNowPlayingMovies = async () => {
-    baseFetchAPI(
-      'GET',
-      NOW_PLAYING_API_URL + '?language=en-US&page=1',
-      null,
-      async (data) => {
-        dispatch(addNowPlayingMovies(data.results));
-      },
-      (err) => console.error(err)
-    );
+    dispatch(toggleLoadingCarousel(false));
   };
 
   useEffect(() => {
-    dispatch(toggleLoadingCarousel(true));
-    Promise.allSettled([getHomeMoviesData(), !nowPlayingMovies && getNowPlayingMovies()]).finally(
-      () => {
-        dispatch(toggleLoadingCarousel(false));
-      }
-    );
+    getBrowseData();
   }, []);
-
-  return { nowPlayingMovies, topRatedMovies, loadingCarousel };
 };
 
-export default useCarouselMoviesList;
+export default useBrowse;
