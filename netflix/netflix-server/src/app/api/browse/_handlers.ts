@@ -19,7 +19,7 @@ export const carouselHandler = async (data: any) => {
         }
         return {
           ...movieTypes[index],
-          data: responseData.value
+          data: responseData.value && responseData.value?.results
         };
       } else {
         console.error(responseData);
