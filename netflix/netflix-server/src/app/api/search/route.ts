@@ -16,11 +16,14 @@ export async function GET(request: Request) {
       null
     );
     if (searchResults && searchResults.results)
-      return Response.json({
-        searchResults: searchResults.results,
-        length: searchResults.results.length,
-        page: searchResults.page
-      });
+      return Response.json(
+        {
+          searchResults: searchResults.results,
+          length: searchResults.results.length,
+          page: searchResults.page
+        },
+        { status: 200 }
+      );
   } catch (e) {
     console.error(e);
     return Response.json({ data: 'Error fetching saerch data' }, { status: 400 });

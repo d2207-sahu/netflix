@@ -21,7 +21,7 @@ const SearchPage = () => {
     </NormalText>
   </div>;
   return (
-    <div className='bg-black flex flex-col justify-center items-start'>
+    <div className='flex flex-col items-start justify-center bg-black'>
       <Header />
       {/*TODO change the Loading handle UI. */}
       {pending ? (
@@ -39,7 +39,7 @@ const SearchPage = () => {
               ))}
             </Slider>
           </SliderContainer>
-          <div className='mx-[4%] items-start mt-[15%] mb-4 flex justify-start pt-[10%]'>
+          <div className='mx-[4%] items-start mt-[10rem] mb-[2rem] flex justify-start'>
             <SubHeading>{`Search Results for ${searchReduxText}`}
             </SubHeading>
           </div>

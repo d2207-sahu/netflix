@@ -15,13 +15,12 @@ const useSearch = () => {
   const [pending, setPending] = useState(false);
 
   const callSearchAPI = async (page) => {
-    await basePublicFetchAPI(
+    return await basePublicFetchAPI(
       'GET',
-      `search?query=${searchReduxText}&page=${page}`,
+      `/search?query=${searchReduxText}&page=${page}`,
       null,
       (data) => {
-        console.log(data.results);
-        return data.results;
+        return data.searchResults;
       },
       (searchError) => {
         //TODO Handle this correctly
@@ -58,9 +57,14 @@ const useSearch = () => {
 
   // Asynchronous function, i.e kept outside
   const searchAPI = async () => {
-    const result1 = await callSearchAPI(1);
-    const result2 = await callSearchAPI(2);
-    dispatch(updateSearchResultData([...result1, ...result2]));
+    let searchResults = await Promise.allSettled([await callSearchAPI(1), await callSearchAPI(2)]);
+    const combinedResult = searchResults.reduce((accumulator, currentResult) => {
+      if (currentResult.status === 'fulfilled') {
+        accumulator = [...accumulator, ...currentResult.value];
+      }
+      return accumulator;
+    }, []);
+    dispatch(updateSearchResultData([...combinedResult]));
     saveSearchTextToSearchedFirestoreDB(searchReduxText);
     setPending(false);
   };

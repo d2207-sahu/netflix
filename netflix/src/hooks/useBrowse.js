@@ -14,7 +14,7 @@ const useBrowse = () => {
       null,
       async (data) => {
         console.log(data)
-        dispatch(addBrowseData(data));
+        dispatch(addBrowseData(data.data));
       },
       (err) => console.error(err)
     );

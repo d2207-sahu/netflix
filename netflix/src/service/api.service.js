@@ -89,7 +89,7 @@ export async function basePublicFetchAPI(requestType, url, body, successCallback
     console.log(response);
     if (response.ok) {
       const responseData = await response.json();
-      return successCallback(responseData.data);
+      return successCallback(responseData);
     } else {
       const errorData = await response.json();
       return errorHandler(url, errorData, errorCallback);
