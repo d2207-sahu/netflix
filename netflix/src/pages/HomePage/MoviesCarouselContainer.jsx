@@ -6,7 +6,7 @@ import useMoviesRecentlyPlayed from '../../hooks/useMoviesRecentlyPlayed';
 import MoviesCarousel from '../../components/MovieComponents/MovieCarousel';
 
 const MoviesCarouselContainer = () => {
-  const { carousel } = useSelector(state => state.movies?.browse);
+  const { browse } = useSelector(state => state.movies);
 
   // move these two specific components
   useMoviesRecentlyPlayed();
@@ -25,20 +25,21 @@ const MoviesCarouselContainer = () => {
   //   { show: upcomingMovies, title: !languageData ? '' : languageData?.upcoming, movieData: upcomingMovies },
   //   { show: user?.saved.length > 0, title: !languageData ? '' : languageData?.mylist, movieData: user?.saved.map((e) => e.videoData) },
   // ];
-  
+  if (!browse) return <></>;
+
   return (
     <div className="w-screen h-min">
       <div className="relative top-0 sm:top-[-23rem]">
-        {(!carousel) ? (
+        {(!browse.carousel) ? (
           <div className="mx-10">
             {Array(5).map((carouselData) => <ShimmerCarouselRow key={carouselData.title} />)}
           </div>
         ) : (
-          carousel.map((carouselData) => {
+          browse.carousel.map((carouselData) => {
             return carouselData.ui_data && (
               <MoviesCarousel
                 title={carouselData.title}
-                movieCards={carouselData.data.results}
+                movieCards={carouselData.data}
               />
             )
           })
