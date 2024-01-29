@@ -57,7 +57,7 @@ const useSearch = () => {
 
   // Asynchronous function, i.e kept outside
   const searchAPI = async () => {
-    let searchResults = await Promise.allSettled([await callSearchAPI(1), await callSearchAPI(2)]);
+    let searchResults = await Promise.allSettled([await callSearchAPI(1), await callSearchAPI(2),await callSearchAPI(3)]);
     const combinedResult = searchResults.reduce((accumulator, currentResult) => {
       if (currentResult.status === 'fulfilled') {
         accumulator = [...accumulator, ...currentResult.value];

@@ -24,10 +24,11 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 
 ## TODOs
 3. Clicking on the netflix logo clears the search
+4. Add Genre
 7. Make the Dialog openning to be full screen
 10. Lazy Loading the Owl carousel
 11. Create own library of iamge laoding https://github.com/mbrevda/react-image/blob/master/dev/app.tsx
-12. Make the timestamp sort of recently vierwwndand mylist others
+12. Make the timestamp sort of recently view and mylist others
 
 ## Error Handling
 1. react global Error Boundary

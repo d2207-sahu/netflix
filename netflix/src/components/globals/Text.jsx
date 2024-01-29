@@ -58,6 +58,10 @@ const LinkHrefText = styled(SmallText)`
 
 const FooterLinkText = styled(LinkHrefText)`
     color: #757575;
+
+    &:hover{
+        color: white;
+    }
 `
 
 const ExploreMoreText = styled.div`
@@ -94,4 +98,4 @@ const ErrorText = styled.h2`
         text-shadow: 0 1px 1px rgba(0,0,0,.7);`}
 `;
 
-export { Heading,FooterLinkText, SubHeading, NormalText, ErrorText, SmallText, LinkHrefText, ExploreMoreText, TinyText }
+export { Heading, FooterLinkText, SubHeading, NormalText, ErrorText, SmallText, LinkHrefText, ExploreMoreText, TinyText }

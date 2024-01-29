@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Logo from '../globals/Logo';
 import Container from '../globals/Container';
 import { useFirebase } from '../../hooks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +10,7 @@ import LanguageSelect from '../HeaderComponents/LanguageSelect';
 import { LinkText } from '../LinkText';
 import useFirestoreDB from '../../hooks/useFirestoreDB';
 import SearchComponent from '../../pages/SearchPage/SearchComponent';
+import Logo from '../Logo';
 
 /**
  * This Component is rendered in every page
