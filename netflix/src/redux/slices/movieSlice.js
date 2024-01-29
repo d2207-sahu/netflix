@@ -2,10 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const intialMovieState = {
   browse: null,
-  nowPlayingMovies: null,
-  popularMovies: null,
-  topRatedMovies: null,
-  upcomingMovies: null,
   loadingCarousel: false,
   homeTeaserVideoData: null,
   addMovieGenres: null,
@@ -27,21 +23,6 @@ const movieSlice = createSlice({
     toggleLoadingCarousel: (state, action) => {
       state.loadingCarousel = action.payload;
       return state;
-    },
-    addHomeMoviesData: (state, action) => {
-      state.homeMoviesData = action.payload;
-    },
-    addNowPlayingMovies: (state, action) => {
-      state.nowPlayingMovies = action.payload;
-    },
-    addTopRatedMovies: (state, action) => {
-      state.topRatedMovies = action.payload;
-    },
-    addPopularMovies: (state, action) => {
-      state.popularMovies = action.payload;
-    },
-    addUpcomingMovies: (state, action) => {
-      state.upcomingMovies = action.payload;
     },
     addHomeTeaserVideoID: (state, action) => {
       state.homeTeaserVideoData = action.payload;
@@ -66,14 +47,9 @@ const movieSlice = createSlice({
 
 export const {
   addBrowseData,
-  addNowPlayingMovies,
-  addTopRatedMovies,
-  addPopularMovies,
-  addHomeMoviesData,
-  addUpcomingMovies,
-  addHomeTeaserVideoID,
   addAllMovieGenres,
   updateModalMovieInfo,
+  addHomeTeaserVideoID,
   updateModalMovieSimilars,
   updateModalMovieCredits,
   updateModalMovieVideos,
