@@ -6,7 +6,7 @@ import BottomNavBar from '../../components/layouts/BottomNavBar'
 import Footer from '../../components/layouts/Footer'
 import MovieInfoModal from '../../modals/MovieInfoModal'
 import MovieModal from '../../modals/MovieModal'
-import useBrowse from '../../hooks/useCarouselMoviesList'
+import useBrowse from '../../hooks/useBrowse'
 
 const HomePage = () => {
   useBrowse()

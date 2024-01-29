@@ -38,6 +38,7 @@ const MoviesCarouselContainer = () => {
           browse.carousel.map((carouselData) => {
             return carouselData.ui_data && (
               <MoviesCarousel
+                key={carouselData.title}
                 title={carouselData.title}
                 movieCards={carouselData.data}
               />
