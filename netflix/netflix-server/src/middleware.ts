@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 
 // the list of all allowed origins
 const allowedOrigins = [
@@ -7,17 +7,17 @@ const allowedOrigins = [
   'https://netflix-divyanshu.vercel.app'
 ];
 
-export function middleware(req) {
+export function middleware(req: NextRequest) {
   // retrieve the current response
   const res = NextResponse.next();
 
   // retrieve the HTTP "Origin" header
   // from the incoming request
-  req.headers.get('origin');
+  const origin = req.headers.get('origin');
 
   // if the origin is an allowed one,
   // add it to the 'Access-Control-Allow-Origin' header
-  if (allowedOrigins.includes(origin)) {
+  if (origin && allowedOrigins.includes(origin)) {
     res.headers.append('Access-Control-Allow-Origin', origin);
   }
 
