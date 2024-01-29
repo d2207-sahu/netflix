@@ -48,7 +48,6 @@ const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
                 {showHandles && (
                     <RightHandle
                         onClick={() => {
-                            console.log(sliderIndex, maxCountHandle);
                             if (!sliderIndex) setSliderIndex(0);
                             if (sliderIndex < maxCountHandle + 1) return;
                             setSliderIndex((prev) => prev - 1);

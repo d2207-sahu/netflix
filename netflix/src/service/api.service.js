@@ -3,9 +3,8 @@ import { BACKEND_API_URL, BASE_API_URL, TMDB_API_KEY } from '../config/constants
 const headers = {
   'Content-Type': 'application/json',
   accept: 'application/json',
-  // 'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  // 'Access-Control-Allow-Credentials': 'true',
+  'Access-Control-Allow-Credentials': 'include',
   Authorization: `Bearer ${TMDB_API_KEY}`
 };
 
@@ -30,7 +29,7 @@ export async function baseFetchAPI(requestType, url, body, successCallback, erro
       headers['Content-Type'] = 'application/json';
     }
 
-    if (requestType === 'GET' || requestType === 'DELETE') {
+    if (requestType === 'DELETE') {
       delete headers['Content-Type'];
     }
 
@@ -78,22 +77,16 @@ export async function basePublicFetchAPI(requestType, url, body, successCallback
       headers['Content-Type'] = 'application/json';
     }
 
-    if (requestType === 'GET' || requestType === 'DELETE') {
-      delete headers['Content-Type'];
-    }
-
     const fetchOptions = {
-      method: requestType
+      method: requestType,
     };
 
     if (body && requestType !== 'GET') {
       fetchOptions.body = JSON.stringify(body);
     }
-    console.log('HAHA');
 
     const response = await fetch(BACKEND_API_URL + url, fetchOptions);
-    console.log('HAHA', response);
-
+    console.log(response);
     if (response.ok) {
       const responseData = await response.json();
       return successCallback(responseData);

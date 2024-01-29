@@ -20,17 +20,15 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 - Browse (After Auth)
     - Header
         - Main Movie
-        - ALl movie carousels
-
+        - All movie carousels
 
 ## TODOs
-1. Suspense
 3. Clicking on the netflix logo clears the search
-7. Make the DIalog openning to be full screen
-9. Search not working -> CORS URL is not allowing to work
+4. Add Genre
+7. Make the Dialog openning to be full screen
 10. Lazy Loading the Owl carousel
 11. Create own library of iamge laoding https://github.com/mbrevda/react-image/blob/master/dev/app.tsx
-12. Make the timestamp sort of recently vierwwndand mylist others
+12. Make the timestamp sort of recently view and mylist others
 
 ## Error Handling
 1. react global Error Boundary
