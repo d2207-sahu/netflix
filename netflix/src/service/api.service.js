@@ -83,17 +83,16 @@ export async function basePublicFetchAPI(requestType, url, body, successCallback
     }
 
     const fetchOptions = {
-      method: requestType
+      method: requestType,
+      mode: 'no-cors'
     };
 
     if (body && requestType !== 'GET') {
       fetchOptions.body = JSON.stringify(body);
     }
-    console.log('HAHA');
 
     const response = await fetch(BACKEND_API_URL + url, fetchOptions);
-    console.log('HAHA', response);
-
+    console.log(response);
     if (response.ok) {
       const responseData = await response.json();
       return successCallback(responseData);

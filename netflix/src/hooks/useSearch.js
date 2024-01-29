@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { baseFetchAPI } from '../service/api.service';
+import { basePublicFetchAPI } from '../service/api.service';
 import { useEffect, useState } from 'react';
-import { SEARCH_API_URL } from '../config/constants';
 import { updateSearchResultData } from '../redux/slices/searchSlice';
 import useFirestoreDB from './useFirestoreDB';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
@@ -16,9 +15,9 @@ const useSearch = () => {
   const [pending, setPending] = useState(false);
 
   const callSearchAPI = async (page) => {
-    await baseFetchAPI(
+    await basePublicFetchAPI(
       'GET',
-      SEARCH_API_URL + `?query=${searchReduxText}&page=${page}`,
+      `search?query=${searchReduxText}&page=${page}`,
       null,
       (data) => {
         console.log(data.results);

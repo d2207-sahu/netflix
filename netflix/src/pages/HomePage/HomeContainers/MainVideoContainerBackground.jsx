@@ -2,19 +2,13 @@ import React from 'react';
 import useMobile from '../../../hooks/useMobile';
 import MovieMobileHomeContainer from './MovieMobileHomeContainer';
 import MovieDesktopHomeContainer from './MovieDesktopHomeContainer';
+import { useSelector } from 'react-redux';
 
-const MainVideoContainerBackground = ({ movieListData }) => {
+const MainVideoContainerBackground = () => {
   const { isMobile } = useMobile();
-
-  return movieListData ? (
-    isMobile ? (
-      <MovieMobileHomeContainer movieDetailData={movieListData[0]} />
-    ) : (
-      <MovieDesktopHomeContainer movies={movieListData} />
-    )
-  ) : (
-    <div className="mt-[25%] mb-5 w-screen rounded-xl min-h-[50%] block sm:hidden"></div>
-  );
+  const { browse } = useSelector(state => state.movies);
+  if (!browse || !(browse?.banner)) return <></>;
+  return isMobile ? <MovieMobileHomeContainer /> : <MovieDesktopHomeContainer />;
 };
 
 export default MainVideoContainerBackground;

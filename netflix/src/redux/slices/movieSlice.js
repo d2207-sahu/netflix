@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const intialMovieState = {
+  browse: null,
   nowPlayingMovies: null,
   popularMovies: null,
   topRatedMovies: null,
@@ -20,6 +21,9 @@ const movieSlice = createSlice({
   name: 'movies',
   initialState: intialMovieState,
   reducers: {
+    addBrowseData: (state, action) => {
+      state.browse = action.payload;
+    },
     toggleLoadingCarousel: (state, action) => {
       state.loadingCarousel = action.payload;
       return state;
@@ -61,6 +65,7 @@ const movieSlice = createSlice({
 });
 
 export const {
+  addBrowseData,
   addNowPlayingMovies,
   addTopRatedMovies,
   addPopularMovies,
