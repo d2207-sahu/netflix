@@ -1,14 +1,14 @@
 import React from 'react'
-import useMoviesMyList from '../../hooks/useMoviesMyList'
 import MovieCardComponent from '../../components/MovieCard';
 import GridContainer from '../../components/GridContainer';
 import { Heading } from '../../components/globals';
 import Header from '../../components/layouts/Header';
 import { useLanguage } from '../../context/LanguageContext';
 import ShimmerCarouselGrid from '../../components/Shimmer/ShimmerCarouselGrid';
+import useFirebaseMovieList from '../../hooks/useFirebaseMovieList';
 
 const MyListPage = () => {
-    const {user, pending} = useMoviesMyList();
+    const { user, pending } = useFirebaseMovieList({ keyword: "saved" });
     const { languageData } = useLanguage()
     return (
         <>
