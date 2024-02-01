@@ -17,14 +17,6 @@ const MoviesCarouselContainer = () => {
   */
   useEffect(() => { }, [user?.saved, user?.played, user?.searched]);
 
-  // const movieCarouselsData = [
-  //   { show: nowPlayingMovies, title: !languageData ? '' : languageData?.nowPlaying, movieData: nowPlayingMovies },
-  //   { show: user?.played.length > 0, title: !languageData ? '' : languageData?.recentlyPlayedTitle + user?.name, movieData: user?.played.map((e) => e.videoData) },
-  //   { show: popularMovies, title: !languageData ? '' : languageData?.Popular, movieData: popularMovies },
-  //   { show: topRatedMovies, title: !languageData ? '' : languageData?.topRated, movieData: topRatedMovies },
-  //   { show: upcomingMovies, title: !languageData ? '' : languageData?.upcoming, movieData: upcomingMovies },
-  //   { show: user?.saved.length > 0, title: !languageData ? '' : languageData?.mylist, movieData: user?.saved.map((e) => e.videoData) },
-  // ];
   if (!browse) return <></>;
 
   return (
@@ -36,13 +28,21 @@ const MoviesCarouselContainer = () => {
           </div>
         ) : (
           browse.carousel.map((carouselData) => {
+            if (carouselData.keyword && carouselData.firebase_data) {
+              const carouseMovieData = user && user[carouselData.keyword] && user[carouselData.keyword].map((e) => e.videoData);
+              return (carouseMovieData.length > 0) && <MoviesCarousel
+                key={carouselData.title}
+                title={carouselData.title?.replace("${user}", user?.name)}
+                movieCards={carouseMovieData}
+              />;
+            }
             return carouselData.ui_data && (
               <MoviesCarousel
                 key={carouselData.title}
                 title={carouselData.title}
                 movieCards={carouselData.data}
               />
-            )
+            );
           })
         )}
       </div>
