@@ -40,28 +40,22 @@ const userSlice = createSlice({
       state.searched = [];
       return state;
     },
-    updateSavedMovies: (state, action) => {
-      state.saved = action.payload;
+    updateMoviesData: (state, action) => {
+      console.log(action.payload.keyword, action.payload.movieList);
+      if (action.payload.keyword) state[action.payload.keyword] = action.payload.movieList;
       return state;
     },
-    addToSavedMovies: (state, action) => {
-      state.saved = [...state.saved, {videoData: action.payload}];
-      return state;
-    },
-    updateSearchedMovies: (state, action) => {
-      state.searched = action.payload;
+    addMoviesData: (state, action) => {
+      console.log(action.payload.keyword, action.payload.movie);
+      if (action.payload.keyword)
+        state[action.payload.keyword] = [
+          ...state[action.payload.keyword],
+          { videoData: action.payload.movie }
+        ];
       return state;
     },
     addToSearchedMovies: (state, action) => {
-      state.searched = [...state.searched, {videoData: action.payload}];
-      return state;
-    },
-    updatePlayedMovies: (state, action) => {
-      state.played = action.payload;
-      return state;
-    },
-    addToPlayedMovies: (state, action) => {
-      state.saved = [...state.played, {videoData: action.payload}];
+      state.searched = [...state.searched, { videoData: action.payload }];
       return state;
     },
     // eslint-disable-next-line no-unused-vars
@@ -73,11 +67,8 @@ const userSlice = createSlice({
 
 export const {
   addAccount,
-  updateSavedMovies,
-  addToSavedMovies,
-  updatePlayedMovies,
-  addToPlayedMovies,
-  updateSearchedMovies,
+  addMoviesData,
+  updateMoviesData,
   addToSearchedMovies,
   removeAccount,
   updateName,
