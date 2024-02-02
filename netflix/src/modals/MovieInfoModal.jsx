@@ -1,52 +1,39 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { IconButton, NormalText, SmallText, SubHeading } from '../components/globals'
 import { RxCross2 } from "react-icons/rx";
 import { useMovieData } from '../hooks/useMovieData'
 import GridContainer from '../components/GridContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateModalMovieSelectedID } from '../redux/slices/appSlice'
+import { closeGlobalModal, openGlobalModal, updateModalMovieSelectedID } from '../redux/slices/appSlice'
 import { TMDB_API_IMAGE_CDN_URL, TRAILER } from '../config/constants'
 import GenreTags from '../components/MovieComponents/GenreTags';
 import RatingTag from '../components/MovieComponents/RatingTag';
-import useFirestoreDB from '../hooks/useFirestoreDB';
 import { useLanguage } from '../context/LanguageContext';
 import PlayButton from '../components/PlayButton';
 import ShimmerLoading from '../components/Shimmer/ShimmerLoading';
 import AddToMyListButton from '../components/AddToMyListButton';
 import MovieTitle from '../components/MovieComponents/MovieTitle';
 import MovieDescription from '../components/MovieComponents/MovieDescription';
+import Modal from './Modal';
+import useFirebaseMovieList from '../hooks/useFirebaseMovieList';
 
 // when this modal opens, means have to update the url, and also let it read the url also
 const MovieInfoModal = () => {
     const movideDetail = useSelector(store => store.app.modalMovieSelectedID);
-    const { addRecentlyPlayed } = useFirestoreDB();
+    const { saveMovieToList: addRecentlyPlayed } = useFirebaseMovieList({ keyword: "played" });
     const dispatch = useDispatch();
-    const dialogRef = useRef();
     const closeModal = () => {
-        if (dialogRef.current) {
-            dialogRef.current.close();
-            dispatch(updateModalMovieSelectedID(null));
-        }
+
+        dispatch(updateModalMovieSelectedID(null));
+        dispatch(closeGlobalModal());
     }
     useEffect(() => {
-        if (dialogRef?.current) {
-            dialogRef?.current.addEventListener("click", e => {
-                const dialogDimensions = dialogRef?.current.getBoundingClientRect()
-                if (
-                    e.clientX < dialogDimensions.left ||
-                    e.clientX > dialogDimensions.right ||
-                    e.clientY < dialogDimensions.top ||
-                    e.clientY > dialogDimensions.bottom
-                ) {
-                    closeModal()
-                }
-            });
-            if ((movideDetail?.id))
-                dialogRef.current.showModal();
-        }
+
+        if ((movideDetail?.id))
+            dispatch(openGlobalModal())
     }, [(movideDetail)]);
 
-    // SOmetimes the API fails, have to call it again... Give the retry button to the user.
+    // Sometimes the API fails, have to call it again... Give the retry button to the user.
     const { info,
         videos,
         credits,
@@ -60,19 +47,24 @@ const MovieInfoModal = () => {
     if (!(movideDetail?.id)) return <></>;
     const video = findTrailerVideo ?? videos[0];
     return (
-        <dialog ref={dialogRef} id="MODAL" className={`shadow-md ${pending ? 'justify-center ' : ''} sm:max-h-[100%] sm:max-w-[100%] flex flex-col justify-start  m-0 sm:m-auto outline-none bg-[#181818] rounded-2xl w-[100vw] sm:w-[70%] min-w-[60%]`} >
-            {pending ? <ShimmerLoading /> : <>
-                <VideoModalSection videos={videos} addRecentlyPlayed={addRecentlyPlayed} info={info} videoID={video?.key} closeModal={closeModal} movieDetail={movideDetail} />
-                <div className='flex flex-col px-5 sm:px-16  py-4'>
-                    {info && <InformationSection info={info} />}
-                    {similars && <MoreLikeThisSection similars={similars} />}
-                    {videos.length > 0 && <TrailersAndMoreSection videos={videos ?? []} />}
-                    {(credits) && <AboutMovieSection title={info ? info.title : ""} credits={credits} />}
-                    {/* TODO later on can have the collection thing */}
-                </div>
-            </>
+        <Modal className={`shadow-md ${pending ? 'justify-center ' : ''} sm:max-h-[100%] sm:max-w-[100%] flex flex-col justify-start  m-0 sm:m-auto outline-none bg-[#181818] rounded-2xl w-[100vw] sm:w-[70%] min-w-[60%]`} key={"MovieInfoModal"}>
+            {!(movideDetail?.id) ?
+                <></> :
+                pending ?
+                    <ShimmerLoading /> :
+                    <>
+                        <VideoModalSection videos={videos} addRecentlyPlayed={addRecentlyPlayed} info={info} videoID={video?.key} closeModal={closeModal} movieDetail={movideDetail} />
+                        <div className='flex flex-col px-5 py-4 sm:px-16'>
+                            {info && <InformationSection info={info} />}
+                            {similars && <MoreLikeThisSection similars={similars} />}
+                            {videos.length > 0 && <TrailersAndMoreSection videos={videos ?? []} />}
+                            {(credits) && <AboutMovieSection title={info ? info.title : ""} credits={credits} />}
+                            {/* TODO later on can have the collection thing */}
+                        </div>
+                    </>
             }
-        </dialog>
+        </Modal>
+
     )
 }
 
@@ -148,7 +140,7 @@ const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlaye
                         addRecentlyPlayed(info);
                         closeModal();
                     }}
-                    videoID={   
+                    videoID={
                         () => {
                             let videoID = videos.find((video) =>
                                 video.type === "Behind the Scenes"
@@ -169,7 +161,7 @@ const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlaye
 const InformationSection = ({ info }) => {
     const { title, overview, tagline, original_language, adult, genre_ids, vote_count, vote_average, release_date, runtime } = info
     return <div className='flex justify-between w-[100%]'>
-        <div className='flex flex-col justify-start items-start'>
+        <div className='flex flex-col items-start justify-start'>
             <div className='w-[68%] flex'>
                 <ReleaseDate release_date={release_date} />
                 <RuntimeTag runtime={runtime} />
@@ -178,7 +170,7 @@ const InformationSection = ({ info }) => {
                 <AdultTag adult={adult} />
                 <LangaugeTag original_language={original_language} />
             </div>
-            <MovieTitle title={title} className={"hidden sm:block"}  />
+            <MovieTitle title={title} className={"hidden sm:block"} />
             <MovieDescription desc={tagline} className={"w-[60%] text-pretty italic"} />
             <SmallText className={"w-[50%]"} >{overview} </SmallText>
         </div>
@@ -194,7 +186,7 @@ const MoreLikeThisSection = ({ similars }) => {
         return <div key={movieData.id} className='aspect-square cursor-pointer h-max bg-[#2f2f2f] m-4 rounded-[0.5rem]'>
             <img className='rounded-t-[1rem] w-[100%]' loading="lazy" src={`${TMDB_API_IMAGE_CDN_URL + 'w200'}${movieData.poster_path}`} alt={`Video: ${movieData.title}`} />
             <div className='flex flex-col py-8 px-4 gap-4 h-[-webkit-fill-available] mb-4 overflow-clip'>
-                <div className='flex justify-between items-stretch'>
+                <div className='flex items-stretch justify-between'>
                     <AdultTag />
                     <AddToMyListButton />
                 </div>
@@ -202,7 +194,7 @@ const MoreLikeThisSection = ({ similars }) => {
             </div>
         </div>;
     })
-    return <GridSectionContainer  title={!languageData ? '' : languageData?.moreLikeThis} entities={SimilarMovies} />;
+    return <GridSectionContainer title={!languageData ? '' : languageData?.moreLikeThis} entities={SimilarMovies} />;
 
 }
 
@@ -227,7 +219,7 @@ const TrailersAndMoreSection = ({ videos }) => {
                 if (videoType === "Clip")
                     return;
                 return (
-                    <div key={videoData.key} className='aspect-video p-2 cursor-pointer flex flex-col justify-center items-start'>
+                    <div key={videoData.key} className='flex flex-col items-start justify-center p-2 cursor-pointer aspect-video'>
                         <img loading="lazy" className='rounded-t-[1rem]' src={`https://img.youtube.com/vi/${videoData.key}/mqdefault.jpg`} alt={`Video: ${videoData.name}`} />
                         <NormalText className='p-2'>{videoType + ": " + trimmedText} </NormalText>
                     </div>
@@ -245,7 +237,7 @@ const GridSectionContainer = ({ title, entities, element }) => {
         <SubHeading>
             {title}
         </SubHeading>
-        <GridContainer $margin={'4rem 0'} $rowGap={"1rem"} $element={element ?? '3'}>
+        <GridContainer $margin={'1rem 0'} $rowGap={"1rem"} $element={element ?? '4'}>
             {entities}
         </GridContainer>
     </div>;
