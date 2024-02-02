@@ -40,6 +40,7 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 2. Iframe protection -> X-Frame-Options in react application + CSP headers
 2. React XSS attack, href attack + props attack not escaped.
 3. Already Handled CSP Headers
+4. create Image uURL creator with XSS attack helping
 # Project Title: 📛
 Netflix
 [https://netflix-divyanshu.vercel.app/browse](🔗)
