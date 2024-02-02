@@ -6,7 +6,7 @@ const Container = styled.div`
     z-index: ${(props) => props.$z_index};
     justify-content: ${(props) => props.$justifyContent};
     align-items: center;
-    background-color: ${(props) => props.$background_transparent ? 'black' : ''} ;
+    /* background-color: ${(props) => props.$background_transparent ? 'black' : ''} ; */
     align-content: center;
     width: -webkit-fill-available;
     top: ${(props) => props.$top};

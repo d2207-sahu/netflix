@@ -2,7 +2,7 @@
 https://netflix-divyanshu.vercel.app/browse
 
 ## Deployment
-- main branch is used to deploy to Firebase
+- main branch is used to deploy to Vercel
 - Github Actions - github-action-735118034
 https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
 - Manage secrets
@@ -23,13 +23,11 @@ https://github.com/d2207-sahu/netflix/settings/secrets
         - All movie carousels
 
 ## TODOs
-3. Clicking on the netflix logo clears the search
 4. Add Genre
 7. Make the Dialog openning to be full screen
-10. Lazy Loading the Owl carousel
-11. Create own library of iamge laoding https://github.com/mbrevda/react-image/blob/master/dev/app.tsx
 12. Make the timestamp sort of recently view and mylist others
-
+13. try to do the Full backend specific react thing
+14. maKE THE BASE api AND KEY INDEPEEDNECE REMOVE FROm Fe
 ## Error Handling
 1. react global Error Boundary
 2. react Component Wise Error Boundary
@@ -42,6 +40,7 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 2. Iframe protection -> X-Frame-Options in react application + CSP headers
 2. React XSS attack, href attack + props attack not escaped.
 3. Already Handled CSP Headers
+4. create Image uURL creator with XSS attack helping
 # Project Title: 📛
 Netflix
 [https://netflix-divyanshu.vercel.app/browse](🔗)
