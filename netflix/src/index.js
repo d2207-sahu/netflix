@@ -9,13 +9,14 @@ import { LanguageProvider } from './context/LanguageContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
+    <>
     <Provider store={store}>
       <LanguageProvider>
         <RoutingComponent />
       </LanguageProvider>
     </Provider>
     <SpeedInsights />
-    <Analytics />
-  </React.StrictMode>
+    <Analytics /></>
+  // </React.StrictMode>
 );

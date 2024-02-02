@@ -7,6 +7,7 @@ import { LeftHandle, RightHandle } from '../../components/globals/SliderHandlers
 import { Slider } from '../../components/globals/Slider';
 
 const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
+    console.log("MOVIECARUOSUEL", title)
     const [sliderIndex, setSliderIndex] = useState(0);
     const [onMouseHover, setMouseHover] = useState(false);
     if (!movieCards) return <Heading>{noData}</Heading>;
@@ -30,7 +31,7 @@ const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
             <SliderContainer>
                 {showHandles && (
                     <LeftHandle
-                        $dontShow={sliderIndex < 0 ? 'flex' : 'hidden'}
+                        $dontShow={sliderIndex < 0 ? '1' : '0'}
                         onClick={() => {
                             setSliderIndex((prev) => {
                                 if (prev < 0) return prev + 1;
@@ -47,6 +48,7 @@ const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
                 </Slider>
                 {showHandles && (
                     <RightHandle
+                        $dontShow={sliderIndex > maxCountHandle ? '1' : '0'}
                         onClick={() => {
                             if (!sliderIndex) setSliderIndex(0);
                             if (sliderIndex < maxCountHandle + 1) return;

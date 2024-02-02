@@ -5,12 +5,12 @@ import { changeLanguage } from "../../redux/slices/configSlice";
 import { Languages } from "../../config/constants";
 import { FiGlobe } from "react-icons/fi";
 
-const LanguageSelect = () => {
+const LanguageSelect = ({ show = false }) => {
     const config = useSelector(((store) => store.config))
     const dispatch = useDispatch();
 
     return <div className="items-center justify-center hidden sm:flex">
-        <FiGlobe size={24}></FiGlobe>
+        {show && <FiGlobe size={24}></FiGlobe>}
         <LanguageSelectContainer
             className="hidden sm:block"
             value={(config.language)}

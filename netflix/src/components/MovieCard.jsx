@@ -13,8 +13,8 @@ import usePlay from '../hooks/usePlay';
 
 const MovieCard = styled.div`
     cursor: pointer;
-    flex: 0 0 20%;
-    min-width: 20%;
+    flex: 0 0 23%;
+    min-width: 200px;
     min-height: fit-content;
     background-color: #181818;
     aspect-ratio: 16/9;

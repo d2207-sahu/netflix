@@ -13,7 +13,7 @@ const MovieMobileHomeContainer = () => {
     });
     if (!movieData) return <></>
     return (
-        <div className='mt-[25%] mb-5 w-screen rounded-xl  min-h-[50%]  block sm:hidden'>
+        <div className='mt-[25%] cursor-pointer mb-5 w-screen rounded-xl  min-h-[50%]  block sm:hidden'>
             <div className='flex flex-col justify-end gap-5 m-10 border-2 border-white border-solid rounded-xl '>
                 <img
                     onClick={onPlayClick}

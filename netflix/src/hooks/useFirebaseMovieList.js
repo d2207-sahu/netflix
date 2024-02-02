@@ -19,6 +19,7 @@ const useFirebaseMovieList = ({ keyword }) => {
    * @returns {Promise<void>} A Promise that resolves once the movie list is updated.
    */
   const addMovieToList = async () => {
+    console.log(addMovieToList)
     if (user && user?.uid && user?.name)
       try {
         setPending(true);
@@ -72,8 +73,12 @@ const useFirebaseMovieList = ({ keyword }) => {
   // This will only at the start of the hook, only if the saved is empty
   useEffect(() => {
     console.log('HELLO', keyword);
-    if (list?.length == 0) addMovieToList();
-  }, [user?.uid]);
+    if (list?.length == 0) {
+      console.log('HELLO`1', keyword);
+      addMovieToList();
+    }
+    console.log(user)
+  }, [user]);
 
   return { list, pending, saveMovieToList, user };
 };

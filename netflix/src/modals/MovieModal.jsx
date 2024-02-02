@@ -38,7 +38,7 @@ const MovieModal = () => {
     if (!videoID) return <></>;
 
     return (
-        <Modal key={"MovieModal"}>
+        <Modal key={"MovieModal"} className={'min-h-screen min-w-screen'}>
             <div className='p-0 m-0 relative h-[100%] w-[100%] z-50' >
                 <iframe
                     ref={youtubeRef}
@@ -48,8 +48,8 @@ const MovieModal = () => {
                     allow="accelerometer; autoplay; encrypted-media; gyroscope;"
                     allowFullScreen
                 ></iframe>
-                <div className='absolute top-0 flex flex-col items-stretch justify-between bg-black h-min'>
-                    <FiSkipBack size={'6rem'} color='#fff' className='hover:scale-2 hover:bg-black rounded-[2rem] p-4' onClick={() => {
+                <div className='absolute top-0 flex flex-col items-stretch justify-between h-min'>
+                    <FiSkipBack size={'6rem'} color='#fff' className='hover:scale-2 hover:bg-black cursor-pointer bg-gray-900 rounded-[2rem] p-4 m-4' onClick={() => {
                         closeModal();
                     }}></FiSkipBack>
                 </div>

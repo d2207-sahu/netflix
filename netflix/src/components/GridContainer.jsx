@@ -8,6 +8,10 @@ const GridContainer = styled.div`
     position: relative;
     grid-template-columns: ${(props => ` repeat(${props.$element ?? 5}, 1fr)`)};
     row-gap: ${(props) => props.$rowGap ?? '4.5vw'};
+    
+    @media (max-width: 640px) {
+        grid-template-columns: ${(props => ` repeat(${props.$element ?? 2}, 1fr)`)};
+    }
 `;
 
 export default GridContainer
