@@ -48,6 +48,13 @@ const GlobalStyle = createGlobalStyle`
         background-position: -200% 0;
       }
     }
+    .unselectable {
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 `;
 
 export const size = {

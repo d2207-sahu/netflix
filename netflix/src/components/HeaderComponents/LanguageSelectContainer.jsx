@@ -15,6 +15,11 @@ const LanguageSelectContainer = styled.select`
     line-height: 1.25rem;
     appearance: none;
     background: transparent;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 `;
 
 const LanguageOption = styled.option`

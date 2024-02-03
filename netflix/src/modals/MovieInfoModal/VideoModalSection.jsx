@@ -1,12 +1,9 @@
 import React from 'react'
 import AddToMyListButton from '../../components/AddToMyListButton';
-import MovieTitle from '../../components/MovieComponents/MovieTitle';
 import PlayButton from '../../components/PlayButton';
 import ModalCloseButton from '../../components/ModalCloseButton';
 
-
 const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlayed, movieDetail }) => {
-
     return (<div className='sm:w-[100%] relative sm:aspect-video'>
         <iframe
             id={videoID}
@@ -41,7 +38,6 @@ const VideoModalSection = ({ videos, videoID, closeModal, info, addRecentlyPlaye
         <div className=' flex sm:hidden flex-col w-[100%] top-0 h-[100%] justify-between items-stretch bg-gradient-to-t from-[#181818]'>
             {/* <div className='w-[100%] flex pt-8 px-8 justify-end items-end '> <ModalCloseButton onClick={() => closeModal()} /></div> */}
             <div className='w-[100%] flex flex-col p-5 gap-4 '>
-                <MovieTitle title={info?.title} className={"block"} />
                 <PlayButton
                     onAfterClick={() => {
                         addRecentlyPlayed(info);

@@ -23,7 +23,7 @@ const AboutMovieSection = ({ title, credits }) => {
 
     const CerditsSectionMemo = useMemo(() => {
         const CreditsData = {};
-        credits.forEach(item => {
+        credits?.cast.forEach(item => {
             const type = item.known_for_department;
             if (!CreditsData[type]) {
                 CreditsData[type] = [item];
@@ -44,7 +44,7 @@ const AboutMovieSection = ({ title, credits }) => {
             CeditSections = CeditSections.concat(elements);
         });
         return CeditSections
-    }, [credits]);
+    }, [credits?.cast]);
     return <div className='flex flex-col w-[100%]'>
         <SubHeading>{!languageData ? '' : languageData?.about}{title}</SubHeading>
         {CerditsSectionMemo}

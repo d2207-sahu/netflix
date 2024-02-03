@@ -11,7 +11,7 @@ const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
     const [onMouseHover, setMouseHover] = useState(false);
     if (!movieCards) return <Heading>{noData}</Heading>;
     const showHandles = movieCards?.length > 5;
-    const maxCountHandle = -(movieCards?.length / 5);
+    const maxCountHandle = -(movieCards?.length / 6);
     return (
         <div
             onMouseOver={() => {
@@ -30,7 +30,7 @@ const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
             <SliderContainer>
                 {showHandles && (
                     <LeftHandle
-                        $dontShow={sliderIndex < 0 ? 'flex' : 'hidden'}
+                        $dontShow={sliderIndex < 0 ? '1' : '0'}
                         onClick={() => {
                             setSliderIndex((prev) => {
                                 if (prev < 0) return prev + 1;
@@ -42,11 +42,12 @@ const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
                 )}
                 <Slider $sliderIndex={`${sliderIndex * 100}%`}>
                     {movieCards?.map((movieDetail) => (
-                        <MovieCardComponent key={movieDetail?.id} movieDetail={movieDetail} />
+                        <MovieCardComponent key={movieDetail?.title + movieDetail?.id} movieDetail={movieDetail} />
                     ))}
                 </Slider>
                 {showHandles && (
                     <RightHandle
+                        $dontShow={sliderIndex > maxCountHandle ? '1' : '0'}
                         onClick={() => {
                             if (!sliderIndex) setSliderIndex(0);
                             if (sliderIndex < maxCountHandle + 1) return;

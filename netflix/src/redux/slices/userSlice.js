@@ -41,12 +41,10 @@ const userSlice = createSlice({
       return state;
     },
     updateMoviesData: (state, action) => {
-      console.log(action.payload.keyword, action.payload.movieList);
       if (action.payload.keyword) state[action.payload.keyword] = action.payload.movieList;
       return state;
     },
     addMoviesData: (state, action) => {
-      console.log(action.payload.keyword, action.payload.movie);
       if (action.payload.keyword)
         state[action.payload.keyword] = [
           ...state[action.payload.keyword],
