@@ -1,5 +1,5 @@
-import { baseFetchAPI } from '../service/api.service';
-import { MOVIE_DATA_VIDEO } from '../config/constants';
+import { MOVIE_DATA } from '../config/constants';
+import { basePublicFetchAPI } from '../service/api.service';
 import {  useState } from 'react';
 
 // Called once at starting, means once executed
@@ -9,9 +9,9 @@ const useMovieVideos = ({ movieID }) => {
 
   const getMovieVideos = async () => {
     setPending(true);
-    return await baseFetchAPI(
+    return await basePublicFetchAPI(
       'GET',
-      MOVIE_DATA_VIDEO.replace('{movie_id}', movieID),
+      `${MOVIE_DATA}${movieID}`,
       null,
       async (data) => {
         setVideos(data?.results);

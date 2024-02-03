@@ -43,7 +43,7 @@ const MoviesCarouselContainer = () => {
 };
 
 const FirebaseMovieCarousel = ({ keyword, title }) => {
-  console.log(keyword)
+  // console.log(keyword)
   const { pending, user } = useFirebaseMovieList({ keyword: keyword });
 
   /**

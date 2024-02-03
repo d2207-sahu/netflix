@@ -1,12 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { baseFetchAPI, basePublicFetchAPI } from '../service/api.service';
+import { basePublicFetchAPI } from '../service/api.service';
 import {
   BACKEND_API_URL_MOVIES_INFO,
-  // MOVIE_DATA,
-  // MOVIE_DATA_CREDIT,
-  // MOVIE_DATA_RECOMMENDATION as MOVIE_DATA_SIMILAR,
-  MOVIE_DATA_VIDEO,
-  TRAILER
+  TRAILER,
+  MOVIE_DATA
 } from '../config/constants';
 import { useEffect, useState } from 'react';
 import {
@@ -24,9 +21,9 @@ const useMovieData = ({ movieID, isHome = false }) => {
   const homeTeaserVideoData = useSelector((store) => store.movies?.homeTeaserVideoData);
 
   const getMovieVideos = async () => {
-    return await baseFetchAPI(
+    return await basePublicFetchAPI(
       'GET',
-      MOVIE_DATA_VIDEO.replace('{movie_id}', movieID),
+      `${MOVIE_DATA}${movieID}`,
       null,
       async (data) => {
         if (isHome) {

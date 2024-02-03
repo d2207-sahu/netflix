@@ -21,9 +21,9 @@ const InformationSection = ({ info }) => {
                 <MovieAdultTag adult={adult} />
                 <MovieLanguageTag original_language={original_language} />
             </div>
-            <MovieTitle title={title} className={"hidden sm:block"} />
-            <MovieDescription desc={tagline} className={"w-[60%] text-pretty italic"} />
-            <SmallText className={"w-[50%]"} >{overview} </SmallText>
+            <MovieTitle title={title} className={" sm:block"} />
+            <MovieDescription desc={tagline} className={"min-w-[90%] w-[90%] sm:w-[60%] text-pretty italic"} />
+            <SmallText className={"sm:w-[50%] min-w-[90%] w-[90%] "} >{overview} </SmallText>
         </div>
 
     </div>;

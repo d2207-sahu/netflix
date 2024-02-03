@@ -15,7 +15,7 @@ const Footer = () => {
                         href={footerConfig.ctaLink}>
                         {footerConfig.ctaLinkText}
                     </a></NormalText>
-                <div className="sm:flex mb-10 justify-between  flex-col flex-wrap w-[100%]">
+                <div className="sm:flex mb-10 justify-between sm:flex-row flex-col flex-wrap w-[100%]">
                     {footerConfig.footerLink.map((e) => {
                         return <a
                             key={e.text}

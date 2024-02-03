@@ -38,7 +38,7 @@ const MovieInfoModal = () => {
     if (!(movideDetail?.id)) return <></>;
     const video = findTrailerVideo ?? modalMovieInfo?.videos[0];
     return (
-        <Modal className={`shadow-md ${pending ? 'justify-center ' : ''} sm:max-h-[100%] sm:max-w-[100%] flex flex-col justify-start  m-0 sm:m-auto outline-none bg-[#181818] rounded-2xl w-[100vw] sm:w-[70%] min-w-[60%]`} key={"MovieInfoModal"}>
+        <Modal className={`min-w-[100%] sm:min-w-[70%] min-h-[100%] shadow-md ${pending ? 'justify-center ' : ''} sm:max-h-[100%] sm:max-w-[100%] flex flex-col justify-start  m-0 sm:m-auto outline-none bg-[#181818] rounded-2xl w-[100vw] sm:w-[70%] w-100%`} key={"MovieInfoModal"}>
             {
                 pending ?
                     <ShimmerLoading /> :

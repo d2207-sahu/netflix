@@ -7,12 +7,11 @@ import { LeftHandle, RightHandle } from '../../components/globals/SliderHandlers
 import { Slider } from '../../components/globals/Slider';
 
 const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
-    console.log("MOVIECARUOSUEL", title)
     const [sliderIndex, setSliderIndex] = useState(0);
     const [onMouseHover, setMouseHover] = useState(false);
     if (!movieCards) return <Heading>{noData}</Heading>;
     const showHandles = movieCards?.length > 5;
-    const maxCountHandle = -(movieCards?.length / 5);
+    const maxCountHandle = -(movieCards?.length / 6);
     return (
         <div
             onMouseOver={() => {
@@ -43,7 +42,7 @@ const MoviesCarousel = ({ title, movieCards, viewMoreText, noData }) => {
                 )}
                 <Slider $sliderIndex={`${sliderIndex * 100}%`}>
                     {movieCards?.map((movieDetail) => (
-                        <MovieCardComponent key={movieDetail?.id} movieDetail={movieDetail} />
+                        <MovieCardComponent key={movieDetail?.title + movieDetail?.id} movieDetail={movieDetail} />
                     ))}
                 </Slider>
                 {showHandles && (
