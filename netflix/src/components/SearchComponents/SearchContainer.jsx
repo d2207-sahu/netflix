@@ -13,6 +13,10 @@ const SearchContainer = styled.div`
     flex-direction: row;
     gap: .8rem;
     align-items: center;
+    
+    @media (max-width: 640px) {
+        width: 100%;
+    }
 `
 
 export default SearchContainer

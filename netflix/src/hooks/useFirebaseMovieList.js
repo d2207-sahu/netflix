@@ -71,9 +71,13 @@ const useFirebaseMovieList = ({ keyword }) => {
 
   // This will only at the start of the hook, only if the saved is empty
   useEffect(() => {
-    console.log('HELLO', keyword);
-    if (list?.length == 0) addMovieToList();
-  }, [user?.uid]);
+    // console.log('HELLO', keyword);
+    if (list?.length == 0) {
+      // console.log('HELLO`1', keyword);
+      addMovieToList();
+    }
+    // console.log(user)
+  }, [user]);
 
   return { list, pending, saveMovieToList, user };
 };

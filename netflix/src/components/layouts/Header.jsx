@@ -11,6 +11,8 @@ import { LinkText } from '../LinkText';
 import useFirestoreDB from '../../hooks/useFirestoreDB';
 import SearchComponent from '../../pages/SearchPage/SearchComponent';
 import Logo from '../Logo';
+import MovieModal from '../../modals/MovieModal';
+import MovieInfoModal from '../../modals/MovieInfoModal';
 
 /**
  * This Component is rendered in every page
@@ -51,27 +53,31 @@ const Header = () => {
   let showAuthheaders = decideShowAuthHeaders(pathname);
 
   return (
-    <Container
-      $top={0}
-      $position='fixed'
-      $z_index="30"
-      $justifyContent="space-between"
-      $background_transparent={showAuthheaders}
-    >
-      <div className='flex items-center justify-start gap-5'>
-        <Logo />
-        {/* Should also contain the navigation dropdown items to show the sections of the application */}
-        {showAuthheaders && <LinkText to={routingConfig.mylist} className='m-auto w-max' text={"My List"}></LinkText>}
-      </div>
-      <div className='flex h-[inherit] justify-between items-center gap-2'>
-        {showAuthheaders && <SearchComponent />}
-        {showAuthheaders && <LanguageSelect />}
-        {(user && showAuthheaders) && <UserProfileImage
-          onClick={() => { signOut(auth) }}
-          className="mr-[3vw] mx-3 cursor-pointer h-[4rem] rounded-[.5rem] sm:block hidden"
-          alt='user' />}
-      </div>
-    </Container>
+    <>
+      <Container
+        $top={0}
+        $position='fixed'
+        $z_index="30"
+        $justifyContent="space-between"
+        $background_transparent={showAuthheaders}
+      >
+        <div className='flex items-center justify-start gap-5'>
+          <Logo className='unselectable' />
+          {/* Should also contain the navigation dropdown items to show the sections of the application */}
+          {showAuthheaders && <LinkText to={routingConfig.mylist} className='m-auto unselectable w-max' text={"My List"}></LinkText>}
+        </div>
+        <div className='flex h-[inherit] justify-between items-center gap-2'>
+          {showAuthheaders && <SearchComponent />}
+          {showAuthheaders && <LanguageSelect />}
+          {(user && showAuthheaders) && <UserProfileImage
+            onClick={() => { signOut(auth) }}
+            className="mr-[3vw] mx-3 cursor-pointer h-[4rem] rounded-[.5rem] sm:block hidden"
+            alt='user' />}
+        </div>
+      </Container>
+      <MovieModal />
+      <MovieInfoModal />
+    </>
   )
 }
 

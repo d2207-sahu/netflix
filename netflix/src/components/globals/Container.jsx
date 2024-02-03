@@ -14,6 +14,11 @@ const Container = styled.div`
     background: linear-gradient(to bottom,from top , black);
     transition: background 0.5s ease;
     /* background: linear - gradient(to bottom, rgba(0, 0, 0, 0.9), transparent); */
+
+  
+    @media (max-width: 640px) {
+        background-color: black;
+    }
 `;
 
 export default Container;

@@ -5,12 +5,7 @@ const intialMovieState = {
   loadingCarousel: false,
   homeTeaserVideoData: null,
   addMovieGenres: null,
-  movieModalData: {
-    info: null,
-    videos: [],
-    credits: [],
-    similars: []
-  }
+  modalMovieInfo: null,
 };
 
 const movieSlice = createSlice({
@@ -30,28 +25,20 @@ const movieSlice = createSlice({
     addAllMovieGenres: (state, action) => {
       state.addMovieGenres = action.payload;
     },
-    updateModalMovieInfo: (state, action) => {
-      state.movieModalData.info = action.payload;
+    updateMovieModalInfo: (state, action) => {
+      state.modalMovieInfo = action.payload;
     },
     updateModalMovieVideos: (state, action) => {
       state.movieModalData.videos = action.payload;
     },
-    updateModalMovieCredits: (state, action) => {
-      state.movieModalData.credits = action.payload;
-    },
-    updateModalMovieSimilars: (state, action) => {
-      state.movieModalData.similars = action.payload;
-    }
   }
 });
 
 export const {
   addBrowseData,
   addAllMovieGenres,
-  updateModalMovieInfo,
+  updateMovieModalInfo,
   addHomeTeaserVideoID,
-  updateModalMovieSimilars,
-  updateModalMovieCredits,
   updateModalMovieVideos,
   toggleLoadingCarousel
 } = movieSlice.actions;

@@ -13,14 +13,17 @@ const MovieMobileHomeContainer = () => {
     });
     if (!movieData) return <></>
     return (
-        <div className='mt-[25%] mb-5 w-screen rounded-xl  min-h-[50%]  block sm:hidden'>
+        <div className='mt-[25%] cursor-pointer mb-5 w-screen rounded-xl  min-h-[50%]  block sm:hidden'>
             <div className='flex flex-col justify-end gap-5 m-10 border-2 border-white border-solid rounded-xl '>
                 <img
                     onClick={onPlayClick}
                     loading="lazy"
+                    // eslint-disable-next-line react/no-unknown-property
+                    fetchpriority="high"
                     alt={movieData?.original_title}
                     src={TMDB_API_IMAGE_CDN_URL + 'w500' + movieData?.poster_path}
-                    className="w-[100%]  aspect-auto p-[0.5] object-cover shadow-black rounded-xl" />
+                    // aspect-ratio: 5 / 3; width: 100%
+                    className="w-[100%] aspect-[4:3] p-[0.5] object-cover shadow-black rounded-xl" />
                 <div className='absolute flex m-auto mb-[0.5] right-0 left-0 justify-center gap-5 p-10 items-center'>
                     <PlayButton
                         movieData={movieData}

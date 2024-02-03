@@ -16,7 +16,11 @@ const LogoImageComponent = styled.img`
         /* Tablet styles */
         ${({ $tabletStyles }) => $tabletStyles && css`${$tabletStyles}`}
     }
-
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 `;
 
 const Logo = () => {

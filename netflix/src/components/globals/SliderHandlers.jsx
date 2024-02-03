@@ -20,7 +20,7 @@ const Handle = styled.button`
 `;
 
 export const LeftHandle = styled(Handle)`
-    display: ${props => props.$dontShow ?? 'hidden'};
+    opacity: ${props => props.$dontShow ?? '1'};
     &:hover{
         background-color: rgba(22, 22, 22, 0.293);
         scale: 1.3;
@@ -28,6 +28,7 @@ export const LeftHandle = styled(Handle)`
 `
 
 export const RightHandle = styled(Handle)`
+    opacity: ${props => props.$dontShow ?? '1'};
     margin-right: ${props => props.$marginRight ?? '0'};
    &:hover{
         background-color: rgba(22, 22, 22, 0.293);

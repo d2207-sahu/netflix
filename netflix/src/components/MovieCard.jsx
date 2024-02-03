@@ -13,8 +13,8 @@ import usePlay from '../hooks/usePlay';
 
 const MovieCard = styled.div`
     cursor: pointer;
-    flex: 0 0 20%;
-    min-width: 20%;
+    flex: 0 0 17%;
+    min-width: 170px;
     min-height: fit-content;
     background-color: #181818;
     aspect-ratio: 16/9;
@@ -85,6 +85,7 @@ const MovieCardComponent = ({ movieDetail }) => {
             <img
                 loading='lazy'
                 alt={movieDetail?.original_title}
+                decoding="async"
                 srcSet={`${TMDB_API_IMAGE_CDN_URL + 'w200' + movieDetail?.backdrop_path} 320w,
                 ${TMDB_API_IMAGE_CDN_URL + 'w300' + movieDetail?.backdrop_path} 640w, 
                 ${TMDB_API_IMAGE_CDN_URL + 'w300' + movieDetail?.backdrop_path} 800w `}
@@ -93,6 +94,7 @@ const MovieCardComponent = ({ movieDetail }) => {
             />
             <img
                 loading='lazy'
+                decoding="async"
                 alt={movieDetail?.original_title}
                 srcSet={`${TMDB_API_IMAGE_CDN_URL + 'w200' + movieDetail?.poster_path} 320w,
                 ${TMDB_API_IMAGE_CDN_URL + 'w400' + movieDetail?.poster_path} 640w, 

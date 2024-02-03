@@ -28,6 +28,13 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 12. Make the timestamp sort of recently view and mylist others
 13. try to do the Full backend specific react thing
 14. maKE THE BASE api AND KEY INDEPEEDNECE REMOVE FROm Fe
+15. Have to handle the bac button in all the apges using router.
+16. bottom nav bar
+17. new page for mobile my netflix
+18. Performance issue, useFirebaseMovieList is triggering on every hover thing.
+19. Use PropTypes to typecheck and debug components
+20.  Use controlled components to manage input form elements
+
 ## Error Handling
 1. react global Error Boundary
 2. react Component Wise Error Boundary
