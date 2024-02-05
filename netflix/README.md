@@ -23,7 +23,6 @@ https://github.com/d2207-sahu/netflix/settings/secrets
         - All movie carousels
 
 ## TODOs
-5. Mobile COntainer fucked up
 6. CLick events in the mobile version to open and see movies
 7. Make the Dialog openning to be full screen
 12. Make the timestamp sort of recently view and mylist others
