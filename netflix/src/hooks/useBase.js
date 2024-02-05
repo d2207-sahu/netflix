@@ -1,28 +1,26 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { basePublicFetchAPI } from '../service/api.service';
-import { addBrowseData, toggleLoadingCarousel } from '../redux/slices/movieSlice';
+import { addAllMovieGenres } from '../redux/slices/movieSlice';
 
-const useBrowse = () => {
+const useBase = () => {
   const dispatch = useDispatch();
 
-  const getBrowseData = async () => {
-    dispatch(toggleLoadingCarousel(true));
+  const getBaseData = async () => {
     await basePublicFetchAPI(
       'GET',
-      '/browse',
+      '/base?genre=1',
       null,
       async (data) => {
-        dispatch(addBrowseData(data.data));
+        dispatch(addAllMovieGenres(data?.data?.genre));
       },
       (err) => console.error(err)
     );
-    dispatch(toggleLoadingCarousel(false));
   };
 
   useEffect(() => {
-    getBrowseData();
+    getBaseData();
   }, []);
 };
 
-export default useBrowse;
+export default useBase;

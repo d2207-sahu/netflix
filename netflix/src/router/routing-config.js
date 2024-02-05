@@ -1,9 +1,11 @@
 export const routingConfig = {
   index: '/',
-  home: '/browse',
+  anonymous:"*",
+  home: '/browse/*',
   login: '/login',
   signup: '/signup',
   search: '/search',
   profile: '/profile',
   mylist: '/mylist',
+  mynetflix: '/mynetflix'
 };

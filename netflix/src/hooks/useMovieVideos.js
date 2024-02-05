@@ -11,11 +11,11 @@ const useMovieVideos = ({ movieID }) => {
     setPending(true);
     return await basePublicFetchAPI(
       'GET',
-      `${MOVIE_DATA}${movieID}`,
+      `/${MOVIE_DATA}${movieID}`,
       null,
       async (data) => {
-        setVideos(data?.results);
-        console.log(data.results);
+        setVideos(data?.data);
+        console.log(data?.data);
         setPending(false);
         return;
       },
