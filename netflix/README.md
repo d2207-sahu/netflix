@@ -62,6 +62,11 @@ Netflix
 ## About the Project: 📚
 Give a brief description of the project. What was the reason or motivation behind the creation of the project?
 
+1. Dynamic Components
+2. Config Driven UI
+3. Nested TMDB API calls in the separate NODE backend
+4. 
+
 ## Screenshots: 📷
 Add a picture or short video(gif) demo of how the project works.
 
