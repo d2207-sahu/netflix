@@ -23,11 +23,8 @@ https://github.com/d2207-sahu/netflix/settings/secrets
         - All movie carousels
 
 ## TODOs
-6. CLick events in the mobile version to open and see movies
-7. Make the Dialog openning to be full screen
+6. anonymous error pages
 12. Make the timestamp sort of recently view and mylist others
-13. try to do the Full backend specific react thing
-14. maKE THE BASE api AND KEY INDEPEEDNECE REMOVE FROm Fe
 15. Have to handle the bac button in all the apges using router.
 16. bottom nav bar
 17. new page for mobile my netflix
