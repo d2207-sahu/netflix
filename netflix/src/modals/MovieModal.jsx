@@ -38,7 +38,7 @@ const MovieModal = () => {
     if (!videoID) return <></>;
 
     return (
-        <Modal path={videoID} key={"MovieModal"} className={'min-h-screen min-w-screen'}>
+        <Modal path={videoID} key={"MovieModal"} className={'min-h-screen min-w-[100%] w-screen h-screen'}>
             <div className='p-0 m-0 relative h-[100%] w-[100%] z-50' >
                 <iframe
                     ref={youtubeRef}

@@ -33,7 +33,8 @@ const usePlay = ({ onAfterClick, movieID, videoID, movieData }) => {
   }, [videos]);
 
   // Actual Function returned so that can be placed in the onClick Listenners
-  const onPlayClick = () => {
+  const onPlayClick = (event) => {
+    if(event) event.stopPropagation()
     if (movieID) {
       getMovieVideos();
     } else {
