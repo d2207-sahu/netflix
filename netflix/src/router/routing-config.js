@@ -7,4 +7,5 @@ export const routingConfig = {
   search: '/search',
   profile: '/profile',
   mylist: '/mylist',
+  mynetflix: '/mynetflix'
 };
