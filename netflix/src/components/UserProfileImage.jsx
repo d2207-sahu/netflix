@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { userRed, userBlack, userBlue, userYellow, userGreen } from '../assets';
 import { useSelector } from 'react-redux';
+import { Heading } from './globals';
 // import { ButtonW } from './globals';
 
 const userImages = [
@@ -19,7 +20,7 @@ function setUserIndex(user) {
     return userIndex;
 }
 
-const UserProfileImage = ({ onClick, className, alt, index }) => {
+const UserProfileImage = ({ onClick, className, alt, index, name }) => {
     const user = useSelector(((store) => store.user))
     let indexP = useMemo(() => setUserIndex(user), [user]);
 
@@ -56,7 +57,8 @@ const UserProfileImage = ({ onClick, className, alt, index }) => {
                 onClick={onClick}
                 className={className}
                 src={userImages[index ?? indexP]} />
-            {/* <dialog ref={dialogRef} className='flex justify-end items-center bg-black shadow-md'>
+            {name ? <Heading>{user?.name}</Heading> : <></>}
+            {/* <dialog ref={dialogRef} className='flex items-center justify-end bg-black shadow-md'>
                 <div className='flex flex-col items-start'>
                     <ButtonW>Logout</ButtonW>
                     <ButtonW>User Profiles</ButtonW>

@@ -9,13 +9,15 @@ import { routingConfig } from './routing-config';
 import ProfilePage from '../pages/ProfilePage';
 import MyListPage from '../pages/MyListPage';
 import ShimmerLoading from '../components/Shimmer/ShimmerLoading';
+import AnonymousPage from '../pages/AnonymousPage';
+import MyNetflixPage from '../pages/MyNetflixPage';
 const HomePage = React.lazy(() => import('../pages/HomePage'));
 
 /**
  * @function
- * @param {index} boolean 
- * @param {path} string path 
- * @param {child} React.element Page Component 
+ * @param {index} boolean
+ * @param {path} string path
+ * @param {child} React.element Page Component
  * @returns RouteObject
  */
 function suspensePathLoader({ index, path, child }) {
@@ -28,12 +30,14 @@ function suspensePathLoader({ index, path, child }) {
 
 const paths = [
   { index: true, path: routingConfig.home, child: <HomePage /> },
+  { index: true, path: routingConfig.anonymous, child: <AnonymousPage /> },
   { index: false, path: routingConfig.home, child: <HomePage /> },
   { index: false, path: routingConfig.login, child: <LoginPage /> },
   { index: false, path: routingConfig.signup, child: <SignUpPage /> },
   { index: false, path: routingConfig.search, child: <SearchPage /> },
   { index: false, path: routingConfig.mylist, child: <MyListPage /> },
-  { index: false, path: routingConfig.profile, child: <ProfilePage /> }
+  { index: false, path: routingConfig.profile, child: <ProfilePage /> },
+  { index: false, path: routingConfig.mynetflix, child: <MyNetflixPage /> }
 ];
 
 const appRouter = createBrowserRouter([

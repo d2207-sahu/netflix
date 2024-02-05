@@ -6,11 +6,11 @@ const GridContainer = styled.div`
     display: grid;
     gap: 4vw 0px;
     position: relative;
-    grid-template-columns: ${(props => ` repeat(${props.$element ?? 5}, 1fr)`)};
+    grid-template-columns: ${(props => ` repeat(${props.$desktopEl ?? 5}, 1fr)`)};
     row-gap: ${(props) => props.$rowGap ?? '4.5vw'};
     
     @media (max-width: 640px) {
-        grid-template-columns: ${(props => ` repeat(${props.$element ?? 2}, 1fr)`)};
+        grid-template-columns: ${(props => ` repeat(${props.$mobileEl ?? 2}, 1fr)`)};
     }
 `;
 

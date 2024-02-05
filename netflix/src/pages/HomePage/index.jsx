@@ -4,9 +4,11 @@ import MainVideoContainerBackground from './HomeContainers/MainVideoContainerBac
 import MoviesCarouselContainer from './MoviesCarouselContainer'
 import BottomNavBar from '../../components/layouts/BottomNavBar'
 import useBrowse from '../../hooks/useBrowse'
+import useBase from '../../hooks/useBase'
 
 const HomePage = () => {
-  useBrowse()
+  useBrowse();
+  useBase();
   return (<>
     <Header />
     <MainVideoContainerBackground />

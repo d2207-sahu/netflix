@@ -5,5 +5,5 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const movieId = searchParams.get('movieId');
   const movieVideoData = await baseFetchAPI('GET', `movie/${movieId}/videos`, null);
-  return Response.json({ data: movieVideoData });
+  return Response.json({ data: movieVideoData?.results });
 }

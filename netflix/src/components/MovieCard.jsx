@@ -9,7 +9,6 @@ import GenreTags from './MovieComponents/GenreTags';
 import RatingTag from './MovieComponents/RatingTag';
 import PlayButton from './PlayButton';
 import AddToMyListButton from './AddToMyListButton';
-import usePlay from '../hooks/usePlay';
 
 const MovieCard = styled.div`
     cursor: pointer;
@@ -52,7 +51,6 @@ const MovieCard = styled.div`
             scale: 1;
             z-index: 0;
             transform: none;
-
         }
     }
 `;
@@ -69,8 +67,6 @@ const MovieCardComponent = ({ movieDetail }) => {
         event.preventDefault();
         setOnMouseOver(true);
     }
-    // This has to be replaced by useInfo thing.
-    const { onPlayClick } = usePlay({ movieID: movieDetail?.id, movieData: movieDetail })
     return (
         <MovieCard
             key={movieDetail?.id}
@@ -78,7 +74,8 @@ const MovieCardComponent = ({ movieDetail }) => {
             onMouseOver={onMouseOverFunction}
             onClick={(e) => {
                 e.preventDefault();
-                onPlayClick();
+                e.stopPropagation();
+                dispatch(updateModalMovieSelectedID(movieDetail));
                 e.stopPropagation();
             }}
             onMouseLeave={onMouseLeave}>
