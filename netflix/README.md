@@ -29,6 +29,7 @@ https://github.com/d2207-sahu/netflix/settings/secrets
 16. bottom nav bar
 17. new page for mobile my netflix
 18. Performance issue, useFirebaseMovieList is triggering on every hover thing.
+19. all the things like rating and all good UI
 19. Use PropTypes to typecheck and debug components
 20.  Use controlled components to manage input form elements
 

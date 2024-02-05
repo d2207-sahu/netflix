@@ -37,6 +37,10 @@ export const englishConfig = {
   moreInfo: 'More Info',
   recenltyPlayed: 'Recently Played',
   recentlyPlayedTitle: 'Continue Watching for ',
+  errorHeading: 'Netflix Site Error - Page Not Found',
+  errorExplanation: 'We are unable to find this page',
+  errorDescription: 'Please go to Netflix Home Page by clicking on the button below.',
+  errorPageCTA: 'Netflix Home'
 };
 export const hindiConfig = {
   moreInfo: 'और जानकारी',
@@ -71,7 +75,11 @@ export const hindiConfig = {
   addProfile: 'प्रोफाइल जोड़ें',
   addProfileDesc: 'Netflix देख रहे अन्य व्यक्ति के लिए एक प्रोफ़ाइल जोड़ें।',
   cancel: 'रद्द करें',
-  continue: 'जारी रखें'
+  continue: 'जारी रखें',
+  errorHeading: 'Netflix साइट त्रुटि - पृष्ठ नहीं मिला',
+  errorExplanation: 'हम इस पृष्ठ को नहीं ढूंढ पा रहे हैं',
+  errorDescription: 'कृपया नीचे दिए गए बटन पर क्लिक करके Netflix होम पेज पर जाएं।',
+  errorPageCTA: 'Netflix होम'
 };
 
 export const LanguageConfig = {

@@ -51,7 +51,6 @@ const MovieCard = styled.div`
             scale: 1;
             z-index: 0;
             transform: none;
-
         }
     }
 `;
