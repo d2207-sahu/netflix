@@ -13,6 +13,8 @@ import AnonymousPage from '../pages/AnonymousPage';
 import MyNetflixPage from '../pages/MyNetflixPage';
 const HomePage = React.lazy(() => import('../pages/HomePage'));
 import CustomErrorBoundary from '../error/GlobalErrorBoundary';
+import HomePageErrorCallback from '../error/HomePageErrorCallback';
+import LoginPageErrorCallback from '../error/LoginPageErrorCallback';
 
 /**
  * @function
@@ -38,13 +40,15 @@ const paths = [
     index: true,
     path: routingConfig.anonymous,
     child: <AnonymousPage />
-    // errorElement: <ErrorBoundaryFallback />,
   },
   {
     index: true,
     path: routingConfig.home,
-    child: <HomePage />
-    // errorElement: <ErrorBoundaryFallback />,
+    child: (
+      <HomePageErrorCallback>
+        <HomePage />
+      </HomePageErrorCallback>
+    )
   },
   {
     index: false,
@@ -54,14 +58,21 @@ const paths = [
   },
   {
     index: false,
-    child: <LoginPage />
-    // errorElement: <ErrorBoundaryFallback />
+    path: routingConfig.login,
+    child: (
+      <LoginPageErrorCallback>
+        <LoginPage />
+      </LoginPageErrorCallback>
+    )
   },
   {
     index: false,
     path: routingConfig.signup,
-    child: <SignUpPage />
-    // errorElement: <ErrorBoundaryFallback />
+    child: (
+      <LoginPageErrorCallback>
+        <SignUpPage />
+      </LoginPageErrorCallback>
+    )
   },
   {
     index: false,

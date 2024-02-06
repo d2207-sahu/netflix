@@ -2,6 +2,7 @@
 12. Make the timestamp sort of recently view and mylist others
 15. Have to handle the bac button in all the apges using router.
 13. StyledComponents Inheritance code optimization
+14. Handle all the places wehere it can go wrong and make the Showbounmdary there
 18. Performance issue, useFirebaseMovieList is triggering on every hover thing.
 19. all the things like rating and all good UI
 19. Use PropTypes to typecheck and debug components

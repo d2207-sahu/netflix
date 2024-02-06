@@ -17,7 +17,7 @@ const AnonymousPage = () => {
                 <NormalText >{languageData?.errorExplanation}</NormalText>
                 <NormalText >{languageData?.errorDescription}</NormalText>
                 <div className='flex gap-3 pt-3 m-3'>
-                    <PrefferedRectangleButton onClick={() => { navigate(routingConfig.home) }}>{languageData?.errorPageCTA}</PrefferedRectangleButton>
+                    <PrefferedRectangleButton onClick={() => { navigate(routingConfig.index) }}>{languageData?.errorPageCTA}</PrefferedRectangleButton>
                 </div>
             </div>
             <Footer />

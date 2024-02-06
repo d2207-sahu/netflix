@@ -23,10 +23,10 @@ export const GlobalErrorBoundaryFallback = ({ error, resetErrorBoundary }) => {
   );
 };
 
-function ErrorBoundaryWrapper({ children }) {
+function ErrorBoundaryWrapper({ children, FallbackComponent }) {
   return (
     <ErrorBoundary
-      FallbackComponent={GlobalErrorBoundaryFallback}
+      FallbackComponent={FallbackComponent ?? GlobalErrorBoundaryFallback}
       onReset={() => {
         window.location.reload();
       }}
