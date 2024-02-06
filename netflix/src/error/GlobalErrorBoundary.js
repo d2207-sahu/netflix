@@ -1,34 +1,39 @@
 import React from 'react';
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+import { ErrorBoundary } from 'react-error-boundary';
+import { RectangleButton, SmallText, SubHeading } from '../components/globals';
+import Footer from '../components/layouts/Footer';
 
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    console.log(error)
-    return { hasError: true };
-  }
+const errorConfig = {
+  globalError: 'Something went wrong:',
+  tryAgain: 'Try again'
+};
 
-  componentDidCatch(error, info) {
-    console.log(error, info);
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
-    // logErrorToMyService(error, info.componentStack);
-  }
 
-  render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return this.props.fallback;
-    }
+// cannot have useLanguage here.
+export const GlobalErrorBoundaryFallback = ({ error, resetErrorBoundary }) => {
+  return (
+    <div className="flex flex-col items-center justify-center p-5">
+      <SubHeading>{errorConfig?.globalError}</SubHeading>
+      <SmallText className="p-5">{error.message}</SmallText>
+      <RectangleButton className="m-5" onClick={resetErrorBoundary}>
+        {errorConfig?.tryAgain}
+      </RectangleButton>
+      <Footer />
+    </div>
+  );
+};
 
-    return this.props.children;
-  }
+function ErrorBoundaryWrapper({ children }) {
+  return (
+    <ErrorBoundary
+      FallbackComponent={GlobalErrorBoundaryFallback}
+      onReset={() => {
+        window.location.reload();
+      }}
+    >
+      {children}
+    </ErrorBoundary>
+  );
 }
 
-export default ErrorBoundary;
+export default ErrorBoundaryWrapper;

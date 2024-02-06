@@ -5,7 +5,7 @@ export const englishConfig = {
   authRecapthcaSecurityText: 'Sign in is protected by Google reCAPTCHA to ensure you’re not a bot.',
   email: 'Email',
   name: 'Name',
-  accounts:'Users',
+  accounts: 'Users',
   mylist: 'My List',
   password: 'Password',
   repassword: 'Confirm Password',
@@ -41,7 +41,9 @@ export const englishConfig = {
   errorHeading: 'Netflix Site Error - Page Not Found',
   errorExplanation: 'We are unable to find this page',
   errorDescription: 'Please go to Netflix Home Page by clicking on the button below.',
-  errorPageCTA: 'Netflix Home'
+  errorPageCTA: 'Netflix Home',
+  globalError: 'Something went wrong:',
+  tryAgain: 'Try again'
 };
 export const hindiConfig = {
   moreInfo: 'और जानकारी',
@@ -81,7 +83,9 @@ export const hindiConfig = {
   errorHeading: 'Netflix साइट त्रुटि - पृष्ठ नहीं मिला',
   errorExplanation: 'हम इस पृष्ठ को नहीं ढूंढ पा रहे हैं',
   errorDescription: 'कृपया नीचे दिए गए बटन पर क्लिक करके Netflix होम पेज पर जाएं।',
-  errorPageCTA: 'Netflix होम'
+  errorPageCTA: 'Netflix होम',
+  globalError: 'Something went wrong:',
+  tryAgain: 'Try again'
 };
 
 export const LanguageConfig = {

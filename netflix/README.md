@@ -1,50 +1,27 @@
-## production site
-https://netflix-divyanshu.vercel.app/browse
-
-## Deployment
-- main branch is used to deploy to Vercel
-- Github Actions - github-action-735118034
-https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
-- Manage secrets
-https://github.com/d2207-sahu/netflix/settings/secrets
-
-## Features
-- Home 
-    - Search Bar
-    - Movie Suggestions
-
-- SignIn
-    - Login
-    - Create Account
-
-- Browse (After Auth)
-    - Header
-        - Main Movie
-        - All movie carousels
-
 ## TODOs
 12. Make the timestamp sort of recently view and mylist others
 15. Have to handle the bac button in all the apges using router.
-
-
+13. StyledComponents Inheritance code optimization
 18. Performance issue, useFirebaseMovieList is triggering on every hover thing.
 19. all the things like rating and all good UI
 19. Use PropTypes to typecheck and debug components
-20.  Use controlled components to manage input form elements
+20. Use controlled components to manage input form elements
 
-## Error Handling
+### Error Handling
 1. react global Error Boundary
 2. react Component Wise Error Boundary
 
-## CONFIG UI
+### CONFIG UI
 1. remove the fireabse-error-map.js -> server
 
-## SECURITY TODOS
+### SECURITY TODOS
 1. Make every URL to be parsed
 2. Iframe protection -> X-Frame-Options in react application + CSP headers
 2. React XSS attack, href attack + props attack not escaped.
 3. Already Handled CSP Headers
 4. create Image uURL creator with XSS attack helping
+
+
 # Project Title: 📛
 Netflix
 [https://netflix-divyanshu.vercel.app/browse](🔗)
@@ -66,6 +43,20 @@ Give a brief description of the project. What was the reason or motivation behin
 2. Config Driven UI
 3. Nested TMDB API calls in the separate NODE backend
 4. 
+
+## Features
+- Home 
+    - Search Bar
+    - Movie Suggestions
+
+- SignIn
+    - Login
+    - Create Account
+
+- Browse (After Auth)
+    - Header
+        - Main Movie
+        - All movie carousels
 
 ## Screenshots: 📷
 Add a picture or short video(gif) demo of how the project works.
