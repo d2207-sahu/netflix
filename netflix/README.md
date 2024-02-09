@@ -3,6 +3,7 @@
 15. Have to handle the bac button in all the apges using router.
 13. StyledComponents Inheritance code optimization
 14. Handle all the places wehere it can go wrong and make the Showbounmdary there
+16. Have the cursor getting toi type be not coming on certain places int he applciaotn
 18. Performance issue, useFirebaseMovieList is triggering on every hover thing.
 19. all the things like rating and all good UI
 19. Use PropTypes to typecheck and debug components
@@ -23,9 +24,12 @@
 4. create Image uURL creator with XSS attack helping
 
 
-# Project Title: 📛
-Netflix
-[https://netflix-divyanshu.vercel.app/browse](🔗)
+# Project Title: 'Netflix'
+Netflix Frontend
+[https://netflix-divyanshu.vercel.app/browse](🔗) 
+
+Netflix Backend
+[https://netflix-divyanshu-server.vercel.app/api](🔗)
 
 ## Table of Content: 📑
 - [About the Project](#about-the-project)
@@ -61,6 +65,7 @@ Give a brief description of the project. What was the reason or motivation behin
 
 ## Screenshots: 📷
 Add a picture or short video(gif) demo of how the project works.
+
 
 ## Technologies Used: ☕️ 🐍 ⚛️
 List the tools and technologies used to build the project. Doing this can help developers familiar with these technologies to contribute and help improve the codebase.
