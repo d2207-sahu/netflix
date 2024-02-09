@@ -9,12 +9,13 @@ import useBase from '../../hooks/useBase'
 const HomePage = () => {
   useBrowse();
   useBase();
-  return (<>
+
+  return <>
     <Header />
     <MainVideoContainerBackground />
     <MoviesCarouselContainer />
     <BottomNavBar />
   </>
-  )
+
 }
 export default HomePage

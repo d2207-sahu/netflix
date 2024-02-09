@@ -81,20 +81,22 @@ const Header = () => {
   )
 }
 
+// This has to be like only show in these and rest dont show. 
+// As there can be various pages which are anonymouse and we are adding the header component there also
 function decideShowAuthHeaders(pathname) {
   let showAuthheaders;
   switch (pathname) {
-    case routingConfig.login:
-      showAuthheaders = false;
+    case routingConfig.home:
+      showAuthheaders = true;
       break;
-    case routingConfig.profile:
-      showAuthheaders = false;
+    case routingConfig.search:
+      showAuthheaders = true;
       break;
-    case routingConfig.signup:
-      showAuthheaders = false;
+    case routingConfig.mynetflix:
+      showAuthheaders = true;
       break;
     default:
-      showAuthheaders = true;
+      showAuthheaders = false;
       break;
   }
   return showAuthheaders

@@ -2,15 +2,17 @@ import React, { useRef, useState } from 'react'
 import Header from '../../components/layouts/Header';
 import { BackgroundImage } from '../../components/layouts/BackgroundImage';
 import { AuthInput, ButtonRed, ErrorText, Form, Heading } from "../../components/globals"
-import { validateEmail, validateName, validatePassword } from '../../utils/validation';
+import loginValidator from '../../utils/loginValidator';
 import { useFirebase } from '../../hooks';
 // import { FirebaseErrorMap } from '../../constants/firebase-Error-Map';
 import ToggleSignUpAndSignInComponent from '../../components/AuthComponents/ToggleSignUpAndSignInComponent';
 import SignInReCaptchaSecurityText from '../../components/AuthComponents/SignInReCaptchaSecurityText';
 import { useLanguage } from '../../context/LanguageContext';
+import useError from '../../hooks/useError';
 
 // TODO remove the <div mt 10 > => spacer global component
 const LoginPage = () => {
+    const throwError = useError();
     const { languageData } = useLanguage();
     const [signInErrorMessage, setSignInErrorMessage] = useState('');
     const [signInSubmitError, setSignInSubmitError] = useState('');
@@ -18,37 +20,34 @@ const LoginPage = () => {
     const { auth, signInWithEmailAndPassword } = useFirebase();
     const emailRef = useRef();
     const passwordRef = useRef();
-    const checkEmailAndPassword = (email, password, name) => {
-        if (!validateEmail(email)) {
-            return !languageData ? '' : languageData?.emailInvlaid;
-        } else if (!validatePassword(password)) {
-            return !languageData ? '' : languageData?.passwordInvlaid;
-        } else if (name && !validateName(name)) {
-            return !languageData ? '' : languageData?.nameInvalid;
-        } else return '';
-    };
+
     function handleSignUp() {
-        if (!isLoading) {
-            const email = emailRef.current.value;
-            const password = passwordRef.current.value;
-            const message = checkEmailAndPassword(email, password)
-            setSignInErrorMessage(message);
-            setSignInSubmitError('');
-            if (message !== '') return;
-            console.log(checkEmailAndPassword(email, password), signInErrorMessage);
-            setIsLoading(true);
-            signInWithEmailAndPassword(auth, email, password)
-                .then(() => {
-                    emailRef.current.value = '';
-                    passwordRef.current.value = '';
-                })
-                .catch((err => {
-                    if (typeof (err) === 'object')
-                        setSignInSubmitError(Object.create(window.FirebaseErrorMap)[err?.code?.split('/')[1]])
-                    else setSignInSubmitError(err)
-                })).finally(() => {
-                    setIsLoading(false);
-                });
+        try {
+            if (!isLoading) {
+                const email = emailRef.current.value;
+                const password = passwordRef.current.value;
+                const message = loginValidator(languageData, email, password, null, throwError )
+                setSignInErrorMessage(message);
+                setSignInSubmitError('');
+                if (message !== '') return;
+                setIsLoading(true);
+                signInWithEmailAndPassword(auth, email, password)
+                    .then(() => {
+                        emailRef.current.value = '';
+                        passwordRef.current.value = '';
+                    })
+                    .catch((err => {
+                        if (typeof (err) === 'object')
+                            setSignInSubmitError(Object.create(window.FirebaseErrorMap)[err?.code?.split('/')[1]])
+                        else setSignInSubmitError(err)
+                    })).finally(() => {
+                        setIsLoading(false);
+                    });
+            }
+        } catch (e) {
+            console.error(e);
+            setIsLoading(false);
+            throwError("Internal Application Error, while signing up")
         }
     }
 
@@ -56,7 +55,7 @@ const LoginPage = () => {
         <Header />
         <BackgroundImage />
         <Form
-            onSubmit={(e) => e.preventDefault()}>
+            onSubmit={(e) => e?.preventDefault()}>
             <Heading>{!languageData ? '' : languageData?.signIn}</Heading>
             <div className='mt-10' />
             <AuthInput
@@ -85,8 +84,5 @@ const LoginPage = () => {
         </Form >
     </div >)
 }
-
-// TODO
-// 2. Have the image lazy Laod
 
 export default LoginPage
