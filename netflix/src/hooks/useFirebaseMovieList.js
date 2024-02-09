@@ -10,7 +10,7 @@ const useFirebaseMovieList = ({ keyword }) => {
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  const list = user[keyword];
+  const list = user?.[keyword];
 
   /**
    * Retrieves the list of movies from the Firestore database and updates the state.
