@@ -1,9 +1,9 @@
 # Netflix
 ![image](https://github.com/d2207-sahu/netflix/assets/55633712/c57c6a57-b1d9-4cb9-93a1-13f4f7a582d4)
 * Netflix Frontend
-[https://netflix-divyanshu.vercel.app/browse](🔗) 
+[https://netflix-divyanshu.vercel.app/browse](https://netflix-divyanshu.vercel.app/browse) 
 * Netflix Backend
-[https://netflix-divyanshu-server.vercel.app/api](🔗)
+[https://netflix-divyanshu-server.vercel.app/api](https://netflix-divyanshu-server.vercel.app/api)
 
 ## Table of Content: 📑
 - [About the Project](#about-the-project)
