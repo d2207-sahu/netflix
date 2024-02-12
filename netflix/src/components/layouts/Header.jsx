@@ -89,6 +89,9 @@ function decideShowAuthHeaders(pathname) {
     case routingConfig.home:
       showAuthheaders = true;
       break;
+    case routingConfig.homeBase:
+      showAuthheaders = true;
+      break;
     case routingConfig.search:
       showAuthheaders = true;
       break;

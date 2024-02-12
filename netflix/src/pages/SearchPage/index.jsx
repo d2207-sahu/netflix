@@ -26,13 +26,13 @@ const SearchPage = () => {
       {/*TODO change the Loading handle UI. */}
       {pending ? (
         <div
-          className=''>
+          className='w-screen px-32 pt-16 '>
           <Heading>
             Loading..
           </Heading>
         </div>) : searchResultData ?
         <div>
-          <SliderContainer className='hidden sm:flex'>
+          <SliderContainer className='mx-[4%] mt-[10rem] mb-[2rem] hidden sm:flex'>
             <Slider >
               {user?.searched?.map((movieDetail) => (
                 <MovieCardComponent key={movieDetail?.videoData.id} movieDetail={movieDetail.videoData} />
